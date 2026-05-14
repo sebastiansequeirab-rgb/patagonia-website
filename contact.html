@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Get in Touch | Patagonia Americas</title>
+<meta name="description" content="Start a conversation with Patagonia Americas. Reach our team for sourcing inquiries, partnerships, and logistics." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink:        #0c1614;
+    --forest:     #0f2922;
+    --forest-2:   #14342c;
+    --forest-3:   #1a3d34;
+    --brass:      #b8954a;
+    --brass-2:    #d4b683;
+    --brass-3:    #8a6e36;
+    --cream:      #f6f1e8;
+    --paper:      #fbf8f2;
+    --paper-2:    #f3ede0;
+    --line:       #e8e1d2;
+    --muted:      #5a6360;
+    --muted-2:    #7a8581;
+
+    --serif: "Fraunces", "Times New Roman", serif;
+    --sans:  "Instrument Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --ease: cubic-bezier(.22, .61, .36, 1);
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--serif);
+    font-weight: 300;
+    letter-spacing: -0.022em;
+    line-height: 1.04;
+    font-variation-settings: "opsz" 96, "SOFT" 50;
+  }
+  h1 em, h2 em, h3 em {
+    font-style: italic;
+    color: var(--brass);
+    font-weight: 400;
+  }
+
+  /* ============ NAV ============ */
+  .header-bar {
+    background: var(--forest);
+    position: relative;
+    z-index: 50;
+    border-bottom: 1px solid rgba(184,149,74,.12);
+  }
+  .header-bar::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .nav {
+    padding: 22px 0;
+    position: relative;
+    z-index: 2;
+  }
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--cream);
+  }
+  .logo-mark { width: 42px; height: 42px; flex-shrink: 0; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .logo-text .lead {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .logo-text .sub {
+    font-family: var(--sans);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.36em;
+    margin-top: 5px;
+    color: var(--brass-2);
+    text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; gap: 44px; }
+  .nav-links a {
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.85;
+    transition: opacity .25s var(--ease);
+    position: relative;
+    padding: 4px 0;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--brass-2); }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 0; height: 1px;
+    background: var(--brass);
+    transition: width .4s var(--ease);
+  }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { width: 100%; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 26px;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all .35s var(--ease);
+    text-decoration: none;
+  }
+  .btn-brass { background: var(--brass); color: var(--ink); }
+  .btn-brass:hover { background: var(--brass-2); transform: translateY(-1px); box-shadow: 0 10px 30px -10px rgba(184,149,74,.5); }
+  .btn-outline { background: transparent; border: 1px solid var(--brass); color: var(--brass); }
+  .btn-outline:hover { background: var(--brass); color: var(--ink); }
+  .btn .arrow {
+    display: inline-block;
+    transition: transform .35s var(--ease);
+  }
+  .btn:hover .arrow { transform: translateX(5px); }
+
+  /* ============ MAIN LAYOUT ============ */
+  .contact-page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    background: var(--paper);
+  }
+
+  /* LEFT SIDE — Brand panel */
+  .contact-brand {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 90px 70px 70px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100vh - 86px);
+  }
+  .contact-brand::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .contact-brand::after {
+    content: "";
+    position: absolute;
+    bottom: -120px; right: -120px;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(184,149,74,.18), transparent 65%);
+    pointer-events: none;
+  }
+
+  .contact-brand-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 460px;
+  }
+
+  .contact-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--brass-2);
+    margin-bottom: 36px;
+  }
+  .contact-eyebrow::before {
+    content: "";
+    width: 36px; height: 1px;
+    background: var(--brass);
+  }
+
+  .contact-brand h1 {
+    font-size: clamp(44px, 5.2vw, 72px);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    margin-bottom: 32px;
+  }
+
+  .contact-brand .lead {
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(246,241,232,.82);
+    margin-bottom: 56px;
+    max-width: 420px;
+  }
+
+  /* Contact details */
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(246,241,232,.12);
+  }
+  .detail {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .detail-icon {
+    width: 38px; height: 38px;
+    flex-shrink: 0;
+    border: 1px solid rgba(184,149,74,.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brass-2);
+  }
+  .detail-icon svg { width: 16px; height: 16px; }
+  .detail-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .detail-label {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--brass-2);
+  }
+  .detail-value {
+    font-size: 15px;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+  .detail-value a:hover { color: var(--brass-2); }
+
+  .brand-footer {
+    position: relative;
+    z-index: 2;
+    margin-top: 60px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(246,241,232,.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(246,241,232,.5);
+  }
+  .brand-footer a { color: var(--brass-2); }
+  .brand-footer a:hover { color: var(--brass); }
+
+  /* RIGHT SIDE — Form */
+  .contact-form-wrap {
+    padding: 90px 80px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background:
+      radial-gradient(ellipse at top right, rgba(184,149,74,.06), transparent 60%),
+      var(--paper);
+  }
+
+  .form-head {
+    margin-bottom: 56px;
+    max-width: 520px;
+  }
+  .form-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 24px;
+  }
+  .form-eyebrow::before {
+    content: "";
+    width: 28px; height: 1px;
+    background: var(--brass);
+  }
+  .form-head h2 {
+    font-size: clamp(28px, 3vw, 38px);
+    margin-bottom: 16px;
+  }
+  .form-head p {
+    color: var(--muted);
+    font-size: 15.5px;
+    line-height: 1.65;
+  }
+
+  /* Form fields */
+  form {
+    max-width: 560px;
+    width: 100%;
+  }
+  .field {
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .field label {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 12px;
+    transition: color .25s var(--ease);
+  }
+  .field label .req {
+    color: var(--brass);
+    margin-left: 4px;
+  }
+  .field input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0 14px;
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--ink);
+    transition: border-color .3s var(--ease);
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .field select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230c1614' stroke-width='1.5'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    background-size: 16px;
+    padding-right: 30px;
+    cursor: pointer;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.6;
+    font-family: var(--sans);
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: var(--muted-2);
+    opacity: 0.7;
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-bottom-color: var(--brass);
+  }
+  .field:focus-within label {
+    color: var(--brass);
+  }
+
+  /* Two-column for some fields */
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  /* Submit row */
+  .form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 16px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .form-note {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 280px;
+  }
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 32px;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .35s var(--ease);
+  }
+  .submit-btn:hover {
+    background: var(--brass);
+    color: var(--ink);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 32px -12px rgba(184,149,74,.55);
+  }
+  .submit-btn:hover .arrow { transform: translateX(6px); }
+  .submit-btn .arrow {
+    transition: transform .35s var(--ease);
+    font-size: 14px;
+  }
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+  .form-error {
+    margin-top: 16px;
+    color: #c74343;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .form-error[hidden] { display: none; }
+
+  /* Success state */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .form-success.show { display: block; animation: fadeUp .8s var(--ease-out); }
+  .form-success .check {
+    width: 64px; height: 64px;
+    margin: 0 auto 28px;
+    border: 1px solid var(--brass);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brass);
+    animation: pop .6s var(--ease-out);
+  }
+  .form-success h3 {
+    font-size: 36px;
+    margin-bottom: 18px;
+  }
+  .form-success p {
+    color: var(--muted);
+    font-size: 15.5px;
+    line-height: 1.7;
+    max-width: 380px;
+    margin: 0 auto 36px;
+  }
+  .form-success .btn {
+    margin: 0 auto;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pop {
+    0%   { transform: scale(0); opacity: 0; }
+    70%  { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+
+  /* Animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1080px) {
+    .contact-page { grid-template-columns: 1fr; }
+    .contact-brand { min-height: auto; padding: 70px 50px 60px; }
+    .contact-form-wrap { padding: 70px 50px; }
+  }
+  @media (max-width: 720px) {
+    .container { padding: 0 24px; }
+    .nav { padding: 16px 0; }
+    .nav-links { display: none; }
+    .contact-brand { padding: 56px 28px 50px; }
+    .contact-form-wrap { padding: 56px 28px; }
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+    .form-actions { flex-direction: column; align-items: stretch; }
+    .form-note { max-width: none; text-align: center; }
+    .submit-btn { justify-content: center; }
+    .logo-text .sub { display: none; }
+    .brand-footer { flex-direction: column; gap: 14px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="header-bar">
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="logo" aria-label="Patagonia Americas Home">
+        <svg class="logo-mark" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="22" cy="22" r="18" stroke="#b8954a"/>
+          <ellipse cx="22" cy="22" rx="18" ry="8" stroke="#b8954a"/>
+          <ellipse cx="22" cy="22" rx="9" ry="18" stroke="#b8954a"/>
+          <path d="M12 18 Q22 14 32 18" stroke="#b8954a" fill="none"/>
+          <path d="M12 26 Q22 22 32 26" stroke="#b8954a" fill="none"/>
+        </svg>
+        <span class="logo-text">
+          <span class="lead">Patagonia</span>
+          <span class="sub">Americas LLC</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#products">Products</a>
+        <a href="index.html#about">About Us</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+      <a href="index.html" class="btn btn-outline">Back to Site</a>
+    </div>
+  </div>
+</nav>
+</header>
+
+<!-- MAIN -->
+<main class="contact-page">
+
+  <!-- LEFT — Brand panel -->
+  <aside class="contact-brand">
+    <div class="contact-brand-inner">
+      <span class="contact-eyebrow">Get in Touch</span>
+      <h1>Let's start a <em>conversation.</em></h1>
+      <p class="lead">Whether you're sourcing a single container or an ongoing supply agreement, our team reviews every inquiry personally, typically within one business day.</p>
+
+      <div class="contact-details">
+        <div class="detail">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M12 2C8 2 5 5 5 9c0 5.5 7 13 7 13s7-7.5 7-13c0-4-3-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div class="detail-text">
+            <span class="detail-label">Headquarters</span>
+            <span class="detail-value">2300 Glades Road, Suite 312 W<br/>Boca Raton, FL 33431</span>
+          </div>
+        </div>
+        <div class="detail">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div class="detail-text">
+            <span class="detail-label">Phone</span>
+            <span class="detail-value"><a href="tel:+15614107750">(561) 410-7750</a></span>
+          </div>
+        </div>
+        <div class="detail">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="22 6 12 13 2 6"/>
+            </svg>
+          </div>
+          <div class="detail-text">
+            <span class="detail-label">Email</span>
+            <span class="detail-value"><a href="mailto:info@patagoniaamericas.com">info@patagoniaamericas.com</a></span>
+          </div>
+        </div>
+        <div class="detail">
+          <div class="detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="detail-text">
+            <span class="detail-label">Hours</span>
+            <span class="detail-value">Monday to Friday<br/>9:00 AM to 6:00 PM EST</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-footer">
+      <span>© Patagonia Americas LLC</span>
+      <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn →</a>
+    </div>
+  </aside>
+
+  <!-- RIGHT — Form -->
+  <section class="contact-form-wrap">
+    <div class="form-head">
+      <span class="form-eyebrow">Send an Inquiry</span>
+      <h2>Tell us about your <em>needs.</em></h2>
+      <p>Share a few details and our trading desk will be in touch shortly. All inquiries are treated with full confidentiality.</p>
+    </div>
+
+    <form id="contactForm" novalidate>
+      <div class="field-row">
+        <div class="field">
+          <label for="name">Full Name <span class="req">*</span></label>
+          <input type="text" id="name" name="name" placeholder="Jane Doe" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="company">Company <span class="req">*</span></label>
+          <input type="text" id="company" name="company" placeholder="Acme Trading Co." required autocomplete="organization" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="jane@company.com" required autocomplete="email" />
+      </div>
+
+      <div class="field">
+        <label for="subject">Reason for Contact <span class="req">*</span></label>
+        <select id="subject" name="subject" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="sourcing">Sourcing & Procurement</option>
+          <option value="supply">Ongoing Supply Agreement</option>
+          <option value="logistics">Logistics & Shipping</option>
+          <option value="partnership">Partnership Opportunity</option>
+          <option value="press">Press & Media</option>
+          <option value="other">Other Inquiry</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="message">Tell us more <span class="req">*</span></label>
+        <textarea id="message" name="message" placeholder="Briefly describe your inquiry: product, volume, destination, timeline…" required></textarea>
+      </div>
+
+      <div class="form-actions">
+        <span class="form-note">By submitting, you agree to be contacted by our team regarding your inquiry. We never share your details.</span>
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="btn-label">Send Inquiry</span>
+          <span class="arrow">→</span>
+        </button>
+      </div>
+      <p class="form-error" id="formError" role="alert" hidden></p>
+    </form>
+
+    <!-- Success state -->
+    <div class="form-success" id="formSuccess">
+      <div class="check">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h3>Thank you, <em id="successName">friend</em>.</h3>
+      <p>Your inquiry has been received. A member of our team will be in touch with you shortly, typically within one business day.</p>
+      <a href="index.html" class="btn btn-outline">Return Home <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Form submit handler
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  const submitBtn = document.getElementById('submitBtn');
+  const successName = document.getElementById('successName');
+  const formError = document.getElementById('formError');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    formError.hidden = true;
+    formError.textContent = '';
+
+    // Simple validation
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(field => {
+      if (!field.value.trim()) {
+        valid = false;
+        field.style.borderBottomColor = '#c74343';
+        setTimeout(() => field.style.borderBottomColor = '', 2500);
+      }
+    });
+    if (!valid) return;
+
+    // Email format check
+    const email = document.getElementById('email');
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email.value)) {
+      email.style.borderBottomColor = '#c74343';
+      setTimeout(() => email.style.borderBottomColor = '', 2500);
+      return;
+    }
+
+    submitBtn.disabled = true;
+    const originalLabel = submitBtn.querySelector('.btn-label').textContent;
+    const originalArrow = submitBtn.querySelector('.arrow').textContent;
+    submitBtn.querySelector('.btn-label').textContent = 'Sending…';
+    submitBtn.querySelector('.arrow').textContent = '';
+
+    // FORM_SUBMIT[start] ============================================
+    const data = {
+      name: document.getElementById('name').value.trim(),
+      company: document.getElementById('company').value.trim(),
+      email: email.value.trim(),
+      subject: document.getElementById('subject').value,
+      message: document.getElementById('message').value.trim()
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) {
+        let detail = '';
+        try { detail = (await res.json()).error || ''; } catch {}
+        throw new Error(detail || `Request failed (${res.status})`);
+      }
+      showSuccess(data);
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.querySelector('.btn-label').textContent = originalLabel;
+      submitBtn.querySelector('.arrow').textContent = originalArrow;
+      formError.textContent = 'Could not send your inquiry. Please try again, or email info@patagoniaamericas.com directly.';
+      formError.hidden = false;
+      console.error('[contact] submit failed:', err);
+    }
+    // FORM_SUBMIT[end] ==============================================
+  });
+
+  function showSuccess(data) {
+    const firstName = data.name.trim().split(' ')[0];
+    successName.textContent = firstName;
+    form.style.display = 'none';
+    success.classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Reveal on load
+  document.querySelectorAll('.reveal').forEach(el => {
+    setTimeout(() => el.classList.add('in'), 100);
+  });
+</script>
+
+</body>
+</html>

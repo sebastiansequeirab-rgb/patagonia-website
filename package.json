@@ -1,0 +1,14 @@
+{
+  "name": "patagonia-website",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Patagonia Americas LLC marketing site — static frontend with a Vercel serverless contact endpoint.",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "deploy": "vercel --prod"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
