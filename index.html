@@ -284,7 +284,7 @@
     position: absolute;
     bottom: 36px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 0);
     z-index: 3;
     display: flex;
     flex-direction: column;
@@ -296,12 +296,18 @@
     cursor: pointer;
     color: rgba(246,241,232,.72);
     font-family: var(--sans);
-    animation: rise 1s var(--ease) 1.2s both;
+    appearance: none;
+    -webkit-appearance: none;
+    animation: rise-centered 1s var(--ease) 1.2s both;
     transition: color .3s var(--ease), transform .3s var(--ease);
   }
   .scroll-cue:hover {
     color: var(--brass-2);
-    transform: translateX(-50%) translateY(-3px);
+    transform: translate(-50%, -3px);
+  }
+  @keyframes rise-centered {
+    from { opacity: 0; transform: translate(-50%, 28px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
   }
   .scroll-cue:focus-visible {
     outline: 2px solid var(--brass);
