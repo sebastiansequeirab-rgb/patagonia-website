@@ -1356,11 +1356,44 @@
 
 <script>
   const nav = document.getElementById('nav');
+  const heroContent = document.querySelector('.hero-content');
+  const heroOverlay = document.querySelector('.hero-overlay');
+  const scrollCue = document.querySelector('.scroll-cue');
+
+  let ticking = false;
   const onScroll = () => {
-    if (window.scrollY > 40) nav.classList.add('scrolled');
+    const y = window.scrollY;
+
+    if (y > 40) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
+
+    // Hero fade + parallax. Progress 0 → 1 across the first 70% of the viewport.
+    const t = Math.min(y / (window.innerHeight * 0.7), 1);
+    // smoothstep — eases in and out instead of linear, for premium feel.
+    const eased = t * t * (3 - 2 * t);
+
+    if (heroContent) {
+      heroContent.style.opacity = String(1 - eased);
+      heroContent.style.transform = `translateY(${eased * -36}px)`;
+    }
+    if (scrollCue) {
+      // Cue fades faster — gone by the time you've scrolled ~40% of a viewport.
+      scrollCue.style.opacity = String(Math.max(0, 1 - eased * 1.8));
+    }
+    if (heroOverlay) {
+      // Lighten the dark overlay as you scroll so the hero feels like it
+      // dissolves rather than stays as a heavy curtain.
+      heroOverlay.style.opacity = String(1 - eased * 0.7);
+    }
+
+    ticking = false;
   };
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
 
   window.addEventListener('load', () => {
     const bg = document.getElementById('heroBg');
