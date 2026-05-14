@@ -360,6 +360,7 @@
     color: var(--cream);
     overflow: hidden;
     padding: 22px 0;
+    border-top: 1px solid rgba(184, 149, 74, .18);
     border-bottom: 1px solid rgba(184, 149, 74, .15);
   }
   .marquee-track {
@@ -392,7 +393,15 @@
 
   /* WHAT WE DO */
   .what {
-    background: var(--cream);
+    background:
+      linear-gradient(180deg,
+        #0c1614 0px,
+        rgba(12, 22, 20, 0.85) 30px,
+        rgba(12, 22, 20, 0.5)  70px,
+        rgba(12, 22, 20, 0.2)  110px,
+        transparent             150px
+      ),
+      var(--cream);
     padding: 140px 0 130px;
     position: relative;
   }
@@ -524,11 +533,20 @@
 
   /* PRODUCTS */
   .products {
-    background: var(--forest);
+    background:
+      linear-gradient(180deg,
+        #f6f1e8 0px,
+        rgba(246, 241, 232, 0.85) 30px,
+        rgba(246, 241, 232, 0.5)  70px,
+        rgba(246, 241, 232, 0.2)  110px,
+        transparent                150px
+      ),
+      var(--forest);
     color: var(--cream);
     padding: 130px 0;
     position: relative;
     overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.18);
   }
   .products::before {
     content: "";
@@ -744,10 +762,19 @@
 
   /* WHO */
   .who {
-    background: var(--paper);
+    background:
+      linear-gradient(180deg,
+        #0f2922 0px,
+        rgba(15, 41, 34, 0.85) 30px,
+        rgba(15, 41, 34, 0.5)  70px,
+        rgba(15, 41, 34, 0.2)  110px,
+        transparent             150px
+      ),
+      var(--paper);
     padding: 140px 0;
     position: relative;
     overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.18);
   }
   .who-grid {
     display: grid;
@@ -820,11 +847,20 @@
 
   /* CTA STRIP */
   .cta-strip {
-    background: var(--ink);
+    background:
+      linear-gradient(180deg,
+        #fbf8f2 0px,
+        rgba(251, 248, 242, 0.85) 30px,
+        rgba(251, 248, 242, 0.5)  70px,
+        rgba(251, 248, 242, 0.2)  110px,
+        transparent                150px
+      ),
+      var(--ink);
     color: var(--cream);
     padding: 70px 0;
     position: relative;
     overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.18);
   }
   .cta-strip::before {
     content: "";
@@ -859,6 +895,7 @@
     color: var(--cream);
     padding: 80px 0 32px;
     position: relative;
+    box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.18);
   }
   .footer::before {
     content: "";
