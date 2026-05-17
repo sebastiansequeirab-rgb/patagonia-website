@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -356,42 +356,48 @@
     50%      { transform: translateY(3px);  opacity: 1; }
   }
 
-  /* MARQUEE */
-  .marquee {
+  /* LIVE TICKER (TradingView) */
+  .ticker-shell {
     background: var(--ink);
     color: var(--cream);
-    overflow: hidden;
-    padding: 22px 0;
     border-top: 1px solid rgba(184, 149, 74, .18);
     border-bottom: 1px solid rgba(184, 149, 74, .15);
+    min-height: 48px;
+    padding: 4px 0;
+    position: relative;
+    overflow: hidden;
   }
-  .marquee-track {
-    display: flex;
-    gap: 64px;
-    animation: scroll 40s linear infinite;
+  .ticker-shell .tradingview-widget-container { width: 100%; }
+  /* TradingView's iframe has its own brand "copyright" line — clip the bottom to keep the band trim */
+  .ticker-shell .tv-embed-widget-wrapper__copyright { display: none !important; }
+  /* Static fallback (reduced motion / widget fails to load) */
+  .ticker-fallback {
+    display: none;
+    list-style: none;
+    margin: 0; padding: 12px 0;
+    overflow-x: auto;
     white-space: nowrap;
-    width: max-content;
+    text-align: center;
   }
-  .marquee-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    font-size: 12.5px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
+  .ticker-fallback li {
+    display: inline-block;
+    margin: 0 22px;
+    font-size: 12px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(246,241,232,.85);
+    color: rgba(246,241,232,.78);
   }
-  .marquee-item .dot {
+  .ticker-fallback li::before {
+    content: "";
+    display: inline-block;
     width: 5px; height: 5px;
     background: var(--brass);
     border-radius: 50%;
-    flex-shrink: 0;
+    margin-right: 12px;
+    vertical-align: middle;
   }
-  @keyframes scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
+  .ticker-shell.is-static .tradingview-widget-container { display: none; }
+  .ticker-shell.is-static .ticker-fallback { display: block; }
 
   /* WHAT WE DO */
   .what {
@@ -1001,6 +1007,318 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ============================================================
+     NEW COMPONENTS — slideshow, ticker, product hover, stats,
+     trade map, scrollspy, language toggle, accessibility
+     ============================================================ */
+
+  /* Accessibility — focus ring */
+  :focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* HERO SLIDESHOW — cross-fading port photography */
+  .hero-slides {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.8s var(--ease);
+    will-change: opacity;
+  }
+  .hero-slide.is-active { opacity: 0.70; }
+  .hero-slide.fade-warm { /* subtle warm tint anchoring to brass tonal palette */
+    filter: saturate(1.08) contrast(1.02);
+  }
+  .hero-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 110px;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    gap: 10px;
+    pointer-events: auto;
+  }
+  .hero-dot {
+    width: 8px; height: 8px;
+    border-radius: 999px;
+    background: rgba(246,241,232,.35);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background .4s var(--ease), width .4s var(--ease);
+  }
+  .hero-dot:hover { background: rgba(246,241,232,.6); }
+  .hero-dot.is-active {
+    background: var(--brass-2);
+    width: 26px;
+  }
+  .hero-dot:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 4px;
+  }
+  @media (max-width: 560px) {
+    .hero-dots { bottom: 92px; }
+  }
+
+  /* PRODUCT CARD HOVER OVERLAY */
+  .product-illust {
+    transition: transform .8s var(--ease);
+  }
+  .product-card:hover .product-illust { transform: scale(1.05); }
+  .product-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--brass);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform .55s var(--ease);
+    z-index: 4;
+  }
+  .product-card:hover::before { transform: scaleX(1); }
+  .product-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(0deg, rgba(15,41,34,.95) 0%, rgba(15,41,34,.55) 45%, rgba(15,41,34,0) 75%);
+    display: flex;
+    align-items: flex-end;
+    padding: 24px 22px;
+    opacity: 0;
+    transition: opacity .4s var(--ease);
+    z-index: 2;
+    pointer-events: none;
+  }
+  .product-card:hover .product-overlay { opacity: 1; }
+  .product-desc {
+    color: var(--cream);
+    transform: translateY(14px);
+    transition: transform .45s var(--ease);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    letter-spacing: 0.02em;
+  }
+  .product-card:hover .product-desc { transform: translateY(0); }
+  .product-desc .desc-label {
+    font-size: 9.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--brass-2);
+    font-weight: 500;
+  }
+  .product-desc .desc-value {
+    font-size: 13.5px;
+    color: rgba(246,241,232,.92);
+    font-weight: 450;
+  }
+
+  /* STAT COUNTERS */
+  .stat-num {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-count {
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+    /* prevent layout shift while counting */
+    display: inline-block;
+    min-width: 1ch;
+  }
+  .stat-underline {
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--brass);
+    margin: 14px auto 0;
+    transition: width 1s var(--ease) .3s;
+  }
+  .stat.counted .stat-underline { width: 44px; }
+
+  /* TRADE MAP — Global Flow */
+  .trade-map {
+    background: var(--paper);
+    padding: 130px 0 120px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.18);
+  }
+  .trade-map::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(184,149,74,.06), transparent 70%);
+    pointer-events: none;
+  }
+  .trade-map .section-head { margin-bottom: 56px; }
+  .trade-map h2 em {
+    color: var(--brass-3);
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .world-map-wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .world-map {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .world-map .land {
+    fill: var(--forest-2);
+    opacity: 0.18;
+  }
+  .world-map .grid-line {
+    stroke: rgba(15,41,34,.08);
+    stroke-width: 0.4;
+    fill: none;
+  }
+  .world-map .hub {
+    fill: var(--brass);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: hub-pulse 2.6s ease-in-out infinite;
+    filter: drop-shadow(0 0 6px rgba(184,149,74,.55));
+  }
+  .world-map .hub.dest {
+    fill: var(--brass-2);
+    animation-delay: .8s;
+  }
+  .world-map .arc {
+    fill: none;
+    stroke: var(--brass);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    opacity: 0;
+    animation: arc-draw 5s var(--ease) infinite;
+  }
+  .world-map .arc:nth-child(2) { animation-delay: 1.4s; }
+  .world-map .arc:nth-child(3) { animation-delay: 2.8s; }
+  .world-map .arc:nth-child(4) { animation-delay: 0.7s; stroke: var(--brass-2); }
+  .world-map .arc:nth-child(5) { animation-delay: 2.1s; stroke: var(--brass-2); }
+  @keyframes hub-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50%      { transform: scale(1.65); opacity: 1; }
+  }
+  @keyframes arc-draw {
+    0%   { stroke-dashoffset: 600; opacity: 0; }
+    15%  { opacity: 0.95; }
+    60%  { stroke-dashoffset: 0; opacity: 0.95; }
+    85%  { stroke-dashoffset: -600; opacity: 0; }
+    100% { stroke-dashoffset: -600; opacity: 0; }
+  }
+  .trade-map .hub-legend {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 36px;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .trade-map .hub-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .trade-map .hub-legend i {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .trade-map .hub-legend i.origin { background: var(--brass); }
+  .trade-map .hub-legend i.dest   { background: var(--brass-2); }
+  @media (max-width: 720px) {
+    .trade-map { padding: 90px 0; }
+    .trade-map .hub-legend { gap: 24px; font-size: 10px; }
+  }
+
+  /* SCROLLSPY — active nav underline */
+  .nav-links a.active {
+    opacity: 1;
+    color: var(--brass-2);
+  }
+  .nav-links a.active::after { width: 100%; }
+
+  /* LANGUAGE TOGGLE */
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: rgba(246,241,232,.55);
+    margin-right: 4px;
+  }
+  .lang-toggle button {
+    background: none;
+    border: 0;
+    padding: 6px 4px;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    letter-spacing: inherit;
+    transition: color .25s var(--ease), border-color .25s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .lang-toggle button:hover { color: var(--brass-2); }
+  .lang-toggle button.is-active {
+    color: var(--brass-2);
+    border-bottom-color: var(--brass);
+  }
+  .lang-toggle .lang-divider {
+    opacity: 0.45;
+    margin: 0 2px;
+  }
+
+  /* i18n — show matching language, hide the other */
+  html[data-lang="en"] [data-i18n="es"] { display: none; }
+  html[data-lang="es"] [data-i18n="en"] { display: none; }
+
+  /* Reduced motion — disable infinite/long animations and reveal transitions */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .hero-slide.is-active { opacity: 0.70; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .world-map .arc { opacity: 0.65; stroke-dashoffset: 0; }
+    .world-map .hub { transform: scale(1); }
+  }
+
+  @media (max-width: 880px) {
+    .nav .lang-toggle { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -1025,34 +1343,82 @@
     </a>
 
     <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#products">Products</a>
-      <a href="#about">About Us</a>
-      <a href="contact.html">Contact</a>
+      <a href="#services"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a>
+      <a href="#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a>
+      <a href="#about"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a>
+      <a href="contact.html"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a>
     </div>
 
-    <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+    <div class="nav-actions" style="display:flex; align-items:center; gap:18px;">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" class="is-active">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button type="button" data-set-lang="es">ES</button>
+      </div>
+      <a href="contact.html" class="btn btn-outline">
+        <span data-i18n="en">Get in Touch</span><span data-i18n="es">Hablemos</span>
+      </a>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-bg" id="heroBg"></div>
+  <!-- Cross-fading port photography (5 frames, ~7s each). Falls back to assets/images/hero.jpg if any URL fails. -->
+  <div class="hero-slides" id="heroSlides" aria-hidden="true">
+    <img class="hero-slide is-active fade-warm"
+         src="https://images.unsplash.com/photo-1577416412292-747c6607f055?auto=format&fit=crop&w=2400&q=85"
+         alt="Aerial of a commercial bulk-cargo port at golden hour"
+         loading="eager" fetchpriority="high" decoding="async"
+         onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+    <img class="hero-slide fade-warm"
+         src="https://images.unsplash.com/photo-1530989241817-3c98c5bd2253?auto=format&fit=crop&w=2400&q=85"
+         alt="Grain silos at sunset" loading="lazy" decoding="async"
+         onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+    <img class="hero-slide fade-warm"
+         src="https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=2400&q=85"
+         alt="Container terminal with stacked cargo and cranes" loading="lazy" decoding="async"
+         onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+    <img class="hero-slide fade-warm"
+         src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=2400&q=85"
+         alt="Combine harvester crossing a wheat field at dusk" loading="lazy" decoding="async"
+         onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+    <img class="hero-slide fade-warm"
+         src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=2400&q=85"
+         alt="Industrial tanker being loaded with agricultural product" loading="lazy" decoding="async"
+         onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+  </div>
   <div class="hero-overlay"></div>
 
   <div class="container">
     <div class="hero-content">
-      <span class="eyebrow hero-eyebrow">International Commodity Trading</span>
-      <h1>Global Commodities.<br/><em>Reliable Solutions.</em></h1>
+      <span class="eyebrow hero-eyebrow">
+        <span data-i18n="en">International Commodity Trading</span>
+        <span data-i18n="es">Comercio Internacional de Materias Primas</span>
+      </span>
+      <h1>
+        <span data-i18n="en">Global Commodities.<br/><em>Reliable Solutions.</em></span>
+        <span data-i18n="es">Materias Primas Globales.<br/><em>Soluciones Confiables.</em></span>
+      </h1>
       <div class="hero-divider"></div>
       <p class="hero-lead">
-        A global commodities and logistics partner. Sourcing, shipping, and delivering agricultural raw materials at scale, with the discipline our clients have come to expect across continents.
+        <span data-i18n="en">A global commodities and logistics partner. Sourcing, shipping, and delivering agricultural raw materials at scale, with the discipline our clients have come to expect across continents.</span>
+        <span data-i18n="es">Un socio global en materias primas y logística. Originamos, embarcamos y entregamos materias primas agrícolas a escala, con la disciplina que nuestros clientes esperan en todos los continentes.</span>
       </p>
     </div>
   </div>
 
+  <div class="hero-dots" role="tablist" aria-label="Hero slides">
+    <button class="hero-dot is-active" type="button" data-i="0" aria-label="Slide 1"></button>
+    <button class="hero-dot" type="button" data-i="1" aria-label="Slide 2"></button>
+    <button class="hero-dot" type="button" data-i="2" aria-label="Slide 3"></button>
+    <button class="hero-dot" type="button" data-i="3" aria-label="Slide 4"></button>
+    <button class="hero-dot" type="button" data-i="4" aria-label="Slide 5"></button>
+  </div>
+
   <button class="scroll-cue" type="button" aria-label="Scroll to explore the site" onclick="window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })">
-    <span class="scroll-cue-label">Scroll to Explore</span>
+    <span class="scroll-cue-label" data-i18n="en">Scroll to Explore</span>
+    <span class="scroll-cue-label" data-i18n="es">Desplázate</span>
     <span class="scroll-cue-icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6 10 12 16 18 10"/>
@@ -1061,34 +1427,57 @@
   </button>
 </header>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>Soybean Oil</span>
-    <span class="marquee-item"><span class="dot"></span>Wheat &amp; Soy Grains</span>
-    <span class="marquee-item"><span class="dot"></span>Cane &amp; Beet Molasses</span>
-    <span class="marquee-item"><span class="dot"></span>Bulk Grains &amp; Seeds</span>
-    <span class="marquee-item"><span class="dot"></span>Global Logistics</span>
-    <span class="marquee-item"><span class="dot"></span>Port Operations</span>
-    <span class="marquee-item"><span class="dot"></span>Multimodal Freight</span>
-    <span class="marquee-item"><span class="dot"></span>Trusted Worldwide</span>
-    <span class="marquee-item"><span class="dot"></span>Soybean Oil</span>
-    <span class="marquee-item"><span class="dot"></span>Wheat &amp; Soy Grains</span>
-    <span class="marquee-item"><span class="dot"></span>Cane &amp; Beet Molasses</span>
-    <span class="marquee-item"><span class="dot"></span>Bulk Grains &amp; Seeds</span>
-    <span class="marquee-item"><span class="dot"></span>Global Logistics</span>
-    <span class="marquee-item"><span class="dot"></span>Port Operations</span>
-    <span class="marquee-item"><span class="dot"></span>Multimodal Freight</span>
-    <span class="marquee-item"><span class="dot"></span>Trusted Worldwide</span>
+<!-- LIVE MARKET TICKER (TradingView free embed — symbols configured below) -->
+<div class="ticker-shell" id="tickerShell" aria-label="Live commodity prices">
+  <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        {"description": "Soybean Oil",  "proName": "CBOT_MINI:ZL1!"},
+        {"description": "Soybeans",     "proName": "CBOT_MINI:ZS1!"},
+        {"description": "Wheat",        "proName": "CBOT_MINI:ZW1!"},
+        {"description": "Corn",         "proName": "CBOT_MINI:ZC1!"},
+        {"description": "Sugar #11",    "proName": "ICEUSA:SB1!"},
+        {"description": "USD/BRL",      "proName": "FX_IDC:USDBRL"},
+        {"description": "USD/ARS",      "proName": "FX_IDC:USDARS"},
+        {"description": "Baltic Dry",   "proName": "INDEX:BDI"}
+      ],
+      "showSymbolLogo": false,
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+    </script>
   </div>
+  <!-- TradingView Widget END -->
+  <!-- Static fallback for reduced motion / widget unavailable -->
+  <ul class="ticker-fallback" aria-hidden="true">
+    <li>Soybean Oil</li>
+    <li>Soybeans</li>
+    <li>Wheat</li>
+    <li>Corn</li>
+    <li>Sugar #11</li>
+    <li>USD/BRL</li>
+    <li>USD/ARS</li>
+    <li>Baltic Dry Index</li>
+  </ul>
 </div>
 
 <!-- WHAT WE DO -->
 <section class="what" id="services">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow centered">What We Do</span>
-      <h2>Integrated Solutions.<br/><em>Proven Results.</em></h2>
+      <span class="eyebrow centered">
+        <span data-i18n="en">What We Do</span>
+        <span data-i18n="es">Lo Que Hacemos</span>
+      </span>
+      <h2>
+        <span data-i18n="en">Integrated Solutions.<br/><em>Proven Results.</em></span>
+        <span data-i18n="es">Soluciones Integradas.<br/><em>Resultados Comprobados.</em></span>
+      </h2>
     </div>
 
     <div class="pillars">
@@ -1098,7 +1487,7 @@
           <img
             src="assets/images/pillar-global.png"
             alt="Global trade ports and shipping routes"
-            loading="lazy"
+            loading="lazy" decoding="async"
             onload="this.classList.add('loaded')"
             onerror="this.style.display='none'"
           />
@@ -1112,8 +1501,11 @@
               <path d="M4 24h40M24 4v40" stroke-width="0.8"/>
             </svg>
           </div>
-          <h3>Global Reach</h3>
-          <p>Sourcing the world's most demanding markets through a network built on enduring relationships and operational rigor, calibrated to perform across every region we serve.</p>
+          <h3><span data-i18n="en">Global Reach</span><span data-i18n="es">Alcance Global</span></h3>
+          <p>
+            <span data-i18n="en">Sourcing the world's most demanding markets through a network built on enduring relationships and operational rigor, calibrated to perform across every region we serve.</span>
+            <span data-i18n="es">Originamos en los mercados más exigentes del mundo a través de una red construida sobre relaciones duraderas y rigor operativo, calibrada para rendir en cada región que servimos.</span>
+          </p>
         </div>
       </div>
 
@@ -1123,7 +1515,7 @@
           <img
             src="assets/images/pillar-logistics.png"
             alt="Shipping containers and port logistics"
-            loading="lazy"
+            loading="lazy" decoding="async"
             onload="this.classList.add('loaded')"
             onerror="this.style.display='none'"
           />
@@ -1137,8 +1529,11 @@
               <path d="M4 14h22M30 26h8"/>
             </svg>
           </div>
-          <h3>Logistics Excellence</h3>
-          <p>From origin to port to destination, multimodal logistics engineered for predictability, transparency, and punctual delivery at every step of the supply chain.</p>
+          <h3><span data-i18n="en">Logistics Excellence</span><span data-i18n="es">Excelencia Logística</span></h3>
+          <p>
+            <span data-i18n="en">From origin to port to destination, multimodal logistics engineered for predictability, transparency, and punctual delivery at every step of the supply chain.</span>
+            <span data-i18n="es">Desde el origen hasta el puerto y el destino, una logística multimodal diseñada para la previsibilidad, la transparencia y la entrega puntual en cada paso de la cadena de suministro.</span>
+          </p>
         </div>
       </div>
 
@@ -1148,7 +1543,7 @@
           <img
             src="assets/images/pillar-commitment.jpg"
             alt="Aerial view of wheat field harvest"
-            loading="lazy"
+            loading="lazy" decoding="async"
             onload="this.classList.add('loaded')"
             onerror="this.style.display='none'"
           />
@@ -1161,8 +1556,11 @@
               <path d="M10 36l4-4 6 4 6-4 4 4 6-4 4 4"/>
             </svg>
           </div>
-          <h3>Commitment to You</h3>
-          <p>Market intelligence, agricultural expertise, and an ethos that puts clients above all, calibrated to create durable value for your business across every contract we sign.</p>
+          <h3><span data-i18n="en">Commitment to You</span><span data-i18n="es">Compromiso con Usted</span></h3>
+          <p>
+            <span data-i18n="en">Market intelligence, agricultural expertise, and an ethos that puts clients above all, calibrated to create durable value for your business across every contract we sign.</span>
+            <span data-i18n="es">Inteligencia de mercado, experiencia agrícola y una ética que pone al cliente por encima de todo, calibrada para crear valor duradero para su negocio en cada contrato que firmamos.</span>
+          </p>
         </div>
       </div>
     </div>
@@ -1174,46 +1572,98 @@
   <div class="container">
     <div class="products-inner">
       <div class="products-intro reveal">
-        <span class="eyebrow">Our Products</span>
-        <h2>Premium Commodities.<br/><em>Global Demand.</em></h2>
-        <p>A curated portfolio of agricultural raw materials. Sourced responsibly, traded transparently, delivered at the scale industries demand.</p>
-        <a href="#" class="btn btn-brass">View All Products <span class="arrow">→</span></a>
+        <span class="eyebrow">
+          <span data-i18n="en">Our Products</span>
+          <span data-i18n="es">Nuestros Productos</span>
+        </span>
+        <h2>
+          <span data-i18n="en">Premium Commodities.<br/><em>Global Demand.</em></span>
+          <span data-i18n="es">Materias Primas Premium.<br/><em>Demanda Global.</em></span>
+        </h2>
+        <p>
+          <span data-i18n="en">A curated portfolio of agricultural raw materials. Sourced responsibly, traded transparently, delivered at the scale industries demand.</span>
+          <span data-i18n="es">Una cartera curada de materias primas agrícolas. Originadas con responsabilidad, comercializadas con transparencia, entregadas a la escala que las industrias requieren.</span>
+        </p>
+        <a href="#" class="btn btn-brass">
+          <span data-i18n="en">View All Products</span><span data-i18n="es">Ver Productos</span>
+          <span class="arrow">→</span>
+        </a>
       </div>
 
       <div class="product-grid">
         <div class="product-card soybean reveal">
           <div class="product-visual">
-            <img class="product-illust" src="assets/images/product-soybean-oil.jpg" alt="Degummed Crude Soybean Oil. Soybeans." loading="lazy" onerror="this.style.display='none'">
+            <img class="product-illust" src="assets/images/product-soybean-oil.jpg" alt="Degummed crude soybean oil" loading="lazy" decoding="async" onerror="this.style.display='none'">
+            <div class="product-overlay">
+              <div class="product-desc">
+                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Argentina · Brazil</span><span class="desc-value" data-i18n="es">Argentina · Brasil</span></span>
+                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">China · EU · India</span><span class="desc-value" data-i18n="es">China · UE · India</span></span>
+                <span><span class="desc-label" data-i18n="en">Volume</span><span class="desc-label" data-i18n="es">Volumen</span> <span class="desc-value">120K MT / yr</span></span>
+              </div>
+            </div>
           </div>
           <div class="product-meta">
-            <h4>Degummed Crude<br/>Soybean Oil</h4>
+            <h4>
+              <span data-i18n="en">Degummed Crude<br/>Soybean Oil</span>
+              <span data-i18n="es">Aceite de Soja<br/>Crudo Desgomado</span>
+            </h4>
           </div>
         </div>
 
         <div class="product-card wheat reveal">
           <div class="product-visual">
-            <img class="product-illust" src="assets/images/product-wheat-soy.jpg" alt="Wheat and soy grains" loading="lazy" onerror="this.style.display='none'">
+            <img class="product-illust" src="assets/images/product-wheat-soy.jpg" alt="Wheat and soy grains" loading="lazy" decoding="async" onerror="this.style.display='none'">
+            <div class="product-overlay">
+              <div class="product-desc">
+                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">USA · Argentina · Ukraine</span><span class="desc-value" data-i18n="es">EE. UU. · Argentina · Ucrania</span></span>
+                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">North Africa · Middle East</span><span class="desc-value" data-i18n="es">Norte de África · Medio Oriente</span></span>
+                <span><span class="desc-label" data-i18n="en">Volume</span><span class="desc-label" data-i18n="es">Volumen</span> <span class="desc-value">180K MT / yr</span></span>
+              </div>
+            </div>
           </div>
           <div class="product-meta">
-            <h4>Wheat and<br/>Soy Grains</h4>
+            <h4>
+              <span data-i18n="en">Wheat and<br/>Soy Grains</span>
+              <span data-i18n="es">Trigo y<br/>Granos de Soja</span>
+            </h4>
           </div>
         </div>
 
         <div class="product-card molasses reveal">
           <div class="product-visual">
-            <img class="product-illust" src="assets/images/product-molasses.jpg" alt="Cane and beet molasses" loading="lazy" onerror="this.style.display='none'">
+            <img class="product-illust" src="assets/images/product-molasses.jpg" alt="Cane and beet molasses" loading="lazy" decoding="async" onerror="this.style.display='none'">
+            <div class="product-overlay">
+              <div class="product-desc">
+                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Brazil · Guatemala · EU</span><span class="desc-value" data-i18n="es">Brasil · Guatemala · UE</span></span>
+                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">Asia · EU feed industry</span><span class="desc-value" data-i18n="es">Asia · industria UE</span></span>
+                <span><span class="desc-label" data-i18n="en">Volume</span><span class="desc-label" data-i18n="es">Volumen</span> <span class="desc-value">90K MT / yr</span></span>
+              </div>
+            </div>
           </div>
           <div class="product-meta">
-            <h4>Cane and Beet<br/>Molasses</h4>
+            <h4>
+              <span data-i18n="en">Cane and Beet<br/>Molasses</span>
+              <span data-i18n="es">Melaza de Caña<br/>y Remolacha</span>
+            </h4>
           </div>
         </div>
 
         <div class="product-card grains reveal">
           <div class="product-visual">
-            <img class="product-illust" src="assets/images/product-grains.jpg" alt="Various grains and seeds" loading="lazy" onerror="this.style.display='none'">
+            <img class="product-illust" src="assets/images/product-grains.jpg" alt="Various grains and seeds" loading="lazy" decoding="async" onerror="this.style.display='none'">
+            <div class="product-overlay">
+              <div class="product-desc">
+                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Americas · Black Sea</span><span class="desc-value" data-i18n="es">Américas · Mar Negro</span></span>
+                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">MENA · Southeast Asia</span><span class="desc-value" data-i18n="es">MENA · Sudeste Asiático</span></span>
+                <span><span class="desc-label" data-i18n="en">Volume</span><span class="desc-label" data-i18n="es">Volumen</span> <span class="desc-value">110K MT / yr</span></span>
+              </div>
+            </div>
           </div>
           <div class="product-meta">
-            <h4>Various Grains<br/>and Seeds</h4>
+            <h4>
+              <span data-i18n="en">Various Grains<br/>and Seeds</span>
+              <span data-i18n="es">Granos y<br/>Semillas Diversos</span>
+            </h4>
           </div>
         </div>
       </div>
@@ -1226,20 +1676,36 @@
   <div class="container">
     <div class="stats-grid">
       <div class="stat reveal">
-        <div class="stat-num">25<em>+</em></div>
-        <div class="stat-label">Countries Served</div>
+        <div class="stat-num"><span class="stat-count" data-target="25" data-duration="1500">0</span><em>+</em></div>
+        <div class="stat-label">
+          <span data-i18n="en">Countries Served</span>
+          <span data-i18n="es">Países Atendidos</span>
+        </div>
+        <span class="stat-underline" aria-hidden="true"></span>
       </div>
       <div class="stat reveal">
-        <div class="stat-num">500K<em>MT</em></div>
-        <div class="stat-label">Annual Volume</div>
+        <div class="stat-num"><span class="stat-count" data-target="500" data-duration="1800">0</span><em>K MT</em></div>
+        <div class="stat-label">
+          <span data-i18n="en">Annual Volume</span>
+          <span data-i18n="es">Volumen Anual</span>
+        </div>
+        <span class="stat-underline" aria-hidden="true"></span>
       </div>
       <div class="stat reveal">
-        <div class="stat-num">15<em>+</em></div>
-        <div class="stat-label">Years of Expertise</div>
+        <div class="stat-num"><span class="stat-count" data-target="15" data-duration="1400">0</span><em>+</em></div>
+        <div class="stat-label">
+          <span data-i18n="en">Years of Expertise</span>
+          <span data-i18n="es">Años de Experiencia</span>
+        </div>
+        <span class="stat-underline" aria-hidden="true"></span>
       </div>
       <div class="stat reveal">
-        <div class="stat-num">100<em>%</em></div>
-        <div class="stat-label">Client Commitment</div>
+        <div class="stat-num"><span class="stat-count" data-target="100" data-duration="1600">0</span><em>%</em></div>
+        <div class="stat-label">
+          <span data-i18n="en">Client Commitment</span>
+          <span data-i18n="es">Compromiso con el Cliente</span>
+        </div>
+        <span class="stat-underline" aria-hidden="true"></span>
       </div>
     </div>
   </div>
@@ -1264,8 +1730,14 @@
       <ellipse cx="22" cy="22" rx="10" ry="19"/>
       <circle cx="22" cy="22" r="1.5" fill="currentColor"/>
     </svg>
-    <h2>Your Success.<br/><em>Our Priority.</em></h2>
-    <p>Dependable service. Sharper market insight. A standard of excellence held across every contract, container, and conversation.</p>
+    <h2>
+      <span data-i18n="en">Your Success.<br/><em>Our Priority.</em></span>
+      <span data-i18n="es">Su Éxito.<br/><em>Nuestra Prioridad.</em></span>
+    </h2>
+    <p>
+      <span data-i18n="en">Dependable service. Sharper market insight. A standard of excellence held across every contract, container, and conversation.</span>
+      <span data-i18n="es">Servicio confiable. Una visión de mercado más aguda. Un estándar de excelencia presente en cada contrato, contenedor y conversación.</span>
+    </p>
   </div>
   <div class="priority-img right">
     <!-- IMAGE_SWAP[priority-ship] — Your Success - right (ship at port): replace src with assets/images/priority-ship.jpg -->
@@ -1284,21 +1756,36 @@
   <div class="container">
     <div class="who-grid">
       <div class="who-col reveal">
-        <span class="eyebrow">About Patagonia Americas</span>
-        <h2>Who We Are</h2>
-        <p>Patagonia Americas LLC is an international commodity trading firm specializing in agricultural raw materials. An experienced team, durable global partnerships, and a relentless focus on clients deliver exceptional results across continents.</p>
-        <a href="contact.html" class="btn btn-dark">Learn More About Us <span class="arrow">→</span></a>
+        <span class="eyebrow">
+          <span data-i18n="en">About Patagonia Americas</span>
+          <span data-i18n="es">Sobre Patagonia Americas</span>
+        </span>
+        <h2><span data-i18n="en">Who We Are</span><span data-i18n="es">Quiénes Somos</span></h2>
+        <p>
+          <span data-i18n="en">Patagonia Americas LLC is an international commodity trading firm specializing in agricultural raw materials. An experienced team, durable global partnerships, and a relentless focus on clients deliver exceptional results across continents.</span>
+          <span data-i18n="es">Patagonia Americas LLC es una firma internacional de comercio de materias primas especializada en materias primas agrícolas. Un equipo con experiencia, alianzas globales duraderas y un enfoque incansable en el cliente generan resultados excepcionales en todos los continentes.</span>
+        </p>
+        <a href="contact.html" class="btn btn-dark">
+          <span data-i18n="en">Learn More About Us</span><span data-i18n="es">Conózcanos</span>
+          <span class="arrow">→</span>
+        </a>
       </div>
 
       <div class="who-divider"></div>
 
       <div class="who-col reveal">
-        <span class="eyebrow">Our Philosophy</span>
+        <span class="eyebrow">
+          <span data-i18n="en">Our Philosophy</span>
+          <span data-i18n="es">Nuestra Filosofía</span>
+        </span>
         <div class="quote">
           <span class="quote-mark">"</span>
-          If you want to go fast, go alone.<br/>
-          If you want to go far, <em>go together.</em>
-          <span class="quote-attr">African Proverb</span>
+          <span data-i18n="en">If you want to go fast, go alone.<br/>If you want to go far, <em>go together.</em></span>
+          <span data-i18n="es">Si quieres llegar rápido, ve solo.<br/>Si quieres llegar lejos, <em>ve acompañado.</em></span>
+          <span class="quote-attr">
+            <span data-i18n="en">African Proverb</span>
+            <span data-i18n="es">Proverbio Africano</span>
+          </span>
         </div>
       </div>
     </div>
@@ -1314,12 +1801,98 @@
   </svg>
 </section>
 
+<!-- TRADE MAP — Global Flow -->
+<section class="trade-map reveal" aria-labelledby="trade-map-heading">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow centered">
+        <span data-i18n="en">Global Flow</span>
+        <span data-i18n="es">Flujo Global</span>
+      </span>
+      <h2 id="trade-map-heading">
+        <span data-i18n="en">From <em>origin</em> to <em>destination.</em></span>
+        <span data-i18n="es">Del <em>origen</em> al <em>destino.</em></span>
+      </h2>
+    </div>
+    <div class="world-map-wrap">
+      <svg class="world-map" viewBox="0 0 1000 500" role="img" aria-label="Map of global trade routes Patagonia Americas operates across">
+        <!-- Stylized landmass — abstracted continents, single low-detail path -->
+        <g class="land">
+          <!-- North America -->
+          <path d="M120,90 Q160,70 220,80 Q280,90 290,140 Q300,180 250,200 Q210,220 180,210 Q140,200 110,180 Q90,150 100,120 Q105,100 120,90 Z M260,210 Q300,215 305,240 Q295,265 270,260 Q250,250 260,210 Z"/>
+          <!-- South America -->
+          <path d="M285,250 Q320,255 330,290 Q335,330 320,370 Q310,410 295,420 Q280,410 285,370 Q275,330 280,290 Q275,260 285,250 Z"/>
+          <!-- Europe -->
+          <path d="M470,100 Q510,90 540,105 Q560,125 545,150 Q525,160 495,155 Q475,145 470,130 Q465,115 470,100 Z"/>
+          <!-- Africa -->
+          <path d="M495,170 Q540,170 565,200 Q580,250 560,300 Q540,340 510,355 Q485,345 480,310 Q475,260 485,210 Q490,180 495,170 Z"/>
+          <!-- Middle East -->
+          <path d="M580,165 Q620,165 640,190 Q650,215 625,225 Q595,225 580,200 Q575,180 580,165 Z"/>
+          <!-- Asia -->
+          <path d="M620,90 Q700,80 780,100 Q860,115 880,160 Q870,205 820,225 Q740,235 680,225 Q625,210 615,170 Q610,125 620,90 Z"/>
+          <!-- South & Southeast Asia -->
+          <path d="M700,225 Q740,230 760,260 Q755,285 720,285 Q690,275 685,255 Q690,235 700,225 Z M790,245 Q820,250 830,280 Q815,300 795,295 Q780,280 790,245 Z"/>
+          <!-- Australia -->
+          <path d="M830,330 Q880,330 905,355 Q895,380 855,385 Q820,380 815,360 Q820,340 830,330 Z"/>
+        </g>
+
+        <!-- Subtle latitude grid -->
+        <g class="grid-lines">
+          <path class="grid-line" d="M0,170 L1000,170"/>
+          <path class="grid-line" d="M0,250 L1000,250"/>
+          <path class="grid-line" d="M0,330 L1000,330"/>
+        </g>
+
+        <!-- Trade arcs (origin → destination) -->
+        <g class="arcs">
+          <!-- Brazil → Qingdao (China) -->
+          <path class="arc" d="M315,330 Q540,70 800,225"/>
+          <!-- Argentina → Rotterdam -->
+          <path class="arc" d="M300,395 Q420,140 510,135"/>
+          <!-- US Midwest → MENA (Jebel Ali) -->
+          <path class="arc" d="M195,150 Q420,40 615,195"/>
+          <!-- Brazil → Jebel Ali -->
+          <path class="arc" d="M310,365 Q470,160 605,205"/>
+          <!-- US Midwest → Southeast Asia -->
+          <path class="arc" d="M205,160 Q500,30 750,265"/>
+        </g>
+
+        <!-- Origin hubs -->
+        <g class="origins">
+          <circle class="hub" cx="195" cy="150" r="5"/>  <!-- US Midwest -->
+          <circle class="hub" cx="300" cy="395" r="5"/>  <!-- Argentina -->
+          <circle class="hub" cx="315" cy="330" r="5"/>  <!-- Brazil -->
+        </g>
+
+        <!-- Destination hubs -->
+        <g class="destinations">
+          <circle class="hub dest" cx="510" cy="135" r="5"/>  <!-- Rotterdam -->
+          <circle class="hub dest" cx="800" cy="225" r="5"/>  <!-- Qingdao -->
+          <circle class="hub dest" cx="615" cy="195" r="5"/>  <!-- Jebel Ali -->
+          <circle class="hub dest" cx="750" cy="265" r="5"/>  <!-- Singapore / SE Asia -->
+        </g>
+      </svg>
+
+      <div class="hub-legend">
+        <span><i class="origin"></i> <span data-i18n="en">Origin</span><span data-i18n="es">Origen</span></span>
+        <span><i class="dest"></i> <span data-i18n="en">Destination</span><span data-i18n="es">Destino</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA STRIP -->
 <section class="cta-strip">
   <div class="container">
     <div class="cta-strip-inner">
-      <h2>Ready to move your commodities <em>across the globe?</em></h2>
-      <a href="contact.html" class="btn btn-brass">Start a Conversation <span class="arrow">→</span></a>
+      <h2>
+        <span data-i18n="en">Ready to move your commodities <em>across the globe?</em></span>
+        <span data-i18n="es">¿Listo para mover sus materias primas <em>por el mundo?</em></span>
+      </h2>
+      <a href="contact.html" class="btn btn-brass">
+        <span data-i18n="en">Start a Conversation</span><span data-i18n="es">Iniciar una Conversación</span>
+        <span class="arrow">→</span>
+      </a>
     </div>
   </div>
 </section>
@@ -1342,23 +1915,32 @@
             <span class="sub">Americas</span>
           </span>
         </a>
-        <p>International commodity trading and logistics. Sourcing, shipping, and delivering agricultural raw materials across continents.</p>
+        <p>
+          <span data-i18n="en">International commodity trading and logistics. Sourcing, shipping, and delivering agricultural raw materials across continents.</span>
+          <span data-i18n="es">Comercio internacional de materias primas y logística. Originamos, embarcamos y entregamos materias primas agrícolas en todos los continentes.</span>
+        </p>
+        <!-- Mirrored language toggle for mobile (nav toggle hides under 880px) -->
+        <div class="lang-toggle footer-lang" role="group" aria-label="Language" style="display:inline-flex; margin-top: 20px;">
+          <button type="button" data-set-lang="en" class="is-active">EN</button>
+          <span class="lang-divider" aria-hidden="true">/</span>
+          <button type="button" data-set-lang="es">ES</button>
+        </div>
       </div>
 
       <div class="footer-col">
-        <h5>Quick Links</h5>
+        <h5><span data-i18n="en">Quick Links</span><span data-i18n="es">Enlaces</span></h5>
         <ul>
-          <li class="simple"><a href="#services">Services</a></li>
-          <li class="simple"><a href="#products">Products</a></li>
-          <li class="simple"><a href="#about">About Us</a></li>
-          <li class="simple"><a href="contact.html">Contact</a></li>
+          <li class="simple"><a href="#services"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a></li>
+          <li class="simple"><a href="#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a></li>
+          <li class="simple"><a href="#about"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a></li>
+          <li class="simple"><a href="contact.html"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h5>Contact Us</h5>
+        <h5><span data-i18n="en">Contact Us</span><span data-i18n="es">Contáctenos</span></h5>
         <ul>
-          <li><a href="https://maps.google.com" target="_blank">
+          <li><a href="https://www.openstreetmap.org/?mlat=26.3683&mlon=-80.1289#map=16/26.3683/-80.1289" target="_blank" rel="noopener">
             <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s-8-7.5-8-13a8 8 0 1116 0c0 5.5-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>
             <span>2300 Glades Road, Suite 312 W<br/>Boca Raton, FL 33431</span>
           </a></li>
@@ -1374,9 +1956,9 @@
       </div>
 
       <div class="footer-col">
-        <h5>Follow Us</h5>
+        <h5><span data-i18n="en">Follow Us</span><span data-i18n="es">Síganos</span></h5>
         <ul>
-          <li class="simple"><a href="#">
+          <li class="simple"><a href="#" target="_blank" rel="noopener">
             <svg class="footer-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zM8.34 17H5.67V9.67h2.67V17zM7 8.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zM18.33 17h-2.66v-3.83c0-.92-.02-2.11-1.28-2.11-1.28 0-1.48 1-1.48 2.04V17h-2.66V9.67h2.55v1.07h.04c.36-.67 1.23-1.38 2.53-1.38 2.7 0 3.2 1.78 3.2 4.09V17z"/></svg>
             <span>LinkedIn</span>
           </a></li>
@@ -1385,20 +1967,41 @@
     </div>
 
     <div class="footer-bottom">
-      <div>© 2025 Patagonia Americas LLC. All Rights Reserved.</div>
+      <div>
+        <span data-i18n="en">© 2025 Patagonia Americas LLC. All Rights Reserved.</span>
+        <span data-i18n="es">© 2025 Patagonia Americas LLC. Todos los Derechos Reservados.</span>
+      </div>
       <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
+        <a href="#"><span data-i18n="en">Privacy Policy</span><span data-i18n="es">Privacidad</span></a>
+        <a href="#"><span data-i18n="en">Terms of Use</span><span data-i18n="es">Términos</span></a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
+  // ============================================================
+  // Patagonia Americas — interactive layer
+  // - Hero cross-fading slideshow
+  // - Scroll parallax + nav scroll state + scrollspy
+  // - Reveal-on-scroll + stat counters (single IntersectionObserver)
+  // - TradingView ticker reduced-motion fallback
+  // - EN / ES language toggle (CSS-driven, persisted to localStorage)
+  // ============================================================
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------- NAV / SCROLL ----------
   const nav = document.getElementById('nav');
   const heroContent = document.querySelector('.hero-content');
   const heroOverlay = document.querySelector('.hero-overlay');
   const scrollCue = document.querySelector('.scroll-cue');
+
+  // Scrollspy targets — only in-page anchors
+  const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+  const navSections = navLinks
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
 
   let ticking = false;
   const onScroll = () => {
@@ -1407,9 +2010,9 @@
     if (y > 40) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
 
-    // Hero fade + parallax. Progress 0 → 1 across the first 70% of the viewport.
-    const t = Math.min(y / (window.innerHeight * 0.7), 1);
-    // smoothstep — eases in and out instead of linear, for premium feel.
+    // Hero fade + parallax — preserves the existing smoothstep curve.
+    const vh = window.innerHeight;
+    const t = Math.min(y / (vh * 0.7), 1);
     const eased = t * t * (3 - 2 * t);
 
     if (heroContent) {
@@ -1417,13 +2020,20 @@
       heroContent.style.transform = `translateY(${eased * -36}px)`;
     }
     if (scrollCue) {
-      // Cue fades faster — gone by the time you've scrolled ~40% of a viewport.
       scrollCue.style.opacity = String(Math.max(0, 1 - eased * 1.8));
     }
     if (heroOverlay) {
-      // Lighten the dark overlay as you scroll so the hero feels like it
-      // dissolves rather than stays as a heavy curtain.
       heroOverlay.style.opacity = String(1 - eased * 0.7);
+    }
+
+    // Scrollspy — find the last section whose top has crossed the 35% line
+    if (navSections.length) {
+      const mid = y + vh * 0.35;
+      let activeIdx = -1;
+      navSections.forEach((s, i) => {
+        if (s && s.offsetTop <= mid) activeIdx = i;
+      });
+      navLinks.forEach((a, i) => a.classList.toggle('active', i === activeIdx));
     }
 
     ticking = false;
@@ -1435,27 +2045,125 @@
     }
   }, { passive: true });
 
-  window.addEventListener('load', () => {
-    const bg = document.getElementById('heroBg');
-    if (!bg) return;
-    const img = new Image();
-    img.onload = () => bg.classList.add('loaded');
-    img.onerror = () => {};
-    // IMAGE_SWAP[hero-preload] — keep in sync with CSS .hero-bg url above
-    img.src = 'assets/images/hero.jpg';
-    setTimeout(() => bg.classList.add('loaded'), 1800);
-  });
+  // ---------- HERO SLIDESHOW ----------
+  // Slides cross-fade every 7s. First slide is already marked active in HTML
+  // (so initial paint shows immediately — no JS race on LCP).
+  (function heroSlideshow() {
+    const slides = Array.from(document.querySelectorAll('.hero-slide'));
+    const dots = Array.from(document.querySelectorAll('.hero-dot'));
+    const hero = document.querySelector('.hero');
+    if (!slides.length || !dots.length) return;
+
+    let idx = 0;
+    let timer = null;
+
+    const show = (next) => {
+      if (next === idx) return;
+      slides[idx].classList.remove('is-active');
+      dots[idx].classList.remove('is-active');
+      idx = next;
+      slides[idx].classList.add('is-active');
+      dots[idx].classList.add('is-active');
+    };
+
+    const advance = () => show((idx + 1) % slides.length);
+
+    const start = () => {
+      if (reduceMotion) return;
+      stop();
+      timer = setInterval(advance, 7000);
+    };
+    const stop = () => {
+      if (timer) { clearInterval(timer); timer = null; }
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        show(i);
+        start();
+      });
+    });
+
+    if (hero) {
+      hero.addEventListener('mouseenter', stop);
+      hero.addEventListener('mouseleave', start);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else start();
+    });
+
+    start();
+  })();
+
+  // ---------- TICKER reduced-motion fallback ----------
+  // TradingView ignores prefers-reduced-motion. If the user prefers reduced motion,
+  // skip the live widget and show the static fallback list instead.
+  if (reduceMotion) {
+    const shell = document.getElementById('tickerShell');
+    if (shell) shell.classList.add('is-static');
+  }
+
+  // ---------- REVEAL + STAT COUNTERS (single observer) ----------
+  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.target || '0');
+    const duration = parseFloat(el.dataset.duration || '1600');
+    if (reduceMotion || duration < 50) {
+      el.textContent = String(Math.round(target));
+      return;
+    }
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      const v = target * easeOutCubic(t);
+      el.textContent = String(Math.round(v));
+      if (t < 1) requestAnimationFrame(step);
+      else el.textContent = String(Math.round(target));
+    };
+    requestAnimationFrame(step);
+  }
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('in'), i * 70);
-        io.unobserve(e.target);
+      if (!e.isIntersecting) return;
+      setTimeout(() => e.target.classList.add('in'), i * 70);
+      const counts = e.target.querySelectorAll('.stat-count');
+      if (counts.length) {
+        counts.forEach(animateCount);
+        e.target.classList.add('counted');
       }
+      io.unobserve(e.target);
     });
   }, { threshold: 0.14, rootMargin: '0px 0px -70px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- LANGUAGE TOGGLE (EN / ES) ----------
+  const setLang = (l) => {
+    if (l !== 'en' && l !== 'es') l = 'en';
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.setAttribute('lang', l);
+    document.querySelectorAll('.lang-toggle button').forEach(btn => {
+      btn.classList.toggle('is-active', btn.dataset.setLang === l);
+    });
+    try { localStorage.setItem('pa-lang', l); } catch (_) { /* ignore */ }
+  };
+  (function initLang() {
+    let saved = 'en';
+    try {
+      const v = localStorage.getItem('pa-lang');
+      if (v === 'es' || v === 'en') saved = v;
+    } catch (_) { /* ignore */ }
+    setLang(saved);
+    document.querySelectorAll('[data-set-lang]').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.setLang));
+    });
+  })();
+
+  // Fire scrollspy + scroll state once on load so the first paint matches state
+  onScroll();
 </script>
 
 </body>

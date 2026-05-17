@@ -29,8 +29,7 @@ Search the codebase for `IMAGE_SWAP` to jump to each location.
 
 | Key                 | File         | Subject                                | Recommended filename                  |
 | ------------------- | ------------ | -------------------------------------- | ------------------------------------- |
-| `hero`              | `index.html` | Hero background (port / container terminal aerial) | `assets/images/hero.jpg`              |
-| `hero-preload`      | `index.html` | JS preload of the same image — keep in sync with `hero` | (same file)                           |
+| Hero slideshow      | `index.html` | 5 cross-fading port / agriculture frames | currently 5 Unsplash hotlinks inside `<div class="hero-slides">`; each has an `onerror` fallback to `assets/images/hero.jpg`. See §7 to swap to local assets. |
 | `pillar-global`     | `index.html` | "Global Reach" card — global trade / port aerial | `assets/images/pillar-global.jpg`     |
 | `pillar-logistics`  | `index.html` | "Logistics Excellence" card — containers / port logistics | `assets/images/pillar-logistics.jpg`  |
 | `pillar-commitment` | `index.html` | "Commitment to You" card — agricultural / wheat field | `assets/images/pillar-commitment.jpg` |
@@ -196,3 +195,67 @@ gh repo create patagonia-website --private --source=. --push
 ### Connecting a custom domain
 
 In **Project → Settings → Domains**, add `patagoniaamericas.com` (or whichever) and follow the DNS instructions Vercel shows.
+
+---
+
+## 7. Live components (added in the redesign)
+
+### Hero cross-fading slideshow
+- 5 Unsplash-hotlinked images, 7-second cross-fade interval, pauses on hover, paginated dots.
+- First image loads `eager` with `fetchpriority="high"` so the LCP element paints fast.
+- Each `<img>` has an `onerror` fallback to `assets/images/hero.jpg`, so a broken Unsplash URL never leaves the hero blank.
+- Disabled under `prefers-reduced-motion` — shows slide 1 only.
+- To swap in client photography, replace the 5 `src` attributes inside `<div class="hero-slides">` in `index.html`.
+
+### TradingView live ticker
+- Embedded via the official free `embed-widget-ticker-tape.js` script. No API key required.
+- Symbols configured inline in `index.html` near the `<div class="ticker-shell">`: ZL1!, ZS1!, ZW1!, ZC1!, SB1!, USDBRL, USDARS, BDI.
+- To change symbols, edit the JSON inside the embed `<script>` block.
+- Under `prefers-reduced-motion`, the widget is hidden and the `.ticker-fallback` static list is shown instead.
+
+### Interactive world map
+- Pure inline SVG (`<svg class="world-map">`) — stylized continent outlines, 4 destination hubs (Rotterdam, Qingdao, Jebel Ali, Singapore), 3 origin hubs (US Midwest, Brazil, Argentina), and 5 animated trade arcs.
+- Arcs draw with `stroke-dashoffset` over a 5-second loop, staggered. Hubs pulse with a `transform: scale()` keyframe (not the SVG `r` attribute — Safari compatibility).
+- Heading copy is bilingual via `data-i18n` spans. Located between `.who` and `.cta-strip`.
+
+### Animated stat counters
+- Each `.stat` in the stats band carries a `.stat-count[data-target]` span. The existing IntersectionObserver was extended to also kick off `animateCount()` and add a `.counted` class that draws a 44px brass underline.
+- Pull a stat number by editing `data-target` and the suffix `<em>` separately.
+- Under `prefers-reduced-motion`, counters jump straight to their final value.
+
+### EN / ES language toggle
+- CSS-driven swap on `<html data-lang>`. Every translatable text node has two adjacent siblings: `<span data-i18n="en">…</span><span data-i18n="es">…</span>`. CSS hides the wrong one.
+- Toggle controls: nav (`.lang-toggle`) and footer (`.lang-toggle.footer-lang`). Selection is persisted in `localStorage` under key `pa-lang`.
+- Contact-page form `<option>` text and the `<textarea>` placeholder can't use child spans, so they are translated dynamically via `data-i18n-en` / `data-i18n-es` attributes and the `setLang()` function in `contact.html`.
+- Form error message and submit-button label are also language-aware (see `I18N` map in `contact.html`).
+- To add a new locale (say PT): add a `data-i18n="pt"` sibling everywhere, add a `pt` button to both `.lang-toggle`s, extend the `I18N` map, and add `html[data-lang="pt"] [data-i18n!="pt"] { display: none; }` CSS rules.
+
+### Scrollspy + active nav link
+- Implemented inside the existing rAF-throttled `onScroll` handler. It computes the active in-page section based on whether its top has passed 35% of the viewport, and toggles `.active` on the matching nav link (brass underline + cream color).
+
+### OpenStreetMap embed (contact page)
+- Static iframe (`https://www.openstreetmap.org/export/embed.html`). No key, no quota, no tracker. Bbox + marker pointing at the Boca Raton HQ.
+- Subtle `filter: grayscale + sepia` muting by default; clears on hover for visual interest.
+- "View larger map" link opens the full OSM map in a new tab.
+
+### WhatsApp CTA (contact page)
+- `.wa-cta` pill inside the phone `.detail` block, opens `https://wa.me/15614107750`.
+- Bilingual label, official WhatsApp green (`#25D366`).
+
+### Accessibility hardening
+- Global `:focus-visible` outline using `var(--brass)`.
+- Global `@media (prefers-reduced-motion: reduce)` block disables all infinite animations and reveal transitions in both files.
+- Every below-the-fold `<img>` carries `loading="lazy" decoding="async"`. Hero slide 1 explicitly opts into `loading="eager" fetchpriority="high"` for LCP.
+
+### Verifying the redesign locally
+1. `python3 -m http.server 8000` (or `vercel dev`).
+2. Open `http://localhost:8000/`.
+3. Hero should cross-fade through 5 frames; hover to pause; click a dot to jump.
+4. Ticker strip below the hero shows live prices from TradingView.
+5. Scroll to the stats band — numbers count up 0→target with easeOutCubic, then the gold underline draws in.
+6. Hover any product card — image scales 1.05, brass top bar wipes in, descriptor slides up from the bottom.
+7. Continue scrolling to the trade map — gold arcs draw and fade between origin and destination hubs on a loop.
+8. Click the EN / ES toggle in the nav (or footer on mobile). Reload to confirm persistence.
+9. Open `/contact.html`. Tab through form fields; brass underline + brass focus ring appears. Click "Chat on WhatsApp". The OSM map loads under the address.
+10. Submit a test inquiry — inline success state shows with no redirect.
+11. DevTools → Rendering → "Emulate CSS prefers-reduced-motion: reduce" — verify slideshow stops on slide 1, ticker falls back to static text, counters jump to final values.

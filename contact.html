@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -524,6 +524,131 @@
   }
   .reveal.in { opacity: 1; transform: translateY(0); }
 
+  /* ============ NEW COMPONENTS — focus ring, lang toggle, map, WhatsApp ============ */
+
+  :focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Brass focus-ring on form fields — under the bottom border */
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-bottom-color: var(--brass);
+    box-shadow: 0 1px 0 0 var(--brass);
+  }
+  .field:focus-within select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b8954a' stroke-width='1.6'><polyline points='6 9 12 15 18 9'/></svg>");
+  }
+
+  /* Language toggle (nav + footer mirrored) */
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: rgba(246,241,232,.55);
+    margin-right: 4px;
+  }
+  .lang-toggle button {
+    background: none;
+    border: 0;
+    padding: 6px 4px;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    letter-spacing: inherit;
+    transition: color .25s var(--ease), border-color .25s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .lang-toggle button:hover { color: var(--brass-2); }
+  .lang-toggle button.is-active {
+    color: var(--brass-2);
+    border-bottom-color: var(--brass);
+  }
+  .lang-toggle .lang-divider {
+    opacity: 0.45;
+    margin: 0 2px;
+  }
+
+  /* WhatsApp CTA inside contact detail block */
+  .wa-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 9px 16px;
+    background: #25D366;
+    color: #ffffff;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+    text-decoration: none;
+  }
+  .wa-cta:hover {
+    transform: translateY(-1px);
+    background: #20b95a;
+    box-shadow: 0 10px 22px -10px rgba(37, 211, 102, 0.6);
+  }
+  .wa-cta svg { width: 14px; height: 14px; }
+
+  /* OpenStreetMap embed — Boca Raton HQ */
+  .contact-map {
+    margin-top: 32px;
+    position: relative;
+  }
+  .contact-map iframe {
+    display: block;
+    width: 100%;
+    height: 220px;
+    border: 1px solid rgba(184,149,74,.28);
+    border-radius: 2px;
+    filter: grayscale(.35) contrast(.95) sepia(.18) brightness(.95);
+    transition: filter .6s var(--ease);
+  }
+  .contact-map:hover iframe { filter: none; }
+  .contact-map .map-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--brass-2);
+    text-decoration: none;
+    transition: color .25s var(--ease);
+  }
+  .contact-map .map-link:hover { color: var(--brass); }
+  .contact-map .map-link .arrow {
+    display: inline-block;
+    transition: transform .25s var(--ease);
+  }
+  .contact-map .map-link:hover .arrow { transform: translateX(4px); }
+
+  /* i18n — show matching language */
+  html[data-lang="en"] [data-i18n="es"] { display: none; }
+  html[data-lang="es"] [data-i18n="en"] { display: none; }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+
   /* ============ RESPONSIVE ============ */
   @media (max-width: 1080px) {
     .contact-page { grid-template-columns: 1fr; }
@@ -534,6 +659,7 @@
     .container { padding: 0 24px; }
     .nav { padding: 16px 0; }
     .nav-links { display: none; }
+    .nav .lang-toggle { display: none; }
     .contact-brand { padding: 56px 28px 50px; }
     .contact-form-wrap { padding: 56px 28px; }
     .field-row { grid-template-columns: 1fr; gap: 0; }
@@ -542,6 +668,7 @@
     .submit-btn { justify-content: center; }
     .logo-text .sub { display: none; }
     .brand-footer { flex-direction: column; gap: 14px; align-items: flex-start; }
+    .contact-map iframe { height: 180px; }
   }
 </style>
 </head>
@@ -566,12 +693,21 @@
         </span>
       </a>
       <div class="nav-links">
-        <a href="index.html#services">Services</a>
-        <a href="index.html#products">Products</a>
-        <a href="index.html#about">About Us</a>
-        <a href="contact.html" class="active">Contact</a>
+        <a href="index.html#services"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a>
+        <a href="index.html#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a>
+        <a href="index.html#about"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a>
+        <a href="contact.html" class="active"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a>
       </div>
-      <a href="index.html" class="btn btn-outline">Back to Site</a>
+      <div class="nav-actions" style="display:flex; align-items:center; gap:18px;">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" data-set-lang="en" class="is-active">EN</button>
+          <span class="lang-divider" aria-hidden="true">/</span>
+          <button type="button" data-set-lang="es">ES</button>
+        </div>
+        <a href="index.html" class="btn btn-outline">
+          <span data-i18n="en">Back to Site</span><span data-i18n="es">Volver al Sitio</span>
+        </a>
+      </div>
     </div>
   </div>
 </nav>
@@ -583,9 +719,18 @@
   <!-- LEFT — Brand panel -->
   <aside class="contact-brand">
     <div class="contact-brand-inner">
-      <span class="contact-eyebrow">Get in Touch</span>
-      <h1>Let's start a <em>conversation.</em></h1>
-      <p class="lead">Whether you're sourcing a single container or an ongoing supply agreement, our team reviews every inquiry personally, typically within one business day.</p>
+      <span class="contact-eyebrow">
+        <span data-i18n="en">Get in Touch</span>
+        <span data-i18n="es">Hablemos</span>
+      </span>
+      <h1>
+        <span data-i18n="en">Let's start a <em>conversation.</em></span>
+        <span data-i18n="es">Comencemos una <em>conversación.</em></span>
+      </h1>
+      <p class="lead">
+        <span data-i18n="en">Whether you're sourcing a single container or an ongoing supply agreement, our team reviews every inquiry personally, typically within one business day.</span>
+        <span data-i18n="es">Ya sea que necesite originar un solo contenedor o un acuerdo de suministro continuo, nuestro equipo revisa cada consulta personalmente, normalmente dentro de un día hábil.</span>
+      </p>
 
       <div class="contact-details">
         <div class="detail">
@@ -596,7 +741,7 @@
             </svg>
           </div>
           <div class="detail-text">
-            <span class="detail-label">Headquarters</span>
+            <span class="detail-label"><span data-i18n="en">Headquarters</span><span data-i18n="es">Sede Principal</span></span>
             <span class="detail-value">2300 Glades Road, Suite 312 W<br/>Boca Raton, FL 33431</span>
           </div>
         </div>
@@ -607,8 +752,15 @@
             </svg>
           </div>
           <div class="detail-text">
-            <span class="detail-label">Phone</span>
+            <span class="detail-label"><span data-i18n="en">Phone</span><span data-i18n="es">Teléfono</span></span>
             <span class="detail-value"><a href="tel:+15614107750">(561) 410-7750</a></span>
+            <a class="wa-cta" href="https://wa.me/15614107750" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.05 4.91A10 10 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a10 10 0 0 0 4.78 1.22h.01c5.46 0 9.91-4.45 9.92-9.92a9.86 9.86 0 0 0-2.91-7zM12.04 20.16h-.01a8.25 8.25 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.27-4.38c0-4.55 3.7-8.25 8.27-8.25a8.2 8.2 0 0 1 5.85 2.42 8.18 8.18 0 0 1 2.41 5.84c0 4.55-3.7 8.23-8.26 8.23zm4.53-6.16c-.25-.13-1.47-.72-1.7-.81-.23-.08-.4-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.06s.88 2.39 1 2.55c.12.17 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.17-.48-.29z"/>
+              </svg>
+              <span data-i18n="en">Chat on WhatsApp</span>
+              <span data-i18n="es">Chatear por WhatsApp</span>
+            </a>
           </div>
         </div>
         <div class="detail">
@@ -619,7 +771,7 @@
             </svg>
           </div>
           <div class="detail-text">
-            <span class="detail-label">Email</span>
+            <span class="detail-label"><span data-i18n="en">Email</span><span data-i18n="es">Correo</span></span>
             <span class="detail-value"><a href="mailto:info@patagoniaamericas.com">info@patagoniaamericas.com</a></span>
           </div>
         </div>
@@ -631,15 +783,35 @@
             </svg>
           </div>
           <div class="detail-text">
-            <span class="detail-label">Hours</span>
-            <span class="detail-value">Monday to Friday<br/>9:00 AM to 6:00 PM EST</span>
+            <span class="detail-label"><span data-i18n="en">Hours</span><span data-i18n="es">Horario</span></span>
+            <span class="detail-value">
+              <span data-i18n="en">Monday to Friday<br/>9:00 AM to 6:00 PM EST</span>
+              <span data-i18n="es">Lunes a Viernes<br/>9:00 a 18:00 EST</span>
+            </span>
           </div>
         </div>
+      </div>
+
+      <!-- OpenStreetMap embed — Boca Raton HQ (no API key required) -->
+      <div class="contact-map" aria-label="Map showing Patagonia Americas headquarters">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-80.1335%2C26.3645%2C-80.1233%2C26.3725&amp;layer=mapnik&amp;marker=26.3685%2C-80.1284"
+          loading="lazy"
+          title="Map of Patagonia Americas headquarters — 2300 Glades Road, Boca Raton, FL"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="map-link" href="https://www.openstreetmap.org/?mlat=26.3685&amp;mlon=-80.1284#map=17/26.3685/-80.1284" target="_blank" rel="noopener">
+          <span data-i18n="en">View larger map</span>
+          <span data-i18n="es">Ver mapa ampliado</span>
+          <span class="arrow"> →</span>
+        </a>
       </div>
     </div>
 
     <div class="brand-footer">
-      <span>© Patagonia Americas LLC</span>
+      <span>
+        <span data-i18n="en">© Patagonia Americas LLC</span>
+        <span data-i18n="es">© Patagonia Americas LLC</span>
+      </span>
       <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn →</a>
     </div>
   </aside>
@@ -647,50 +819,65 @@
   <!-- RIGHT — Form -->
   <section class="contact-form-wrap">
     <div class="form-head">
-      <span class="form-eyebrow">Send an Inquiry</span>
-      <h2>Tell us about your <em>needs.</em></h2>
-      <p>Share a few details and our trading desk will be in touch shortly. All inquiries are treated with full confidentiality.</p>
+      <span class="form-eyebrow">
+        <span data-i18n="en">Send an Inquiry</span>
+        <span data-i18n="es">Enviar una Consulta</span>
+      </span>
+      <h2>
+        <span data-i18n="en">Tell us about your <em>needs.</em></span>
+        <span data-i18n="es">Cuéntenos sobre sus <em>necesidades.</em></span>
+      </h2>
+      <p>
+        <span data-i18n="en">Share a few details and our trading desk will be in touch shortly. All inquiries are treated with full confidentiality.</span>
+        <span data-i18n="es">Comparta algunos detalles y nuestro equipo comercial se pondrá en contacto a la brevedad. Todas las consultas se tratan con total confidencialidad.</span>
+      </p>
     </div>
 
     <form id="contactForm" novalidate>
       <div class="field-row">
         <div class="field">
-          <label for="name">Full Name <span class="req">*</span></label>
+          <label for="name"><span data-i18n="en">Full Name</span><span data-i18n="es">Nombre Completo</span> <span class="req">*</span></label>
           <input type="text" id="name" name="name" placeholder="Jane Doe" required autocomplete="name" />
         </div>
         <div class="field">
-          <label for="company">Company <span class="req">*</span></label>
+          <label for="company"><span data-i18n="en">Company</span><span data-i18n="es">Empresa</span> <span class="req">*</span></label>
           <input type="text" id="company" name="company" placeholder="Acme Trading Co." required autocomplete="organization" />
         </div>
       </div>
 
       <div class="field">
-        <label for="email">Email Address <span class="req">*</span></label>
+        <label for="email"><span data-i18n="en">Email Address</span><span data-i18n="es">Correo Electrónico</span> <span class="req">*</span></label>
         <input type="email" id="email" name="email" placeholder="jane@company.com" required autocomplete="email" />
       </div>
 
       <div class="field">
-        <label for="subject">Reason for Contact <span class="req">*</span></label>
+        <label for="subject"><span data-i18n="en">Reason for Contact</span><span data-i18n="es">Motivo del Contacto</span> <span class="req">*</span></label>
         <select id="subject" name="subject" required>
-          <option value="" disabled selected>Select an option</option>
-          <option value="sourcing">Sourcing & Procurement</option>
-          <option value="supply">Ongoing Supply Agreement</option>
-          <option value="logistics">Logistics & Shipping</option>
-          <option value="partnership">Partnership Opportunity</option>
-          <option value="press">Press & Media</option>
-          <option value="other">Other Inquiry</option>
+          <option value="" disabled selected data-i18n-en="Select an option" data-i18n-es="Seleccione una opción">Select an option</option>
+          <option value="sourcing"     data-i18n-en="Sourcing & Procurement"      data-i18n-es="Originación y Compras">Sourcing &amp; Procurement</option>
+          <option value="supply"       data-i18n-en="Ongoing Supply Agreement"    data-i18n-es="Acuerdo de Suministro Continuo">Ongoing Supply Agreement</option>
+          <option value="logistics"    data-i18n-en="Logistics & Shipping"        data-i18n-es="Logística y Envíos">Logistics &amp; Shipping</option>
+          <option value="partnership"  data-i18n-en="Partnership Opportunity"     data-i18n-es="Oportunidad de Alianza">Partnership Opportunity</option>
+          <option value="press"        data-i18n-en="Press & Media"               data-i18n-es="Prensa y Medios">Press &amp; Media</option>
+          <option value="other"        data-i18n-en="Other Inquiry"               data-i18n-es="Otra Consulta">Other Inquiry</option>
         </select>
       </div>
 
       <div class="field">
-        <label for="message">Tell us more <span class="req">*</span></label>
-        <textarea id="message" name="message" placeholder="Briefly describe your inquiry: product, volume, destination, timeline…" required></textarea>
+        <label for="message"><span data-i18n="en">Tell us more</span><span data-i18n="es">Cuéntenos más</span> <span class="req">*</span></label>
+        <textarea id="message" name="message"
+          data-placeholder-en="Briefly describe your inquiry: product, volume, destination, timeline…"
+          data-placeholder-es="Describa brevemente su consulta: producto, volumen, destino, plazos…"
+          placeholder="Briefly describe your inquiry: product, volume, destination, timeline…" required></textarea>
       </div>
 
       <div class="form-actions">
-        <span class="form-note">By submitting, you agree to be contacted by our team regarding your inquiry. We never share your details.</span>
+        <span class="form-note">
+          <span data-i18n="en">By submitting, you agree to be contacted by our team regarding your inquiry. We never share your details.</span>
+          <span data-i18n="es">Al enviar, acepta ser contactado por nuestro equipo en relación con su consulta. Nunca compartimos sus datos.</span>
+        </span>
         <button type="submit" class="submit-btn" id="submitBtn">
-          <span class="btn-label">Send Inquiry</span>
+          <span class="btn-label" data-i18n-en="Send Inquiry" data-i18n-es="Enviar Consulta">Send Inquiry</span>
           <span class="arrow">→</span>
         </button>
       </div>
@@ -704,20 +891,48 @@
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <h3>Thank you, <em id="successName">friend</em>.</h3>
-      <p>Your inquiry has been received. A member of our team will be in touch with you shortly, typically within one business day.</p>
-      <a href="index.html" class="btn btn-outline">Return Home <span class="arrow">→</span></a>
+      <h3>
+        <span data-i18n="en">Thank you, <em id="successNameEn">friend</em>.</span>
+        <span data-i18n="es">Gracias, <em id="successNameEs">amigo</em>.</span>
+      </h3>
+      <p>
+        <span data-i18n="en">Your inquiry has been received. A member of our team will be in touch with you shortly, typically within one business day.</span>
+        <span data-i18n="es">Hemos recibido su consulta. Un miembro de nuestro equipo se pondrá en contacto a la brevedad, normalmente dentro de un día hábil.</span>
+      </p>
+      <a href="index.html" class="btn btn-outline">
+        <span data-i18n="en">Return Home</span><span data-i18n="es">Volver al Inicio</span>
+        <span class="arrow">→</span>
+      </a>
     </div>
   </section>
 
 </main>
 
 <script>
-  // Form submit handler
+  // ============================================================
+  // Contact page — form submit + language toggle + accessibility
+  // ============================================================
+
+  const I18N = {
+    en: {
+      sending: 'Sending…',
+      sendLabel: 'Send Inquiry',
+      error: 'Could not send your inquiry. Please try again, or email info@patagoniaamericas.com directly.'
+    },
+    es: {
+      sending: 'Enviando…',
+      sendLabel: 'Enviar Consulta',
+      error: 'No se pudo enviar su consulta. Inténtelo nuevamente o escriba directamente a info@patagoniaamericas.com.'
+    }
+  };
+  const getLang = () => document.documentElement.getAttribute('data-lang') === 'es' ? 'es' : 'en';
+
+  // ---- Form submit ----
   const form = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');
   const submitBtn = document.getElementById('submitBtn');
-  const successName = document.getElementById('successName');
+  const successNameEn = document.getElementById('successNameEn');
+  const successNameEs = document.getElementById('successNameEs');
   const formError = document.getElementById('formError');
 
   form.addEventListener('submit', async function(e) {
@@ -725,7 +940,7 @@
     formError.hidden = true;
     formError.textContent = '';
 
-    // Simple validation
+    // Required-field validation — flash red border briefly on missing fields
     const required = form.querySelectorAll('[required]');
     let valid = true;
     required.forEach(field => {
@@ -737,7 +952,6 @@
     });
     if (!valid) return;
 
-    // Email format check
     const email = document.getElementById('email');
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRe.test(email.value)) {
@@ -746,13 +960,16 @@
       return;
     }
 
-    submitBtn.disabled = true;
-    const originalLabel = submitBtn.querySelector('.btn-label').textContent;
-    const originalArrow = submitBtn.querySelector('.arrow').textContent;
-    submitBtn.querySelector('.btn-label').textContent = 'Sending…';
-    submitBtn.querySelector('.arrow').textContent = '';
+    const lang = getLang();
+    const t = I18N[lang];
 
-    // FORM_SUBMIT[start] ============================================
+    submitBtn.disabled = true;
+    const btnLabel = submitBtn.querySelector('.btn-label');
+    const btnArrow = submitBtn.querySelector('.arrow');
+    const originalArrow = btnArrow.textContent;
+    btnLabel.textContent = t.sending;
+    btnArrow.textContent = '';
+
     const data = {
       name: document.getElementById('name').value.trim(),
       company: document.getElementById('company').value.trim(),
@@ -775,27 +992,68 @@
       showSuccess(data);
     } catch (err) {
       submitBtn.disabled = false;
-      submitBtn.querySelector('.btn-label').textContent = originalLabel;
-      submitBtn.querySelector('.arrow').textContent = originalArrow;
-      formError.textContent = 'Could not send your inquiry. Please try again, or email info@patagoniaamericas.com directly.';
+      // Restore the label using the current language's send label (don't snapshot —
+      // user may have switched languages mid-submit)
+      const lang2 = getLang();
+      btnLabel.textContent = I18N[lang2].sendLabel;
+      btnArrow.textContent = originalArrow || '→';
+      formError.textContent = I18N[lang2].error;
       formError.hidden = false;
       console.error('[contact] submit failed:', err);
     }
-    // FORM_SUBMIT[end] ==============================================
   });
 
   function showSuccess(data) {
     const firstName = data.name.trim().split(' ')[0];
-    successName.textContent = firstName;
+    if (successNameEn) successNameEn.textContent = firstName;
+    if (successNameEs) successNameEs.textContent = firstName;
     form.style.display = 'none';
     success.classList.add('show');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Reveal on load
+  // ---- Reveal-on-load (single page is short — no scroll observer needed) ----
   document.querySelectorAll('.reveal').forEach(el => {
     setTimeout(() => el.classList.add('in'), 100);
   });
+
+  // ---- Language toggle (EN / ES) ----
+  // Mirrors the homepage implementation. Updates <select> option labels and
+  // <textarea> placeholders too — they can't use child spans.
+  const setLang = (l) => {
+    if (l !== 'en' && l !== 'es') l = 'en';
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.setAttribute('lang', l);
+    document.querySelectorAll('.lang-toggle button').forEach(btn => {
+      btn.classList.toggle('is-active', btn.dataset.setLang === l);
+    });
+    // Translate <option>s
+    document.querySelectorAll('select option').forEach(opt => {
+      const v = opt.dataset['i18n' + (l === 'es' ? 'Es' : 'En')];
+      if (v) opt.textContent = v;
+    });
+    // Translate textarea placeholders
+    document.querySelectorAll('textarea[data-placeholder-en]').forEach(ta => {
+      ta.placeholder = ta.dataset[l === 'es' ? 'placeholderEs' : 'placeholderEn'] || ta.placeholder;
+    });
+    // Translate submit button label
+    const btnLabel = document.querySelector('.submit-btn .btn-label');
+    if (btnLabel && btnLabel.dataset['i18n' + (l === 'es' ? 'Es' : 'En')]) {
+      btnLabel.textContent = btnLabel.dataset['i18n' + (l === 'es' ? 'Es' : 'En')];
+    }
+    try { localStorage.setItem('pa-lang', l); } catch (_) { /* ignore */ }
+  };
+  (function initLang() {
+    let saved = 'en';
+    try {
+      const v = localStorage.getItem('pa-lang');
+      if (v === 'es' || v === 'en') saved = v;
+    } catch (_) { /* ignore */ }
+    setLang(saved);
+    document.querySelectorAll('[data-set-lang]').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.setLang));
+    });
+  })();
 </script>
 
 </body>
