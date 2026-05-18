@@ -149,15 +149,14 @@
     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
     {
       "symbols": [
-        {"description": "Soybean Oil", "proName": "CBOT:ZL1!"},
-        {"description": "Soybeans",    "proName": "CBOT:ZS1!"},
-        {"description": "Wheat",       "proName": "CBOT:ZW1!"},
-        {"description": "Corn",        "proName": "CBOT:ZC1!"},
-        {"description": "Sugar #11",   "proName": "ICEUS:SB1!"},
-        {"description": "Cotton",      "proName": "ICEUS:CT1!"},
-        {"description": "USD/BRL",     "proName": "FX_IDC:USDBRL"},
-        {"description": "USD/ARS",     "proName": "FX_IDC:USDARS"},
-        {"description": "US Dollar",   "proName": "TVC:DXY"}
+        {"description": "Soybeans",   "proName": "AMEX:SOYB"},
+        {"description": "Wheat",      "proName": "AMEX:WEAT"},
+        {"description": "Corn",       "proName": "AMEX:CORN"},
+        {"description": "Sugar",      "proName": "AMEX:CANE"},
+        {"description": "Agri Fund",  "proName": "AMEX:DBA"},
+        {"description": "USD/BRL",    "proName": "FX_IDC:USDBRL"},
+        {"description": "USD/ARS",    "proName": "FX_IDC:USDARS"},
+        {"description": "US Dollar",  "proName": "TVC:DXY"}
       ],
       "showSymbolLogo": false,
       "isTransparent": true,
@@ -168,14 +167,13 @@
     </script>
   </div>
   <!-- TradingView Widget END -->
-  <!-- Static fallback for reduced motion / widget unavailable -->
+  <!-- Static fallback only shown if the iframe fails to load -->
   <ul class="ticker-fallback" aria-hidden="true">
-    <li>Soybean Oil</li>
     <li>Soybeans</li>
     <li>Wheat</li>
     <li>Corn</li>
-    <li>Sugar #11</li>
-    <li>Cotton</li>
+    <li>Sugar</li>
+    <li>Agri Fund</li>
     <li>USD/BRL</li>
     <li>USD/ARS</li>
     <li>US Dollar Index</li>
