@@ -1,0 +1,83 @@
+/* ============================================================
+   Patagonia Americas — Design Tokens
+   Spec: assets/REDESIGN_SPEC.md §3  ("Quiet Authority")
+   Phase 1 — Foundation. Legacy aliases drop at end of Phase 8.
+   ============================================================ */
+
+:root {
+  /* ---------- Colors (spec §3) ---------- */
+  --color-bg-primary:        #1F2D24;
+  --color-bg-secondary:      #2D3F33;
+  --color-bg-cream:          #F5EDD8;
+  --color-bg-cream-soft:     #FAF5E8;
+  --color-accent-gold:       #C8A865;
+  --color-accent-gold-bright:#D9B978;
+  --color-text-dark:         #1A1F1A;
+  --color-text-dark-muted:   #4A5248;
+  --color-text-light:        #F5EDD8;
+  --color-text-light-muted:  rgba(245, 237, 216, 0.72);
+  --color-border-subtle:     rgba(245, 237, 216, 0.12);
+  --color-border-gold:       rgba(200, 168, 101, 0.40);
+
+  /* ---------- Typography (spec §3) ---------- */
+  --font-display: 'Cormorant Garamond', 'GT Sectra', Georgia, serif;
+  --font-body:    'Inter', 'GT America', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  --fs-display-xl: clamp(56px, 7vw, 104px);
+  --fs-display-lg: clamp(40px, 5vw, 72px);
+  --fs-display-md: clamp(28px, 3.5vw, 44px);
+  --fs-stats:      clamp(72px, 10vw, 160px);
+  --fs-body-lg:    20px;
+  --fs-body:       17px;
+  --fs-body-sm:    14px;
+  --fs-eyebrow:    12px;
+
+  /* ---------- Spacing (spec §3) ---------- */
+  --space-section-y:   clamp(96px, 12vw, 160px);
+  --space-block-y:     clamp(48px, 6vw, 80px);
+  --space-container:   clamp(24px, 5vw, 88px);
+  --container-max:     1440px;
+  --container-narrow:  880px;
+  --container:         1280px;
+
+  /* ---------- Motion (spec §3) ---------- */
+  --ease:       cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-slow:  cubic-bezier(0.16, 1, 0.30, 1);
+  --ease-out:   cubic-bezier(0.16, 1, 0.30, 1);
+  --duration-fast: 200ms;
+  --duration-base: 400ms;
+  --duration-slow: 800ms;
+
+  /* ---------- Radii + elevation (spec §3) ---------- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --shadow-card:       0 12px 32px -16px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 24px 48px -20px rgba(0, 0, 0, 0.35);
+
+  /* ============================================================
+     Legacy token aliases — phase-out
+     ------------------------------------------------------------
+     Existing CSS still references these names. They map to the
+     new spec tokens so the visual shift is consistent and any
+     rule missed during the migration still resolves correctly.
+     Remove at end of Phase 8 once every section has been
+     rewritten against the new token names.
+     ============================================================ */
+  --ink:       var(--color-text-dark);
+  --forest:    var(--color-bg-primary);
+  --forest-2:  var(--color-bg-secondary);
+  --forest-3:  #3A4D40;
+  --brass:     var(--color-accent-gold);
+  --brass-2:   var(--color-accent-gold-bright);
+  --brass-3:   #A6864F;
+  --cream:     var(--color-text-light);
+  --paper:     var(--color-bg-cream-soft);
+  --paper-2:   #F3EAD2;
+  --line:      #E2DAC4;
+  --muted:     var(--color-text-dark-muted);
+  --muted-2:   #6B7269;
+
+  --serif: var(--font-display);
+  --sans:  var(--font-body);
+}

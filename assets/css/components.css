@@ -1,0 +1,550 @@
+/* ============================================================
+   Patagonia Americas — Components
+   Reusable UI: nav (fixed + static), buttons, logo, language
+   toggle, scroll cue, ticker, contact form, WhatsApp pill, map.
+   Phase 1 — Foundation. Section-specific styles live in sections.css.
+   ============================================================ */
+
+/* ============ HEADER / NAV ============
+   Two variants share the same .nav class:
+   - index.html: <nav class="nav"> directly on body, fixed + glass
+   - about/contact: <div class="header-bar"><div class="nav"> wrapper, static
+   The .header-bar parent context overrides position/background.
+   ============================================================ */
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 22px 0;
+  transition: all .5s var(--ease);
+}
+.nav.scrolled {
+  background: linear-gradient(180deg, rgba(31, 45, 36, 0.72) 0%, rgba(31, 45, 36, 0.38) 100%);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  padding: 14px 0;
+  box-shadow:
+    inset 0 -1px 0 rgba(200, 168, 101, .18),
+    0 12px 28px rgba(10, 24, 21, .14);
+}
+@supports not (backdrop-filter: blur(20px)) {
+  .nav.scrolled {
+    background: rgba(31, 45, 36, 0.86);
+  }
+}
+
+/* Static (in-flow) header on about/contact pages */
+.header-bar {
+  background: var(--color-bg-primary);
+  position: relative;
+  z-index: 50;
+  border-bottom: 1px solid rgba(200, 168, 101, .12);
+}
+.header-bar::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.header-bar .nav {
+  position: relative;
+  top: auto; left: auto; right: auto;
+  z-index: 2;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+/* ---------- Logo ---------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--color-text-light);
+  transition: opacity .25s var(--ease);
+}
+.logo:hover { opacity: 0.85; }
+.logo-mark { width: 42px; height: 42px; flex-shrink: 0; }
+.logo-text { display: flex; flex-direction: column; line-height: 1; }
+.logo-text .lead {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.logo-text .sub {
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  margin-top: 5px;
+  color: var(--color-accent-gold-bright);
+  text-transform: uppercase;
+}
+
+/* ---------- Nav links ---------- */
+.nav-links { display: flex; gap: 44px; }
+.nav-links a {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  opacity: 0.85;
+  transition: opacity .25s var(--ease);
+  position: relative;
+  padding: 4px 0;
+}
+.nav-links a:hover { opacity: 1; }
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -7px;
+  width: 0; height: 1px;
+  background: var(--color-accent-gold);
+  transition: width .4s var(--ease);
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active {
+  opacity: 1;
+  color: var(--color-accent-gold-bright);
+}
+.nav-links a.active::after { width: 100%; }
+/* About/contact place the underline closer to baseline */
+.header-bar .nav-links a::after { bottom: -2px; }
+/* Nav actions cluster — lang toggle + compact CTA button */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ============ BUTTONS ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 26px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all .35s var(--ease);
+  text-decoration: none;
+}
+.btn-brass {
+  background: var(--color-accent-gold);
+  color: var(--color-text-dark);
+}
+.btn-brass:hover {
+  background: var(--color-accent-gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -10px rgba(200, 168, 101, .55);
+}
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--color-accent-gold);
+  color: var(--color-accent-gold);
+}
+.btn-outline:hover {
+  background: var(--color-accent-gold);
+  color: var(--color-text-dark);
+}
+.btn-dark {
+  background: var(--color-text-dark);
+  color: var(--color-text-light);
+}
+.btn-dark:hover {
+  background: var(--color-bg-primary);
+  transform: translateY(-2px);
+}
+.btn .arrow {
+  display: inline-block;
+  transition: transform .35s var(--ease);
+}
+.btn:hover .arrow { transform: translateX(5px); }
+
+/* ============ LANGUAGE TOGGLE ============ */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: rgba(245, 237, 216, .55);
+  margin-right: 4px;
+}
+.lang-toggle button {
+  background: none;
+  border: 0;
+  padding: 6px 4px;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: inherit;
+  transition: color .25s var(--ease), border-color .25s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.lang-toggle button:hover { color: var(--color-accent-gold-bright); }
+.lang-toggle button.is-active {
+  color: var(--color-accent-gold-bright);
+  border-bottom-color: var(--color-accent-gold);
+}
+.lang-toggle .lang-divider {
+  opacity: 0.45;
+  margin: 0 2px;
+}
+
+/* ============ SCROLL CUE (hero) ============ */
+.scroll-cue {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  background: none;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  color: rgba(245, 237, 216, .72);
+  font-family: var(--font-body);
+  appearance: none;
+  -webkit-appearance: none;
+  animation: rise-centered 1s var(--ease) 1.2s both;
+  transition: color .3s var(--ease), transform .3s var(--ease);
+}
+.scroll-cue:hover {
+  color: var(--color-accent-gold-bright);
+  transform: translate(-50%, -3px);
+}
+.scroll-cue:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 6px;
+  border-radius: 22px;
+}
+.scroll-cue-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.scroll-cue-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 168, 101, .55);
+  background: rgba(200, 168, 101, .05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-gold-bright);
+  transition: background .3s var(--ease), border-color .3s var(--ease);
+}
+.scroll-cue:hover .scroll-cue-icon {
+  background: rgba(200, 168, 101, .18);
+  border-color: var(--color-accent-gold);
+}
+.scroll-cue-icon svg {
+  width: 14px;
+  height: 14px;
+  animation: scroll-bounce 1.9s ease-in-out infinite;
+}
+
+/* ============ LIVE TICKER (TradingView + fallback) ============ */
+.ticker-shell {
+  background: var(--color-text-dark);
+  color: var(--color-text-light);
+  border-top: 1px solid rgba(200, 168, 101, .18);
+  border-bottom: 1px solid rgba(200, 168, 101, .15);
+  min-height: 48px;
+  padding: 4px 0;
+  position: relative;
+  overflow: hidden;
+}
+.ticker-shell .tradingview-widget-container { width: 100%; }
+.ticker-shell .tv-embed-widget-wrapper__copyright { display: none !important; }
+.ticker-fallback {
+  display: none;
+  list-style: none;
+  margin: 0; padding: 12px 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  text-align: center;
+}
+.ticker-fallback li {
+  display: inline-block;
+  margin: 0 22px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 237, 216, .78);
+}
+.ticker-fallback li::before {
+  content: "";
+  display: inline-block;
+  width: 5px; height: 5px;
+  background: var(--color-accent-gold);
+  border-radius: 50%;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+.ticker-shell.is-static .tradingview-widget-container { display: none; }
+.ticker-shell.is-static .ticker-fallback { display: block; }
+
+/* ============ CONTACT FORM ============ */
+.field {
+  margin-bottom: 36px;
+  position: relative;
+}
+.field label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-text-dark);
+  margin-bottom: 12px;
+  transition: color .25s var(--ease);
+}
+.field label .req {
+  color: var(--color-accent-gold);
+  margin-left: 4px;
+}
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #E2DAC4;
+  padding: 8px 0 14px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-text-dark);
+  transition: border-color .3s var(--ease), box-shadow .3s var(--ease);
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231A1F1A' stroke-width='1.5'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 16px;
+  padding-right: 30px;
+  cursor: pointer;
+}
+.field textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.6;
+  font-family: var(--font-body);
+}
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #6B7269;
+  opacity: 0.7;
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-bottom-color: var(--color-accent-gold);
+  box-shadow: 0 1px 0 0 var(--color-accent-gold);
+}
+.field:focus-within label {
+  color: var(--color-accent-gold);
+}
+.field:focus-within select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C8A865' stroke-width='1.6'><polyline points='6 9 12 15 18 9'/></svg>");
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 16px;
+  padding-top: 32px;
+  border-top: 1px solid #E2DAC4;
+}
+.form-note {
+  font-size: 12px;
+  color: var(--color-text-dark-muted);
+  line-height: 1.5;
+  max-width: 280px;
+}
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 32px;
+  background: var(--color-text-dark);
+  color: var(--color-text-light);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .35s var(--ease);
+}
+.submit-btn:hover {
+  background: var(--color-accent-gold);
+  color: var(--color-text-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px -12px rgba(200, 168, 101, .55);
+}
+.submit-btn .arrow {
+  transition: transform .35s var(--ease);
+  font-size: 14px;
+}
+.submit-btn:hover .arrow { transform: translateX(6px); }
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.form-error {
+  margin-top: 16px;
+  color: #C74343;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.form-error[hidden] { display: none; }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+.form-success.show {
+  display: block;
+  animation: fadeUp .8s var(--ease-out);
+}
+.form-success .check {
+  width: 64px; height: 64px;
+  margin: 0 auto 28px;
+  border: 1px solid var(--color-accent-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-gold);
+  animation: pop .6s var(--ease-out);
+}
+.form-success h3 {
+  font-size: 36px;
+  margin-bottom: 18px;
+}
+.form-success p {
+  color: var(--color-text-dark-muted);
+  font-size: 15.5px;
+  line-height: 1.7;
+  max-width: 380px;
+  margin: 0 auto 36px;
+}
+.form-success .btn { margin: 0 auto; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pop {
+  0%   { transform: scale(0);    opacity: 0; }
+  70%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* ============ WHATSAPP PILL ============ */
+.wa-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 9px 16px;
+  background: #25D366;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+  text-decoration: none;
+}
+.wa-cta:hover {
+  transform: translateY(-1px);
+  background: #20B95A;
+  box-shadow: 0 10px 22px -10px rgba(37, 211, 102, 0.6);
+}
+.wa-cta svg { width: 14px; height: 14px; }
+
+/* ============ OPENSTREETMAP EMBED ============ */
+.contact-map {
+  margin-top: 32px;
+  position: relative;
+}
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  height: 220px;
+  border: 1px solid rgba(200, 168, 101, .28);
+  border-radius: 2px;
+  filter: grayscale(.35) contrast(.95) sepia(.18) brightness(.95);
+  transition: filter .6s var(--ease);
+}
+.contact-map:hover iframe { filter: none; }
+.contact-map .map-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold-bright);
+  text-decoration: none;
+  transition: color .25s var(--ease);
+}
+.contact-map .map-link:hover { color: var(--color-accent-gold); }
+.contact-map .map-link .arrow {
+  display: inline-block;
+  transition: transform .25s var(--ease);
+}
+.contact-map .map-link:hover .arrow { transform: translateX(4px); }
+
+/* ============ RESPONSIVE — components ============ */
+@media (max-width: 880px) {
+  .nav-links { display: none; }
+  .nav .lang-toggle { display: none; }
+  .nav .btn { padding: 11px 18px; font-size: 10.5px; }
+}
+@media (max-width: 720px) {
+  .contact-map iframe { height: 180px; }
+}
