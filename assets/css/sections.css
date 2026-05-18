@@ -447,6 +447,9 @@
   background: var(--color-bg-cream-soft);
   color: var(--color-text-dark);
   padding: 20px 22px 22px;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
   position: relative;
 }
 .product-meta h4 {
