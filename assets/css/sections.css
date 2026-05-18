@@ -497,15 +497,16 @@
   font-weight: 400;
 }
 
-/* 6-card product grid variant */
+/* 8-card product grid variant (Soybean Complex / Wheat-Corn-Grains /
+   Sugar-Molasses / Oilseeds / Specialty / Fats & Oils / Metals / Urea) */
 @media (min-width: 1080px) {
-  .product-grid.product-grid-6 { grid-template-columns: repeat(3, 1fr); }
+  .product-grid.product-grid-8 { grid-template-columns: repeat(4, 1fr); }
 }
 @media (max-width: 1080px) {
-  .product-grid.product-grid-6 { grid-template-columns: repeat(2, 1fr); }
+  .product-grid.product-grid-8 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
-  .product-grid.product-grid-6 { grid-template-columns: 1fr; }
+  .product-grid.product-grid-8 { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
