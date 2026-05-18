@@ -196,7 +196,8 @@
   /* HERO */
   .hero {
     position: relative;
-    min-height: 100vh;
+    /* Slightly under viewport so the live ticker below is visible without scrolling */
+    min-height: calc(100svh - 56px);
     color: var(--cream);
     overflow: hidden;
     display: flex;
@@ -995,7 +996,7 @@
     .product-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; gap: 40px; }
     .stats-grid { grid-template-columns: 1fr; gap: 48px; }
-    .hero { min-height: 92vh; }
+    .hero { min-height: calc(92svh - 56px); }
   }
 
   .reveal {
@@ -1830,34 +1831,33 @@
 
 <!-- HERO -->
 <header class="hero">
-  <!-- Cross-fading port photography (5 frames, ~7s each). Falls back to assets/images/hero.jpg if any URL fails. -->
+  <!-- Cross-fading commodity / port photography (6 frames, 8s each). All images served locally
+       from /assets/images so they are on-brand, fast, and never substituted by an upstream CDN. -->
   <div class="hero-slides" id="heroSlides" aria-hidden="true">
     <img class="hero-slide is-active fade-warm"
-         src="https://images.unsplash.com/photo-1577416412292-747c6607f055?auto=format&fit=crop&w=2400&q=85"
-         alt="Aerial of a commercial bulk-cargo port at golden hour"
-         loading="eager" fetchpriority="high" decoding="async"
-         onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
-    <!-- Owner-provided photograph: bulk carrier docked beneath port cranes at dusk -->
+         src="assets/images/hero.jpg"
+         alt="Aerial view of a commercial bulk-cargo port at golden hour"
+         loading="eager" fetchpriority="high" decoding="async">
     <img class="hero-slide fade-warm"
          src="assets/images/wp-port-cranes.jpg"
-         alt="Bulk carrier vessel being loaded beneath illuminated port cranes at dusk"
+         alt="Bulk carrier docked beneath illuminated port cranes at dusk"
          loading="lazy" decoding="async">
     <img class="hero-slide fade-warm"
-         src="https://images.unsplash.com/photo-1530989241817-3c98c5bd2253?auto=format&fit=crop&w=2400&q=85"
-         alt="Grain silos at sunset" loading="lazy" decoding="async"
-         onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+         src="assets/images/priority-ship.jpg"
+         alt="Cargo ship being loaded at port with cranes at sunset"
+         loading="lazy" decoding="async">
     <img class="hero-slide fade-warm"
-         src="https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=2400&q=85"
-         alt="Container terminal with stacked cargo and cranes" loading="lazy" decoding="async"
-         onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+         src="assets/images/priority-truck.jpg"
+         alt="Freight truck transporting commodities on highway at sunset"
+         loading="lazy" decoding="async">
     <img class="hero-slide fade-warm"
-         src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=2400&q=85"
-         alt="Combine harvester crossing a wheat field at dusk" loading="lazy" decoding="async"
-         onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+         src="assets/images/pillar-commitment.jpg"
+         alt="Aerial view of a wheat field at harvest"
+         loading="lazy" decoding="async">
     <img class="hero-slide fade-warm"
-         src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=2400&q=85"
-         alt="Industrial tanker being loaded with agricultural product" loading="lazy" decoding="async"
-         onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+         src="assets/images/pillar-logistics.png"
+         alt="Shipping containers stacked at a busy port terminal"
+         loading="lazy" decoding="async">
   </div>
   <div class="hero-overlay"></div>
 
@@ -1907,14 +1907,15 @@
     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
     {
       "symbols": [
-        {"description": "Soybean Oil",  "proName": "CBOT_MINI:ZL1!"},
-        {"description": "Soybeans",     "proName": "CBOT_MINI:ZS1!"},
-        {"description": "Wheat",        "proName": "CBOT_MINI:ZW1!"},
-        {"description": "Corn",         "proName": "CBOT_MINI:ZC1!"},
-        {"description": "Sugar #11",    "proName": "ICEUSA:SB1!"},
-        {"description": "USD/BRL",      "proName": "FX_IDC:USDBRL"},
-        {"description": "USD/ARS",      "proName": "FX_IDC:USDARS"},
-        {"description": "Baltic Dry",   "proName": "INDEX:BDI"}
+        {"description": "Soybean Oil", "proName": "CBOT:ZL1!"},
+        {"description": "Soybeans",    "proName": "CBOT:ZS1!"},
+        {"description": "Wheat",       "proName": "CBOT:ZW1!"},
+        {"description": "Corn",        "proName": "CBOT:ZC1!"},
+        {"description": "Sugar #11",   "proName": "ICEUS:SB1!"},
+        {"description": "Cotton",      "proName": "ICEUS:CT1!"},
+        {"description": "USD/BRL",     "proName": "FX_IDC:USDBRL"},
+        {"description": "USD/ARS",     "proName": "FX_IDC:USDARS"},
+        {"description": "US Dollar",   "proName": "TVC:DXY"}
       ],
       "showSymbolLogo": false,
       "isTransparent": true,
@@ -1932,9 +1933,10 @@
     <li>Wheat</li>
     <li>Corn</li>
     <li>Sugar #11</li>
+    <li>Cotton</li>
     <li>USD/BRL</li>
     <li>USD/ARS</li>
-    <li>Baltic Dry Index</li>
+    <li>US Dollar Index</li>
   </ul>
 </div>
 
@@ -2916,7 +2918,8 @@
     const start = () => {
       if (reduceMotion) return;
       stop();
-      timer = setInterval(advance, 7000);
+      // 8s per slide — user preference, premium pacing
+      timer = setInterval(advance, 8000);
     };
     const stop = () => {
       if (timer) { clearInterval(timer); timer = null; }
