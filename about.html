@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Patagonia Americas | Strategic Positioning & Philosophy</title>
+<meta name="description" content="Patagonia Americas LLC — strategic positioning, operational execution capability, and the long-term partnership focus that defines our commodity trading business." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink:        #0c1614;
+    --forest:     #0f2922;
+    --forest-2:   #14342c;
+    --forest-3:   #1a4337;
+    --brass:      #b8954a;
+    --brass-2:    #d4b683;
+    --brass-3:    #8a6e36;
+    --cream:      #f6f1e8;
+    --paper:      #fbf8f2;
+    --line:       #e8e1d2;
+    --muted:      #5a6360;
+    --muted-2:    #7a8581;
+
+    --serif: "Fraunces", "Times New Roman", serif;
+    --sans:  "Instrument Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --container: 1280px;
+    --ease: cubic-bezier(.22, .61, .36, 1);
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.018em;
+    line-height: 1.1;
+    font-variation-settings: "opsz" 96, "SOFT" 50;
+  }
+  h1 em, h2 em, h3 em {
+    font-style: italic;
+    color: var(--brass);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+
+  .container {
+    max-width: var(--container);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  @media (max-width: 720px) { .container { padding: 0 22px; } }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--brass);
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--brass);
+  }
+  .eyebrow.centered::before,
+  .eyebrow.centered::after {
+    content: "";
+    width: 28px; height: 1px;
+    background: var(--brass);
+  }
+
+  /* ============ HEADER / NAV ============ */
+  .header-bar {
+    background: var(--forest);
+    position: relative;
+    z-index: 50;
+    border-bottom: 1px solid rgba(184,149,74,.12);
+  }
+  .header-bar::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .nav {
+    padding: 22px 0;
+    position: relative;
+    z-index: 2;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--cream);
+  }
+  .logo-mark { width: 42px; height: 42px; flex-shrink: 0; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .logo-text .lead {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .logo-text .sub {
+    font-family: var(--sans);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    margin-top: 5px;
+    color: var(--brass-2);
+    text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; gap: 44px; }
+  .nav-links a {
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.85;
+    transition: opacity .25s var(--ease);
+    position: relative;
+    padding: 4px 0;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--brass-2); }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -2px;
+    width: 0; height: 1px;
+    background: var(--brass);
+    transition: width .4s var(--ease);
+  }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { width: 100%; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 26px;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all .35s var(--ease);
+  }
+  .btn-brass { background: var(--brass); color: var(--ink); }
+  .btn-brass:hover { background: var(--brass-2); transform: translateY(-2px); box-shadow: 0 12px 28px -10px rgba(184, 149, 74, .55); }
+  .btn-outline { background: transparent; border: 1px solid var(--brass); color: var(--brass); }
+  .btn-outline:hover { background: var(--brass); color: var(--ink); }
+  .btn-dark { background: var(--ink); color: var(--cream); }
+  .btn-dark:hover { background: var(--forest); transform: translateY(-2px); }
+  .btn .arrow { display: inline-block; transition: transform .35s var(--ease); }
+  .btn:hover .arrow { transform: translateX(5px); }
+
+  /* ============ HERO ============ */
+  .about-hero {
+    position: relative;
+    min-height: 70vh;
+    color: var(--cream);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 140px 0 100px;
+    background: var(--forest);
+  }
+  .about-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .about-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.45;
+    filter: saturate(0.92);
+  }
+  .about-hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10,24,21,.35) 0%, rgba(10,24,21,.78) 100%),
+      linear-gradient(90deg, rgba(10,24,21,.5) 0%, transparent 60%);
+    z-index: 1;
+  }
+  .about-hero .container {
+    position: relative;
+    z-index: 2;
+  }
+  .about-hero-content {
+    max-width: 820px;
+  }
+  .about-hero .eyebrow { margin-bottom: 30px; color: var(--brass-2); }
+  .about-hero .eyebrow::before { background: var(--brass-2); }
+  .about-hero h1 {
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 300;
+    margin-bottom: 28px;
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+  }
+  .about-hero h1 em {
+    color: var(--brass-2);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .about-hero .lead {
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 620px;
+    color: rgba(246,241,232,.85);
+  }
+
+  /* ============ SECTION SHELLS ============ */
+  .about-section {
+    padding: 120px 0;
+    position: relative;
+  }
+  .about-section.tone-paper { background: var(--paper); }
+  .about-section.tone-forest { background: var(--forest); color: var(--cream); box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.18); }
+  .about-section.tone-ink { background: var(--ink); color: var(--cream); box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.15); }
+
+  .section-head { text-align: center; margin-bottom: 70px; max-width: 880px; margin-left: auto; margin-right: auto; }
+  .section-head .eyebrow { margin-bottom: 22px; }
+  .tone-forest .section-head .eyebrow,
+  .tone-ink .section-head .eyebrow { color: var(--brass-2); }
+  .tone-forest .section-head .eyebrow::before,
+  .tone-forest .section-head .eyebrow::after,
+  .tone-ink .section-head .eyebrow::before,
+  .tone-ink .section-head .eyebrow::after { background: var(--brass-2); }
+  .section-head h2 {
+    font-size: clamp(34px, 4.6vw, 54px);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+  }
+  .section-head h2 em {
+    font-style: italic;
+    color: var(--brass-3);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .tone-forest .section-head h2,
+  .tone-ink .section-head h2 { color: var(--cream); }
+  .tone-forest .section-head h2 em,
+  .tone-ink .section-head h2 em { color: var(--brass-2); }
+
+  /* ============ PHILOSOPHY (two-column with mosaic) ============ */
+  .phil-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .phil-text p {
+    font-size: 16.5px;
+    line-height: 1.78;
+    color: #384241;
+    margin-bottom: 22px;
+  }
+  .phil-quote {
+    margin-top: 32px;
+    padding: 30px 32px;
+    border-left: 2px solid var(--brass);
+    background: rgba(184,149,74,.04);
+  }
+  .phil-quote em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(22px, 2.3vw, 28px);
+    color: var(--ink);
+    line-height: 1.4;
+    display: block;
+    font-variation-settings: "opsz" 96, "SOFT" 80;
+  }
+  .phil-quote em strong {
+    color: var(--brass-3);
+    font-weight: 400;
+  }
+  .phil-quote-attr {
+    display: block;
+    margin-top: 16px;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .phil-image img {
+    width: 100%;
+    aspect-ratio: 1.2 / 1;
+    object-fit: cover;
+    box-shadow: 0 30px 60px -30px rgba(15,41,34,.35);
+  }
+  @media (max-width: 880px) {
+    .phil-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ============ STRATEGIC (full prose + 3 cards) ============ */
+  .strat-prose {
+    max-width: 880px;
+    margin: 0 auto 70px;
+  }
+  .strat-prose p {
+    font-size: 17px;
+    line-height: 1.78;
+    color: #384241;
+    margin-bottom: 22px;
+  }
+  .strat-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .strat-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 44px 36px;
+    transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+    position: relative;
+  }
+  .strat-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--brass);
+    transition: width .55s var(--ease);
+  }
+  .strat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px -24px rgba(15,41,34,.22);
+    border-color: rgba(184,149,74,.4);
+  }
+  .strat-card:hover::before { width: 100%; }
+  .strat-card .sc-icon {
+    width: 38px; height: 38px;
+    color: var(--brass);
+    margin-bottom: 24px;
+  }
+  .strat-card h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 96, "SOFT" 50;
+  }
+  .strat-card p {
+    color: #384241;
+    font-size: 14.5px;
+    line-height: 1.7;
+  }
+  @media (max-width: 1080px) {
+    .strat-cards { grid-template-columns: 1fr; }
+  }
+
+  /* ============ FLOW DIAGRAM ============ */
+  .flow-wrap {
+    max-width: 1020px;
+    margin: 0 auto;
+  }
+  .flow-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+  .flow-svg .flow-node circle {
+    fill: var(--brass);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: hub-pulse 2.8s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(184,149,74,.5));
+  }
+  .flow-svg .flow-node.center circle {
+    fill: var(--brass-2);
+    animation-delay: .9s;
+  }
+  .flow-svg .flow-node .ring {
+    fill: none;
+    stroke: rgba(184,149,74,.35);
+    stroke-width: 1;
+    animation: ring-pulse 2.8s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .flow-svg .flow-node.center .ring { animation-delay: .9s; }
+  .flow-svg .flow-connector {
+    fill: none;
+    stroke: var(--brass);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+    opacity: 0;
+    animation: arc-draw 5s var(--ease) infinite;
+  }
+  .flow-svg .flow-connector:nth-child(2) { animation-delay: 1.4s; }
+  .flow-svg .node-title {
+    fill: var(--cream);
+    font-family: var(--serif);
+    font-size: 19px;
+    text-anchor: middle;
+  }
+  .flow-svg .node-sub {
+    fill: var(--brass-2);
+    font-family: var(--sans);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-anchor: middle;
+  }
+  .flow-svg .node-desc {
+    fill: rgba(246,241,232,.74);
+    font-family: var(--sans);
+    font-size: 12px;
+    text-anchor: middle;
+  }
+  @keyframes hub-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50%      { transform: scale(1.55); opacity: 1; }
+  }
+  @keyframes ring-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.45; }
+    50%      { transform: scale(2.2); opacity: 0; }
+  }
+  @keyframes arc-draw {
+    0%   { stroke-dashoffset: 320; opacity: 0; }
+    15%  { opacity: 0.95; }
+    60%  { stroke-dashoffset: 0; opacity: 0.95; }
+    85%  { stroke-dashoffset: -320; opacity: 0; }
+    100% { stroke-dashoffset: -320; opacity: 0; }
+  }
+
+  /* ============ EXPERIENCE (prose + tri-image grid) ============ */
+  .exp-prose {
+    max-width: 880px;
+    margin: 0 auto 70px;
+  }
+  .exp-prose h3 {
+    font-size: 26px;
+    margin: 40px 0 16px;
+    color: var(--cream);
+    font-variation-settings: "opsz" 96, "SOFT" 50;
+  }
+  .exp-prose h3:first-child { margin-top: 0; }
+  .exp-prose p {
+    color: rgba(246,241,232,.85);
+    font-size: 16.5px;
+    line-height: 1.78;
+    margin-bottom: 16px;
+  }
+  .exp-prose ul {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 32px;
+  }
+  .exp-prose li {
+    color: rgba(246,241,232,.85);
+    font-size: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.55;
+  }
+  .exp-prose li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 5px; height: 5px;
+    background: var(--brass);
+    border-radius: 50%;
+    margin-top: 9px;
+  }
+  .exp-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    max-width: 1020px;
+    margin: 0 auto;
+  }
+  .exp-images img {
+    width: 100%;
+    aspect-ratio: 1.3 / 1;
+    object-fit: cover;
+    transition: filter .5s var(--ease), transform .5s var(--ease);
+    filter: brightness(0.92) saturate(0.95);
+  }
+  .exp-images img:hover {
+    filter: none;
+    transform: scale(1.02);
+  }
+  @media (max-width: 720px) {
+    .exp-prose ul { grid-template-columns: 1fr; }
+    .exp-images { grid-template-columns: 1fr; }
+  }
+
+  /* ============ WHY LOCAL (4 cards) ============ */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .why-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 44px 40px;
+    transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+    position: relative;
+  }
+  .why-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--brass);
+    transition: width .55s var(--ease);
+  }
+  .why-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px -24px rgba(15,41,34,.22);
+    border-color: rgba(184,149,74,.4);
+  }
+  .why-card:hover::before { width: 100%; }
+  .why-card .wc-icon {
+    width: 36px; height: 36px;
+    color: var(--brass);
+    margin-bottom: 26px;
+  }
+  .why-card h3 {
+    font-size: 24px;
+    margin-bottom: 14px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 96, "SOFT" 50;
+  }
+  .why-card p {
+    color: #384241;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  @media (max-width: 880px) {
+    .why-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============ CLOSING / CTA ============ */
+  .closing {
+    position: relative;
+    overflow: hidden;
+    color: var(--cream);
+    text-align: center;
+    padding: 130px 0 120px;
+    background: var(--forest);
+  }
+  .closing::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url('assets/images/wp-port-cranes.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.18;
+    filter: saturate(0.9);
+  }
+  .closing::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 55% at 50% 40%, rgba(15,41,34,.4), rgba(15,41,34,.95) 80%);
+  }
+  .closing .container {
+    position: relative;
+    z-index: 2;
+  }
+  .closing .eyebrow {
+    color: var(--brass-2);
+    justify-content: center;
+    margin-bottom: 26px;
+  }
+  .closing .eyebrow::before,
+  .closing .eyebrow::after { background: var(--brass-2); }
+  .closing h2 {
+    font-size: clamp(32px, 4.5vw, 54px);
+    font-weight: 300;
+    max-width: 820px;
+    margin: 0 auto 28px;
+    line-height: 1.2;
+    color: var(--cream);
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+  }
+  .closing h2 em {
+    font-style: italic;
+    color: var(--brass-2);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .closing p {
+    color: rgba(246,241,232,.82);
+    font-size: 16px;
+    line-height: 1.72;
+    max-width: 700px;
+    margin: 0 auto 36px;
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 50px 0 32px;
+    border-top: 1px solid rgba(184,149,74,.18);
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-inner .logo .logo-text .lead { font-size: 15px; }
+  .footer-inner .logo .logo-text .sub { font-size: 8.5px; margin-top: 4px; }
+  .footer-inner .logo-mark { width: 32px; height: 32px; }
+  .footer-mini-links {
+    display: flex;
+    gap: 22px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(246,241,232,.65);
+  }
+  .footer-mini-links a:hover { color: var(--brass-2); }
+  .footer-bottom {
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(246,241,232,.08);
+    font-size: 12px;
+    color: rgba(246,241,232,.5);
+    text-align: center;
+  }
+
+  /* ============ LANG TOGGLE / REVEAL / A11Y ============ */
+  :focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: rgba(246,241,232,.55);
+    margin-right: 4px;
+  }
+  .lang-toggle button {
+    background: none;
+    border: 0;
+    padding: 6px 4px;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    letter-spacing: inherit;
+    transition: color .25s var(--ease), border-color .25s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .lang-toggle button:hover { color: var(--brass-2); }
+  .lang-toggle button.is-active {
+    color: var(--brass-2);
+    border-bottom-color: var(--brass);
+  }
+  .lang-toggle .lang-divider { opacity: 0.45; margin: 0 2px; }
+
+  html[data-lang="en"] [data-i18n="es"] { display: none; }
+  html[data-lang="es"] [data-i18n="en"] { display: none; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .flow-svg .flow-connector { opacity: 0.65; stroke-dashoffset: 0; }
+    .flow-svg .flow-node circle { transform: scale(1); }
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+    .nav .lang-toggle { display: none; }
+    .about-section { padding: 80px 0; }
+    .about-hero { padding: 100px 0 70px; min-height: 56vh; }
+    .section-head { margin-bottom: 50px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="header-bar">
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="logo" aria-label="Patagonia Americas Home">
+        <svg class="logo-mark" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="19" stroke="#b8954a" stroke-width="1.2"/>
+          <ellipse cx="22" cy="22" rx="19" ry="8" stroke="#b8954a" stroke-width="0.7"/>
+          <ellipse cx="22" cy="22" rx="10" ry="19" stroke="#b8954a" stroke-width="0.7"/>
+          <path d="M3 22 Q12 16 22 22 T41 22" stroke="#b8954a" stroke-width="0.7" fill="none"/>
+          <path d="M14 12 Q18 10 22 12 Q19 14 14 12 Z" fill="#b8954a" opacity="0.85"/>
+          <path d="M13 16 Q17 15 19 16" stroke="#b8954a" stroke-width="0.7" fill="none"/>
+          <circle cx="22" cy="22" r="1.2" fill="#b8954a"/>
+        </svg>
+        <span class="logo-text">
+          <span class="lead">Patagonia</span>
+          <span class="sub">Americas</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#services"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a>
+        <a href="index.html#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a>
+        <a href="about.html" class="active"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a>
+        <a href="contact.html"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a>
+      </div>
+      <div class="nav-actions" style="display:flex; align-items:center; gap:18px;">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" data-set-lang="en" class="is-active">EN</button>
+          <span class="lang-divider" aria-hidden="true">/</span>
+          <button type="button" data-set-lang="es">ES</button>
+        </div>
+        <a href="contact.html" class="btn btn-outline">
+          <span data-i18n="en">Get in Touch</span><span data-i18n="es">Hablemos</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+</header>
+
+<!-- HERO -->
+<header class="about-hero">
+  <div class="about-hero-bg">
+    <img src="assets/images/wp-port-cranes.jpg" alt="Patagonia Americas port operations at dusk" loading="eager" fetchpriority="high" decoding="async">
+  </div>
+  <div class="container">
+    <div class="about-hero-content">
+      <span class="eyebrow">
+        <span data-i18n="en">About Patagonia Americas</span>
+        <span data-i18n="es">Sobre Patagonia Americas</span>
+      </span>
+      <h1>
+        <span data-i18n="en">Building reliable commercial bridges <em>across global markets.</em></span>
+        <span data-i18n="es">Construyendo puentes comerciales confiables <em>entre los mercados globales.</em></span>
+      </h1>
+      <p class="lead">
+        <span data-i18n="en">A trusted, relationship-driven platform for commodity trading, sourcing, logistics coordination, and long-term commercial development across the Americas.</span>
+        <span data-i18n="es">Una plataforma confiable, basada en relaciones, para el comercio de materias primas, originación, coordinación logística y desarrollo comercial a largo plazo en todo el continente americano.</span>
+      </p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ COMPANY PHILOSOPHY ============ -->
+<section class="about-section tone-paper">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow centered">
+        <span data-i18n="en">Our Company Philosophy</span>
+        <span data-i18n="es">Nuestra Filosofía</span>
+      </span>
+      <h2>
+        <span data-i18n="en">If you want to go fast, go alone.<br/>If you want to go far, <em>go together.</em></span>
+        <span data-i18n="es">Si quieres llegar rápido, ve solo.<br/>Si quieres llegar lejos, <em>ve acompañado.</em></span>
+      </h2>
+    </div>
+
+    <div class="phil-grid">
+      <div class="phil-text reveal">
+        <p>
+          <span data-i18n="en">Patagonia Americas is an international commodity trader. We connect producers, processors, and industrial buyers through reliable supply chains anchored in disciplined execution and long-term relationships.</span>
+          <span data-i18n="es">Patagonia Americas es un trader internacional de materias primas. Conectamos productores, procesadores y compradores industriales a través de cadenas de suministro confiables, sostenidas por una ejecución disciplinada y relaciones de largo plazo.</span>
+        </p>
+        <p>
+          <span data-i18n="en">With decades of combined experience in commercial representation, sourcing, trading, and logistics across the Americas, our team approaches each transaction as an opportunity to build trust — not just to close a deal.</span>
+          <span data-i18n="es">Con décadas de experiencia combinada en representación comercial, originación, trading y logística en todo el continente, nuestro equipo aborda cada transacción como una oportunidad para construir confianza — no sólo para cerrar un negocio.</span>
+        </p>
+        <div class="phil-quote">
+          <em>
+            <span data-i18n="en">"Our business is built on the belief that durability in international trade comes from <strong>trust, execution, and time</strong>."</span>
+            <span data-i18n="es">"Nuestro negocio se construye sobre la convicción de que la durabilidad en el comercio internacional viene de la <strong>confianza, la ejecución y el tiempo</strong>."</span>
+          </em>
+          <span class="phil-quote-attr">
+            <span data-i18n="en">Patagonia Americas LLC</span>
+            <span data-i18n="es">Patagonia Americas LLC</span>
+          </span>
+        </div>
+      </div>
+      <div class="phil-image reveal">
+        <img src="assets/images/wp-grains-mosaic.jpg" alt="Mosaic of grains we trade — wheat, rice, corn, millet" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRATEGIC POSITIONING ============ -->
+<section class="about-section tone-paper" style="background: linear-gradient(180deg, var(--paper) 0%, #f3ede0 100%);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow centered">
+        <span data-i18n="en">Strategic Positioning</span>
+        <span data-i18n="es">Posicionamiento Estratégico</span>
+      </span>
+      <h2>
+        <span data-i18n="en">A platform built for <em>long-term commercial development.</em></span>
+        <span data-i18n="es">Una plataforma construida para el <em>desarrollo comercial a largo plazo.</em></span>
+      </h2>
+    </div>
+
+    <div class="strat-prose reveal">
+      <p>
+        <span data-i18n="en">Patagonia Americas provides international suppliers, producers, and industrial buyers with a trusted, relationship-driven platform for commodity trading, sourcing, logistics coordination, and long-term commercial development across the Americas.</span>
+        <span data-i18n="es">Patagonia Americas ofrece a productores, proveedores internacionales y compradores industriales una plataforma confiable, basada en relaciones, para el comercio de materias primas, la originación, la coordinación logística y el desarrollo comercial a largo plazo en todo el continente americano.</span>
+      </p>
+      <p>
+        <span data-i18n="en">Our model combines international market access with disciplined local execution — allowing counterparties to navigate complex supply chains with greater confidence, efficiency, and operational visibility.</span>
+        <span data-i18n="es">Nuestro modelo combina el acceso a mercados internacionales con una ejecución local disciplinada — permitiendo a nuestras contrapartes navegar cadenas de suministro complejas con mayor confianza, eficiencia y visibilidad operativa.</span>
+      </p>
+    </div>
+
+    <div class="strat-cards">
+      <article class="strat-card reveal">
+        <svg class="sc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 26V14l10-8 10 8v12"/>
+          <path d="M12 26v-8h8v8"/>
+          <path d="M2 26h28"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Long-Term Partnership Focus</span>
+          <span data-i18n="es">Enfoque en Relaciones Duraderas</span>
+        </h3>
+        <p>
+          <span data-i18n="en">We prioritize durable commercial relationships over transactional opportunities, aligning our approach with the long-term objectives of our partners and clients.</span>
+          <span data-i18n="es">Priorizamos relaciones comerciales duraderas por sobre oportunidades transaccionales, alineando nuestro enfoque con los objetivos de largo plazo de nuestros socios y clientes.</span>
+        </p>
+      </article>
+
+      <article class="strat-card reveal">
+        <svg class="sc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 24V8h12l4 4h8v12z"/>
+          <path d="M4 12h28"/>
+          <circle cx="11" cy="18" r="2"/>
+          <circle cx="22" cy="18" r="2"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Scalable Execution Platform</span>
+          <span data-i18n="es">Plataforma de Ejecución Escalable</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Our operational structure is designed to support scalable growth, adaptable logistics coordination, and consistent transaction management across evolving market environments.</span>
+          <span data-i18n="es">Nuestra estructura operativa está diseñada para soportar un crecimiento escalable, una coordinación logística adaptable y una gestión consistente de transacciones en entornos de mercado cambiantes.</span>
+        </p>
+      </article>
+
+      <article class="strat-card reveal">
+        <svg class="sc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="16" r="12"/>
+          <path d="M16 4v24M4 16h24"/>
+          <path d="M16 4a16 12 0 010 24M16 4a16 12 0 000 24"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Institutional Approach</span>
+          <span data-i18n="es">Enfoque Institucional</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Professionalism, transparency, compliance awareness, and disciplined execution remain central to how we conduct business and build strategic partnerships.</span>
+          <span data-i18n="es">Profesionalismo, transparencia, conciencia regulatoria y ejecución disciplinada son los principios centrales de cómo hacemos negocios y construimos alianzas estratégicas.</span>
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLOW DIAGRAM ============ -->
+<section class="about-section tone-forest">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow centered">
+        <span data-i18n="en">Our Business Model</span>
+        <span data-i18n="es">Nuestro Modelo de Negocio</span>
+      </span>
+      <h2>
+        <span data-i18n="en">Global Supply <em>+ Local Execution.</em></span>
+        <span data-i18n="es">Suministro Global <em>+ Ejecución Local.</em></span>
+      </h2>
+    </div>
+
+    <div class="flow-wrap">
+      <svg class="flow-svg" viewBox="0 0 1000 340" role="img" aria-label="Three-node business model: International Partner connects through Patagonia Americas to Industrial Clients">
+        <g>
+          <path class="flow-connector" d="M 200 130 Q 350 60 480 130"/>
+          <path class="flow-connector" d="M 520 130 Q 650 60 800 130"/>
+        </g>
+
+        <g class="flow-node">
+          <circle class="ring" cx="200" cy="130" r="14"/>
+          <circle cx="200" cy="130" r="10"/>
+          <text class="node-sub" x="200" y="180">
+            <tspan data-i18n="en">International</tspan>
+            <tspan data-i18n="es">Socio</tspan>
+          </text>
+          <text class="node-title" x="200" y="208">
+            <tspan data-i18n="en">Partner</tspan>
+            <tspan data-i18n="es">Internacional</tspan>
+          </text>
+          <text class="node-desc" x="200" y="245">
+            <tspan data-i18n="en">Origination &amp; logistics</tspan>
+            <tspan data-i18n="es">Originación y logística</tspan>
+          </text>
+          <text class="node-desc" x="200" y="263">
+            <tspan data-i18n="en">across producing regions</tspan>
+            <tspan data-i18n="es">desde regiones productoras</tspan>
+          </text>
+        </g>
+
+        <g class="flow-node center">
+          <circle class="ring" cx="500" cy="130" r="18"/>
+          <circle cx="500" cy="130" r="13"/>
+          <text class="node-sub" x="500" y="180">Patagonia</text>
+          <text class="node-title" x="500" y="208">Americas</text>
+          <text class="node-desc" x="500" y="245">
+            <tspan data-i18n="en">Market access &amp; local</tspan>
+            <tspan data-i18n="es">Acceso a mercados y</tspan>
+          </text>
+          <text class="node-desc" x="500" y="263">
+            <tspan data-i18n="en">commercial execution</tspan>
+            <tspan data-i18n="es">ejecución comercial local</tspan>
+          </text>
+        </g>
+
+        <g class="flow-node">
+          <circle class="ring" cx="800" cy="130" r="14"/>
+          <circle cx="800" cy="130" r="10"/>
+          <text class="node-sub" x="800" y="180">
+            <tspan data-i18n="en">Industrial</tspan>
+            <tspan data-i18n="es">Clientes</tspan>
+          </text>
+          <text class="node-title" x="800" y="208">
+            <tspan data-i18n="en">Clients</tspan>
+            <tspan data-i18n="es">Industriales</tspan>
+          </text>
+          <text class="node-desc" x="800" y="245">
+            <tspan data-i18n="en">Poultry, feed, food &amp;</tspan>
+            <tspan data-i18n="es">Avicultura, alimento, food</tspan>
+          </text>
+          <text class="node-desc" x="800" y="263">
+            <tspan data-i18n="en">biofuel processors</tspan>
+            <tspan data-i18n="es">y procesadores de biofuel</tspan>
+          </text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROVEN MARKET EXPERIENCE ============ -->
+<section class="about-section tone-ink">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow centered">
+        <span data-i18n="en">Proven Market Experience</span>
+        <span data-i18n="es">Experiencia Comprobada</span>
+      </span>
+      <h2>
+        <span data-i18n="en">International representation <em>& commercial development.</em></span>
+        <span data-i18n="es">Representación internacional <em>y desarrollo comercial.</em></span>
+      </h2>
+    </div>
+
+    <div class="exp-prose reveal">
+      <p>
+        <span data-i18n="en">The leadership team behind Patagonia Americas has participated in commercial representation, sourcing, trading, logistics coordination, and business development initiatives involving international agribusiness and commodity market participants across the Americas.</span>
+        <span data-i18n="es">El equipo directivo de Patagonia Americas ha participado en representación comercial, originación, trading, coordinación logística y desarrollo de negocios con participantes internacionales del agronegocio y los mercados de materias primas en todo el continente americano.</span>
+      </p>
+      <p>
+        <span data-i18n="en">This experience includes engagement with multinational trading groups, industrial buyers, agricultural processors, logistics operators, and regional commercial networks.</span>
+        <span data-i18n="es">Esta experiencia incluye relación con grupos comerciales multinacionales, compradores industriales, procesadores agrícolas, operadores logísticos y redes comerciales regionales.</span>
+      </p>
+
+      <h3>
+        <span data-i18n="en">Global Agribusiness Relationships</span>
+        <span data-i18n="es">Relaciones en el Agronegocio Global</span>
+      </h3>
+      <p>
+        <span data-i18n="en">Over the years, our team has developed relationships and transaction experience involving major global agribusiness companies, commodity trading houses, processors, exporters, and industrial market participants.</span>
+        <span data-i18n="es">A lo largo de los años, nuestro equipo ha desarrollado relaciones y experiencia transaccional con las principales compañías globales del agronegocio, casas comerciales de commodities, procesadores, exportadores y participantes industriales del mercado.</span>
+      </p>
+      <p>
+        <span data-i18n="en">These longstanding relationships provide valuable market insight, operational connectivity, and commercial access across multiple sectors of the commodity supply chain.</span>
+        <span data-i18n="es">Estas relaciones de larga data aportan visión de mercado valiosa, conectividad operativa y acceso comercial en múltiples sectores de la cadena de suministro de materias primas.</span>
+      </p>
+
+      <h3>
+        <span data-i18n="en">Operational Execution Capability</span>
+        <span data-i18n="es">Capacidad de Ejecución Operativa</span>
+      </h3>
+      <p>
+        <span data-i18n="en">Patagonia Americas understands that successful commodity transactions require far more than pricing alone. Execution depends on:</span>
+        <span data-i18n="es">En Patagonia Americas entendemos que las transacciones exitosas de materias primas requieren mucho más que precio. La ejecución depende de:</span>
+      </p>
+      <ul>
+        <li><span data-i18n="en">Operational coordination</span><span data-i18n="es">Coordinación operativa</span></li>
+        <li><span data-i18n="en">Supplier alignment</span><span data-i18n="es">Alineación con proveedores</span></li>
+        <li><span data-i18n="en">Logistics management</span><span data-i18n="es">Gestión logística</span></li>
+        <li><span data-i18n="en">Customer responsiveness</span><span data-i18n="es">Respuesta al cliente</span></li>
+        <li><span data-i18n="en">Documentation discipline</span><span data-i18n="es">Disciplina documental</span></li>
+        <li><span data-i18n="en">Market adaptability</span><span data-i18n="es">Adaptabilidad al mercado</span></li>
+      </ul>
+      <p>
+        <span data-i18n="en">Our experience supporting complex cross-border transactions allows us to remain actively involved from origination through final execution.</span>
+        <span data-i18n="es">Nuestra experiencia respaldando transacciones complejas transfronterizas nos permite mantenernos activamente involucrados desde la originación hasta la ejecución final.</span>
+      </p>
+    </div>
+
+    <div class="exp-images reveal">
+      <img src="assets/images/wp-port-cranes.jpg" alt="Port cranes loading bulk vessel" loading="lazy" decoding="async">
+      <img src="assets/images/wp-grains-mosaic.jpg" alt="Grain portfolio mosaic" loading="lazy" decoding="async">
+      <img src="assets/images/sacos.png" alt="Control Union certified sacks in warehouse" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY LOCAL COORDINATION MATTERS ============ -->
+<section class="about-section tone-paper">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow centered">
+        <span data-i18n="en">Why Local Coordination Matters</span>
+        <span data-i18n="es">Por Qué Importa la Coordinación Local</span>
+      </span>
+      <h2>
+        <span data-i18n="en">Beyond price: <em>execution, responsiveness, and relationship strength.</em></span>
+        <span data-i18n="es">Más allá del precio: <em>ejecución, respuesta y solidez de relaciones.</em></span>
+      </h2>
+    </div>
+
+    <div class="strat-prose reveal">
+      <p>
+        <span data-i18n="en">In commodity markets, competitive advantage is often determined not only by price, but by execution capability, responsiveness, and relationship strength.</span>
+        <span data-i18n="es">En los mercados de materias primas, la ventaja competitiva suele estar determinada no sólo por el precio, sino por la capacidad de ejecución, la respuesta y la solidez de las relaciones.</span>
+      </p>
+      <p>
+        <span data-i18n="en">Patagonia Americas provides local coordination capabilities designed to improve transaction efficiency and long-term commercial continuity.</span>
+        <span data-i18n="es">Patagonia Americas aporta capacidades de coordinación local diseñadas para mejorar la eficiencia transaccional y la continuidad comercial de largo plazo.</span>
+      </p>
+    </div>
+
+    <div class="why-grid">
+      <article class="why-card reveal">
+        <svg class="wc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="6"/>
+          <circle cx="22" cy="22" r="6"/>
+          <path d="M11 17v3a2 2 0 002 2h3"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Commercial Relationships</span>
+          <span data-i18n="es">Relaciones Comerciales</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Longstanding industry connections and direct engagement with regional market participants help facilitate smoother commercial development and stronger operational alignment.</span>
+          <span data-i18n="es">Conexiones consolidadas en la industria y un trato directo con participantes regionales facilitan un desarrollo comercial más fluido y una mayor alineación operativa.</span>
+        </p>
+      </article>
+
+      <article class="why-card reveal">
+        <svg class="wc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 4v6M16 22v6M4 16h6M22 16h6"/>
+          <path d="M8 8l4 4M20 20l4 4M8 24l4-4M20 12l4-4"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Operational Adaptability</span>
+          <span data-i18n="es">Adaptabilidad Operativa</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Flexible coordination structures allow us to navigate changing market conditions, logistical complexities, and evolving customer requirements.</span>
+          <span data-i18n="es">Estructuras de coordinación flexibles nos permiten navegar condiciones de mercado cambiantes, complejidades logísticas y requisitos de cliente en evolución.</span>
+        </p>
+      </article>
+
+      <article class="why-card reveal">
+        <svg class="wc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 4h12l6 6v18a2 2 0 01-2 2H8a2 2 0 01-2-2V6a2 2 0 012-2z"/>
+          <path d="M20 4v6h6"/>
+          <path d="M10 16h12M10 20h12M10 24h8"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Documentation & Process Coordination</span>
+          <span data-i18n="es">Documentación y Coordinación de Procesos</span>
+        </h3>
+        <p>
+          <span data-i18n="en">We support disciplined management of transaction workflows, documentation requirements, and cross-border coordination processes necessary for efficient execution.</span>
+          <span data-i18n="es">Brindamos una gestión disciplinada de flujos transaccionales, requisitos documentales y procesos de coordinación transfronteriza, necesarios para una ejecución eficiente.</span>
+        </p>
+      </article>
+
+      <article class="why-card reveal">
+        <svg class="wc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 26l8-10 6 6 10-14"/>
+          <path d="M20 8h8v8"/>
+          <circle cx="16" cy="22" r="2"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Customer & Market Intelligence</span>
+          <span data-i18n="es">Inteligencia de Cliente y Mercado</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Our experience across regional markets provides practical understanding of buyer requirements, operational timing, commercial preferences, and evolving industry dynamics.</span>
+          <span data-i18n="es">Nuestra experiencia en mercados regionales aporta un entendimiento práctico de los requisitos del comprador, los tiempos operativos, las preferencias comerciales y la dinámica de la industria.</span>
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING — BUILT FOR LONG-TERM GROWTH ============ -->
+<section class="closing">
+  <div class="container">
+    <span class="eyebrow centered">
+      <span data-i18n="en">Built for Long-Term Growth</span>
+      <span data-i18n="es">Construido para el Largo Plazo</span>
+    </span>
+    <h2>
+      <span data-i18n="en">A reliable strategic partner <em>for the global commodities sector.</em></span>
+      <span data-i18n="es">Un socio estratégico confiable <em>para el sector global de materias primas.</em></span>
+    </h2>
+    <p>
+      <span data-i18n="en">Patagonia Americas was founded on the belief that durability in international trade is built through trust, execution, and long-term commercial growth across the global commodities sector. We are committed to serving as a reliable strategic partner for companies seeking disciplined market access, dependable execution, and scalable commercial growth.</span>
+      <span data-i18n="es">Patagonia Americas fue fundada sobre la convicción de que la durabilidad en el comercio internacional se construye con confianza, ejecución y crecimiento comercial a largo plazo en el sector global de materias primas. Estamos comprometidos a servir como socio estratégico confiable para compañías que buscan acceso disciplinado a mercados, ejecución dependable y crecimiento comercial escalable.</span>
+    </p>
+    <a href="contact.html" class="btn btn-brass">
+      <span data-i18n="en">Start a Conversation</span><span data-i18n="es">Iniciar una Conversación</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="logo">
+        <svg class="logo-mark" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="19" stroke="#b8954a" stroke-width="1.2"/>
+          <ellipse cx="22" cy="22" rx="19" ry="8" stroke="#b8954a" stroke-width="0.7"/>
+          <ellipse cx="22" cy="22" rx="10" ry="19" stroke="#b8954a" stroke-width="0.7"/>
+          <path d="M14 12 Q18 10 22 12 Q19 14 14 12 Z" fill="#b8954a" opacity="0.85"/>
+          <circle cx="22" cy="22" r="1.2" fill="#b8954a"/>
+        </svg>
+        <span class="logo-text">
+          <span class="lead">Patagonia</span>
+          <span class="sub">Americas</span>
+        </span>
+      </a>
+
+      <div class="footer-mini-links">
+        <a href="index.html"><span data-i18n="en">Home</span><span data-i18n="es">Inicio</span></a>
+        <a href="index.html#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a>
+        <a href="contact.html"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a>
+      </div>
+
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" class="is-active">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button type="button" data-set-lang="es">ES</button>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span data-i18n="en">© 2025 Patagonia Americas LLC. All Rights Reserved.</span>
+      <span data-i18n="es">© 2025 Patagonia Americas LLC. Todos los Derechos Reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ============================================================
+  // about.html — reveal observer + language toggle
+  // ============================================================
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (!e.isIntersecting) return;
+      setTimeout(() => e.target.classList.add('in'), i * 80);
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---- Language toggle (EN / ES) — shared with index/contact via localStorage ----
+  const setLang = (l) => {
+    if (l !== 'en' && l !== 'es') l = 'en';
+    document.documentElement.setAttribute('data-lang', l);
+    document.documentElement.setAttribute('lang', l);
+    document.querySelectorAll('.lang-toggle button').forEach(btn => {
+      btn.classList.toggle('is-active', btn.dataset.setLang === l);
+    });
+    try { localStorage.setItem('pa-lang', l); } catch (_) { /* ignore */ }
+  };
+  (function initLang() {
+    let saved = 'en';
+    try {
+      const v = localStorage.getItem('pa-lang');
+      if (v === 'es' || v === 'en') saved = v;
+    } catch (_) { /* ignore */ }
+    setLang(saved);
+    document.querySelectorAll('[data-set-lang]').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.setLang));
+    });
+  })();
+</script>
+
+</body>
+</html>

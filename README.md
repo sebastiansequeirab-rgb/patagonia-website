@@ -250,7 +250,7 @@ In **Project → Settings → Domains**, add `patagoniaamericas.com` (or whichev
 ### Verifying the redesign locally
 1. `python3 -m http.server 8000` (or `vercel dev`).
 2. Open `http://localhost:8000/`.
-3. Hero should cross-fade through 5 frames; hover to pause; click a dot to jump.
+3. Hero should cross-fade through 6 frames (5 Unsplash + 1 owner photo `wp-port-cranes.jpg`); hover to pause; click a dot to jump.
 4. Ticker strip below the hero shows live prices from TradingView.
 5. Scroll to the stats band — numbers count up 0→target with easeOutCubic, then the gold underline draws in.
 6. Hover any product card — image scales 1.05, brass top bar wipes in, descriptor slides up from the bottom.
@@ -259,3 +259,57 @@ In **Project → Settings → Domains**, add `patagoniaamericas.com` (or whichev
 9. Open `/contact.html`. Tab through form fields; brass underline + brass focus ring appears. Click "Chat on WhatsApp". The OSM map loads under the address.
 10. Submit a test inquiry — inline success state shows with no redirect.
 11. DevTools → Rendering → "Emulate CSS prefers-reduced-motion: reduce" — verify slideshow stops on slide 1, ticker falls back to static text, counters jump to final values.
+
+---
+
+## 8. Dream Portal expansion (WordPress fusion)
+
+Layered on top of §7. Brings the institutional depth of the owner's WordPress (Astra Theme) into the Vercel site.
+
+### New sections in `index.html`
+After `.who` and before `.trade-map`:
+- **`.strategic` (Strategic Positioning)** — two-column block: institutional copy on the left + `assets/images/sacos.png` (Control Union certified jute sacks) on the right with an overlay caption. Below: 3 cards (Long-Term Partnership Focus / Scalable Execution Platform / Institutional Approach), each with a brass icon and brass top-bar wipe on hover. Links to `about.html` via "Read Our Full Approach".
+
+After `.trade-map` and before `.cta-strip`:
+- **`.ops-banner`** — full-width transitional banner using `assets/images/wp-grains-mosaic.jpg` with forest gradient + heading "Successful commodity transactions require far more than pricing alone."
+- **`.flow-diagram` (Global Supply + Local Execution)** — dark forest section with an inline SVG diagram: three nodes (International Partner → Patagonia Americas → Industrial Clients) joined by animated brass arcs (reuse of the trade-map keyframes `hub-pulse`, `arc-draw`, plus a new `ring-pulse`). Bilingual node labels.
+- **`.ops-capabilities`** — black band with a 3×2 grid of 6 tiles (Operational Coordination · Supplier Alignment · Logistics Management · Customer Responsiveness · Documentation Discipline · Market Adaptability), each with a brass icon and short copy.
+- **`.growth` (Built for Long-Term Growth)** — closing band immediately before `.cta-strip`, using `wp-grains-mosaic.jpg` as a low-opacity background and the verbatim WP quote about durability.
+
+### Product grid expansion (`.product-grid.product-grid-6`)
+Refactored from 2×2 to 3×2 (desktop): Soybean Oil, Wheat, Corn, Sorghum, Cane & Beet Molasses, Sugar. Each card carries the same hover overlay pattern (Origin · Key Markets · Grades/Use). New product images for Corn / Sorghum / Sugar are Unsplash hotlinks with `onerror` fallback to `assets/images/wp-grains-mosaic.jpg`.
+
+### `about.html` (new page)
+Dedicated About page with the full WordPress depth. Sections, top to bottom:
+1. Hero — `wp-port-cranes.jpg` as background, "Building reliable commercial bridges across global markets."
+2. **Our Company Philosophy** — African proverb + 2 paragraphs + a pulled quote with brass left-border, paired with `wp-grains-mosaic.jpg`.
+3. **Strategic Positioning** — 2 paragraphs from the WP + the same 3 strategic cards (LTPF / SEP / IA).
+4. **Our Business Model** — the SVG flow diagram (same component as `index.html`).
+5. **Proven Market Experience** — long prose with two sub-headings (Global Agribusiness Relationships, Operational Execution Capability), the 6-item bullet list of execution capabilities, and a 3-image grid (port cranes + grains mosaic + sacos).
+6. **Why Local Coordination Matters** — 4 cards (Commercial Relationships / Operational Adaptability / Documentation & Process Coordination / Customer & Market Intelligence), each with a brass icon.
+7. **Closing** — "Built for Long-Term Growth" + CTA to `contact.html`.
+
+The page mirrors the header / nav / footer of `contact.html`, copies the design tokens block, and ships its own short script for the IntersectionObserver-based reveal animations + the EN/ES language toggle.
+
+### Nav-link wiring
+"About Us" / "Nosotros" in **all three pages** now points to `about.html` (previously pointed to `#about` in `index.html`, which is now superseded). The scrollspy in `index.html` is unaffected — it only picks up in-page anchors (`href^="#"`), so the cross-page link is ignored cleanly.
+
+### Owner-provided imagery
+Three local assets dropped into `assets/images/`:
+- **`sacos.png`** (3.4 MB) — Control Union certified jute sacks in warehouse. Used as the protagonist of `.strategic` (right column) and inside the about-experience tri-image grid. Marked `loading="lazy"` + `decoding="async"`. A future optimization pass should convert to WebP and resize down — see `IMAGE_OPTIMIZE[sacos]` consideration.
+- **`wp-port-cranes.jpg`** — bulk carrier at dusk beneath port cranes. Inserted as slide #2 in the homepage slideshow and as the hero background of `about.html` + the closing band of `about.html`.
+- **`wp-grains-mosaic.jpg`** — grain portfolio mosaic. Banner of `.ops-banner`, the about-philosophy right column, and the about-experience tri-image grid.
+
+### EN / ES coverage
+- `index.html` data-i18n span count: **~272** (was ~152 in §7 baseline).
+- `about.html` data-i18n span count: **~146** — same `setLang()` pattern, persists in `localStorage.pa-lang`, mirrored in the footer toggle.
+- The toggle in the nav is hidden on mobile (≤880px) for all three pages; the mirrored footer toggle stays visible.
+
+### Verifying the dream-portal expansion
+1. `python3 -m http.server 8000` → open `http://localhost:8000/`.
+2. Scroll past Who We Are → Strategic Positioning appears (sacos.png on the right with "CONTROL UNION CERTIFIED" badge, 3 institutional cards below).
+3. Continue scrolling past Global Flow → Operational Execution banner (wp-grains-mosaic) → flow diagram with brass arcs drawing between 3 hubs → 6-tile capability grid.
+4. Built for Long-Term Growth appears just above the CTA strip, with the wp-grains-mosaic background at 18% opacity.
+5. Product grid is now 3×2 (Soybean Oil, Wheat, Corn, Sorghum, Cane Molasses, Sugar). Hover any card → image scales, brass top accent wipes in, descriptor (Origin / Key Markets / Grades or Use) slides up.
+6. Open `/about.html` — hero with wp-port-cranes, then the 6 sections render. Toggle EN/ES; reload — preference persists across pages.
+7. From the homepage nav, click "About Us" → lands on `about.html`. The active state in the about nav is on the About Us link.

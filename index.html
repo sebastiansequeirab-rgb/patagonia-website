@@ -1319,6 +1319,472 @@
   @media (max-width: 880px) {
     .nav .lang-toggle { display: none; }
   }
+
+  /* ============================================================
+     DREAM PORTAL ADDITIONS — WordPress fusion
+     Strategic Positioning · Operational Execution · Long-Term Growth
+     ============================================================ */
+
+  /* STRATEGIC POSITIONING (between .who and .trade-map) */
+  .strategic {
+    background: var(--paper);
+    padding: 140px 0 130px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.18);
+  }
+  .strategic::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(184,149,74,.35) 50%, transparent);
+  }
+  .strategic-head {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .strategic-head .eyebrow { margin-bottom: 24px; }
+  .strategic-head h2 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    max-width: 880px;
+    margin: 0 auto;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+  .strategic-head h2 em {
+    font-style: italic;
+    color: var(--brass-3);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .strategic-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 90px;
+    align-items: center;
+    margin-bottom: 90px;
+  }
+  .strategic-text p {
+    color: #384241;
+    font-size: 16.5px;
+    line-height: 1.75;
+    font-weight: 450;
+    margin-bottom: 22px;
+  }
+  .strategic-text p:last-child { margin-bottom: 0; }
+  .strategic-image {
+    position: relative;
+  }
+  .strategic-image img {
+    width: 100%;
+    aspect-ratio: 1.05 / 1;
+    object-fit: cover;
+    box-shadow: 0 40px 80px -40px rgba(15,41,34,.4);
+    display: block;
+  }
+  .strategic-image::after {
+    content: "CONTROL UNION CERTIFIED";
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: rgba(15,41,34,.78);
+    padding: 8px 14px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-left: 2px solid var(--brass);
+  }
+  .strategic-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .sc-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 44px 36px 38px;
+    position: relative;
+    transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+  }
+  .sc-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--brass);
+    transition: width .55s var(--ease);
+  }
+  .sc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px -24px rgba(15,41,34,.22);
+    border-color: rgba(184,149,74,.4);
+  }
+  .sc-card:hover::before { width: 100%; }
+  .sc-icon {
+    width: 38px; height: 38px;
+    color: var(--brass);
+    margin-bottom: 26px;
+    display: block;
+  }
+  .sc-card h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 14px;
+    color: var(--ink);
+    line-height: 1.2;
+    font-variation-settings: "opsz" 96, "SOFT" 50;
+  }
+  .sc-card p {
+    color: #384241;
+    font-size: 14.5px;
+    line-height: 1.7;
+    font-weight: 450;
+  }
+  @media (max-width: 1080px) {
+    .strategic-cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 880px) {
+    .strategic { padding: 100px 0; }
+    .strategic-grid { grid-template-columns: 1fr; gap: 50px; margin-bottom: 64px; }
+    .strategic-image img { aspect-ratio: 1.2 / 1; }
+  }
+
+  /* OPERATIONAL EXECUTION + FLOW DIAGRAM */
+  .ops-banner {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.18);
+  }
+  .ops-banner img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ops-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(15,41,34,.92) 0%, rgba(15,41,34,.55) 40%, rgba(15,41,34,.92) 100%),
+      linear-gradient(90deg, rgba(15,41,34,.5), transparent 50%, rgba(15,41,34,.5));
+  }
+  .ops-banner-text {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--cream);
+    padding: 0 24px;
+  }
+  .ops-banner-text .eyebrow { color: var(--brass-2); margin-bottom: 18px; }
+  .ops-banner-text .eyebrow::before { background: var(--brass-2); }
+  .ops-banner-text h2 {
+    font-size: clamp(32px, 4.4vw, 50px);
+    font-weight: 300;
+    max-width: 760px;
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+  }
+  .ops-banner-text h2 em {
+    font-style: italic;
+    color: var(--brass-2);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  @media (max-width: 720px) {
+    .ops-banner { height: 240px; }
+  }
+
+  .flow-diagram {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 130px 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.18);
+  }
+  .flow-diagram::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 18% 30%, rgba(184,149,74,.10) 0%, transparent 40%),
+      radial-gradient(circle at 82% 70%, rgba(184,149,74,.07) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .flow-head {
+    text-align: center;
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 1;
+  }
+  .flow-head .eyebrow { color: var(--brass-2); margin-bottom: 18px; }
+  .flow-head .eyebrow::before,
+  .flow-head .eyebrow::after { background: var(--brass-2); }
+  .flow-head h2 {
+    font-size: clamp(34px, 4.4vw, 50px);
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--cream);
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+  }
+  .flow-head h2 em {
+    font-style: italic;
+    color: var(--brass-2);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .flow-svg-wrap {
+    max-width: 1020px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .flow-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+  .flow-svg .flow-node {
+    cursor: default;
+  }
+  .flow-svg .flow-node circle {
+    fill: var(--brass);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: hub-pulse 2.8s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(184,149,74,.5));
+  }
+  .flow-svg .flow-node.center circle {
+    fill: var(--brass-2);
+    animation-delay: .9s;
+  }
+  .flow-svg .flow-node .ring {
+    fill: none;
+    stroke: rgba(184,149,74,.35);
+    stroke-width: 1;
+    animation: ring-pulse 2.8s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .flow-svg .flow-node.center .ring { animation-delay: .9s; }
+  @keyframes ring-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.45; }
+    50%      { transform: scale(2.2); opacity: 0; }
+  }
+  .flow-svg .flow-connector {
+    fill: none;
+    stroke: var(--brass);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+    opacity: 0;
+    animation: arc-draw 5s var(--ease) infinite;
+  }
+  .flow-svg .flow-connector:nth-child(2) { animation-delay: 1.4s; }
+  .flow-svg .node-title {
+    fill: var(--cream);
+    font-family: var(--serif);
+    font-size: 19px;
+    text-anchor: middle;
+    font-weight: 400;
+  }
+  .flow-svg .node-sub {
+    fill: var(--brass-2);
+    font-family: var(--sans);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-anchor: middle;
+  }
+  .flow-svg .node-desc {
+    fill: rgba(246,241,232,.74);
+    font-family: var(--sans);
+    font-size: 12px;
+    text-anchor: middle;
+  }
+
+  /* Capability bullets — 6-tile grid below the diagram */
+  .ops-capabilities {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 110px 0 120px;
+    position: relative;
+    box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.15);
+  }
+  .ops-capabilities .section-head { margin-bottom: 60px; }
+  .ops-capabilities .section-head .eyebrow { color: var(--brass-2); }
+  .ops-capabilities .section-head .eyebrow::before,
+  .ops-capabilities .section-head .eyebrow::after { background: var(--brass-2); }
+  .ops-capabilities h2 {
+    color: var(--cream);
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+  }
+  .ops-capabilities h2 em {
+    font-style: italic;
+    color: var(--brass-2);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(184,149,74,.18);
+    border: 1px solid rgba(184,149,74,.18);
+  }
+  .cap-tile {
+    background: var(--ink);
+    padding: 38px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: background .35s var(--ease);
+  }
+  .cap-tile:hover { background: #0f1d1b; }
+  .cap-icon {
+    width: 30px; height: 30px;
+    color: var(--brass);
+    flex-shrink: 0;
+  }
+  .cap-tile h3 {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.3;
+    font-variation-settings: "opsz" 96, "SOFT" 50;
+  }
+  .cap-tile p {
+    color: rgba(246,241,232,.7);
+    font-size: 13.5px;
+    line-height: 1.6;
+    font-weight: 450;
+  }
+  @media (max-width: 880px) {
+    .cap-grid { grid-template-columns: 1fr 1fr; }
+    .flow-diagram { padding: 90px 0; }
+    .ops-capabilities { padding: 80px 0 90px; }
+  }
+  @media (max-width: 560px) {
+    .cap-grid { grid-template-columns: 1fr; }
+  }
+
+  /* BUILT FOR LONG-TERM GROWTH (closing band) */
+  .growth {
+    position: relative;
+    overflow: hidden;
+    color: var(--cream);
+    padding: 130px 0 120px;
+    text-align: center;
+    background: var(--forest);
+    box-shadow: inset 0 1px 0 rgba(184, 149, 74, 0.18);
+  }
+  .growth::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url('assets/images/wp-grains-mosaic.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.18;
+    filter: saturate(0.85);
+  }
+  .growth::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 55% at 50% 40%, rgba(15,41,34,.45), rgba(15,41,34,.95) 80%);
+  }
+  .growth .container {
+    position: relative;
+    z-index: 2;
+  }
+  .growth .eyebrow {
+    color: var(--brass-2);
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+  .growth .eyebrow::before,
+  .growth .eyebrow::after { background: var(--brass-2); }
+  .growth h2 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4.5vw, 54px);
+    font-weight: 300;
+    max-width: 880px;
+    margin: 0 auto 30px;
+    line-height: 1.2;
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+  }
+  .growth h2 em {
+    font-style: italic;
+    color: var(--brass-2);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .growth blockquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(246,241,232,.92);
+    max-width: 760px;
+    margin: 0 auto 30px;
+    font-variation-settings: "opsz" 96, "SOFT" 80;
+  }
+  .growth p {
+    color: rgba(246,241,232,.78);
+    font-size: 15.5px;
+    line-height: 1.72;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .growth-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--brass);
+    margin: 32px auto;
+  }
+  @media (max-width: 720px) {
+    .growth { padding: 90px 0; }
+  }
+
+  /* Product grid — refactored to 3×2 for the dream-portal expansion */
+  @media (min-width: 1080px) {
+    .product-grid.product-grid-6 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 1080px) {
+    .product-grid.product-grid-6 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .product-grid.product-grid-6 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* When grid switches to 6 cards, the products-intro becomes a top header
+     instead of a left column — change products-inner layout */
+  .products-inner.expanded {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .products-inner.expanded .products-intro {
+    max-width: 760px;
+    text-align: left;
+  }
 </style>
 </head>
 <body>
@@ -1345,7 +1811,7 @@
     <div class="nav-links">
       <a href="#services"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a>
       <a href="#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a>
-      <a href="#about"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a>
+      <a href="about.html"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a>
       <a href="contact.html"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a>
     </div>
 
@@ -1371,6 +1837,11 @@
          alt="Aerial of a commercial bulk-cargo port at golden hour"
          loading="eager" fetchpriority="high" decoding="async"
          onerror="this.onerror=null;this.src='assets/images/hero.jpg';">
+    <!-- Owner-provided photograph: bulk carrier docked beneath port cranes at dusk -->
+    <img class="hero-slide fade-warm"
+         src="assets/images/wp-port-cranes.jpg"
+         alt="Bulk carrier vessel being loaded beneath illuminated port cranes at dusk"
+         loading="lazy" decoding="async">
     <img class="hero-slide fade-warm"
          src="https://images.unsplash.com/photo-1530989241817-3c98c5bd2253?auto=format&fit=crop&w=2400&q=85"
          alt="Grain silos at sunset" loading="lazy" decoding="async"
@@ -1414,6 +1885,7 @@
     <button class="hero-dot" type="button" data-i="2" aria-label="Slide 3"></button>
     <button class="hero-dot" type="button" data-i="3" aria-label="Slide 4"></button>
     <button class="hero-dot" type="button" data-i="4" aria-label="Slide 5"></button>
+    <button class="hero-dot" type="button" data-i="5" aria-label="Slide 6"></button>
   </div>
 
   <button class="scroll-cue" type="button" aria-label="Scroll to explore the site" onclick="window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })">
@@ -1570,7 +2042,7 @@
 <!-- PRODUCTS -->
 <section class="products" id="products">
   <div class="container">
-    <div class="products-inner">
+    <div class="products-inner expanded">
       <div class="products-intro reveal">
         <span class="eyebrow">
           <span data-i18n="en">Our Products</span>
@@ -1581,16 +2053,12 @@
           <span data-i18n="es">Materias Primas Premium.<br/><em>Demanda Global.</em></span>
         </h2>
         <p>
-          <span data-i18n="en">A curated portfolio of agricultural raw materials. Sourced responsibly, traded transparently, delivered at the scale industries demand.</span>
-          <span data-i18n="es">Una cartera curada de materias primas agrícolas. Originadas con responsabilidad, comercializadas con transparencia, entregadas a la escala que las industrias requieren.</span>
+          <span data-i18n="en">A curated portfolio of agricultural raw materials: oilseeds, grains, sweeteners, and feed co-products. Sourced responsibly, traded transparently, delivered at the scale industries demand.</span>
+          <span data-i18n="es">Un portafolio curado de materias primas agrícolas: oleaginosas, granos, edulcorantes y subproductos para alimento. Originadas con responsabilidad, comercializadas con transparencia, entregadas a la escala que las industrias requieren.</span>
         </p>
-        <a href="#" class="btn btn-brass">
-          <span data-i18n="en">View All Products</span><span data-i18n="es">Ver Productos</span>
-          <span class="arrow">→</span>
-        </a>
       </div>
 
-      <div class="product-grid">
+      <div class="product-grid product-grid-6">
         <div class="product-card soybean reveal">
           <div class="product-visual">
             <img class="product-illust" src="assets/images/product-soybean-oil.jpg" alt="Degummed crude soybean oil" loading="lazy" decoding="async" onerror="this.style.display='none'">
@@ -1598,33 +2066,79 @@
               <div class="product-desc">
                 <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Argentina · Brazil</span><span class="desc-value" data-i18n="es">Argentina · Brasil</span></span>
                 <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">China · EU · India</span><span class="desc-value" data-i18n="es">China · UE · India</span></span>
-                <span><span class="desc-label" data-i18n="en">Volume</span><span class="desc-label" data-i18n="es">Volumen</span> <span class="desc-value">120K MT / yr</span></span>
+                <span><span class="desc-label" data-i18n="en">Grades</span><span class="desc-label" data-i18n="es">Calidades</span> <span class="desc-value" data-i18n="en">Crude · Degummed · Refined</span><span class="desc-value" data-i18n="es">Crudo · Desgomado · Refinado</span></span>
               </div>
             </div>
           </div>
           <div class="product-meta">
             <h4>
-              <span data-i18n="en">Degummed Crude<br/>Soybean Oil</span>
-              <span data-i18n="es">Aceite de Soja<br/>Crudo Desgomado</span>
+              <span data-i18n="en">Soybean Oil</span>
+              <span data-i18n="es">Aceite de Soja</span>
             </h4>
           </div>
         </div>
 
         <div class="product-card wheat reveal">
           <div class="product-visual">
-            <img class="product-illust" src="assets/images/product-wheat-soy.jpg" alt="Wheat and soy grains" loading="lazy" decoding="async" onerror="this.style.display='none'">
+            <img class="product-illust" src="assets/images/product-wheat-soy.jpg" alt="Wheat field at harvest" loading="lazy" decoding="async" onerror="this.style.display='none'">
             <div class="product-overlay">
               <div class="product-desc">
-                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">USA · Argentina · Ukraine</span><span class="desc-value" data-i18n="es">EE. UU. · Argentina · Ucrania</span></span>
+                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">USA · Argentina · Black Sea</span><span class="desc-value" data-i18n="es">EE. UU. · Argentina · Mar Negro</span></span>
                 <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">North Africa · Middle East</span><span class="desc-value" data-i18n="es">Norte de África · Medio Oriente</span></span>
-                <span><span class="desc-label" data-i18n="en">Volume</span><span class="desc-label" data-i18n="es">Volumen</span> <span class="desc-value">180K MT / yr</span></span>
+                <span><span class="desc-label" data-i18n="en">Grades</span><span class="desc-label" data-i18n="es">Calidades</span> <span class="desc-value" data-i18n="en">Milling · Feed</span><span class="desc-value" data-i18n="es">Molinería · Alimento</span></span>
               </div>
             </div>
           </div>
           <div class="product-meta">
             <h4>
-              <span data-i18n="en">Wheat and<br/>Soy Grains</span>
-              <span data-i18n="es">Trigo y<br/>Granos de Soja</span>
+              <span data-i18n="en">Wheat</span>
+              <span data-i18n="es">Trigo</span>
+            </h4>
+          </div>
+        </div>
+
+        <div class="product-card corn reveal">
+          <div class="product-visual">
+            <img class="product-illust"
+                 src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=1400&q=82"
+                 alt="Corn kernels close-up — yellow dent corn"
+                 loading="lazy" decoding="async"
+                 onerror="this.onerror=null;this.src='assets/images/wp-grains-mosaic.jpg';">
+            <div class="product-overlay">
+              <div class="product-desc">
+                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">USA · Brazil · Argentina</span><span class="desc-value" data-i18n="es">EE. UU. · Brasil · Argentina</span></span>
+                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">Asia feed · Latin America</span><span class="desc-value" data-i18n="es">Alimento Asia · LATAM</span></span>
+                <span><span class="desc-label" data-i18n="en">Use</span><span class="desc-label" data-i18n="es">Uso</span> <span class="desc-value" data-i18n="en">Feed · Ethanol · Starch</span><span class="desc-value" data-i18n="es">Alimento · Etanol · Almidón</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="product-meta">
+            <h4>
+              <span data-i18n="en">Corn</span>
+              <span data-i18n="es">Maíz</span>
+            </h4>
+          </div>
+        </div>
+
+        <div class="product-card sorghum reveal">
+          <div class="product-visual">
+            <img class="product-illust"
+                 src="https://images.unsplash.com/photo-1623934149716-468a4f37a8ce?auto=format&fit=crop&w=1400&q=82"
+                 alt="Sorghum field — grain sorghum panicles"
+                 loading="lazy" decoding="async"
+                 onerror="this.onerror=null;this.src='assets/images/wp-grains-mosaic.jpg';">
+            <div class="product-overlay">
+              <div class="product-desc">
+                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">USA · Argentina · Australia</span><span class="desc-value" data-i18n="es">EE. UU. · Argentina · Australia</span></span>
+                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">China · Mexico · feed sector</span><span class="desc-value" data-i18n="es">China · México · alimento</span></span>
+                <span><span class="desc-label" data-i18n="en">Use</span><span class="desc-label" data-i18n="es">Uso</span> <span class="desc-value" data-i18n="en">Feed · Biofuel · Beverages</span><span class="desc-value" data-i18n="es">Alimento · Biofuel · Bebidas</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="product-meta">
+            <h4>
+              <span data-i18n="en">Sorghum</span>
+              <span data-i18n="es">Sorgo</span>
             </h4>
           </div>
         </div>
@@ -1636,33 +2150,37 @@
               <div class="product-desc">
                 <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Brazil · Guatemala · EU</span><span class="desc-value" data-i18n="es">Brasil · Guatemala · UE</span></span>
                 <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">Asia · EU feed industry</span><span class="desc-value" data-i18n="es">Asia · industria UE</span></span>
-                <span><span class="desc-label" data-i18n="en">Volume</span><span class="desc-label" data-i18n="es">Volumen</span> <span class="desc-value">90K MT / yr</span></span>
+                <span><span class="desc-label" data-i18n="en">Use</span><span class="desc-label" data-i18n="es">Uso</span> <span class="desc-value" data-i18n="en">Feed · Yeast · Fermentation</span><span class="desc-value" data-i18n="es">Alimento · Levadura · Fermentación</span></span>
               </div>
             </div>
           </div>
           <div class="product-meta">
             <h4>
-              <span data-i18n="en">Cane and Beet<br/>Molasses</span>
+              <span data-i18n="en">Cane &amp; Beet<br/>Molasses</span>
               <span data-i18n="es">Melaza de Caña<br/>y Remolacha</span>
             </h4>
           </div>
         </div>
 
-        <div class="product-card grains reveal">
+        <div class="product-card sugar reveal">
           <div class="product-visual">
-            <img class="product-illust" src="assets/images/product-grains.jpg" alt="Various grains and seeds" loading="lazy" decoding="async" onerror="this.style.display='none'">
+            <img class="product-illust"
+                 src="https://images.unsplash.com/photo-1571805341302-f857308690e3?auto=format&fit=crop&w=1400&q=82"
+                 alt="Raw cane sugar crystals"
+                 loading="lazy" decoding="async"
+                 onerror="this.onerror=null;this.src='assets/images/wp-grains-mosaic.jpg';">
             <div class="product-overlay">
               <div class="product-desc">
-                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Americas · Black Sea</span><span class="desc-value" data-i18n="es">Américas · Mar Negro</span></span>
-                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">MENA · Southeast Asia</span><span class="desc-value" data-i18n="es">MENA · Sudeste Asiático</span></span>
-                <span><span class="desc-label" data-i18n="en">Volume</span><span class="desc-label" data-i18n="es">Volumen</span> <span class="desc-value">110K MT / yr</span></span>
+                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Brazil · Guatemala · India</span><span class="desc-value" data-i18n="es">Brasil · Guatemala · India</span></span>
+                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">Refineries · F&amp;B industry</span><span class="desc-value" data-i18n="es">Refinerías · industria alimentos</span></span>
+                <span><span class="desc-label" data-i18n="en">Grades</span><span class="desc-label" data-i18n="es">Calidades</span> <span class="desc-value" data-i18n="en">VHP Raw · ICUMSA 45</span><span class="desc-value" data-i18n="es">VHP Crudo · ICUMSA 45</span></span>
               </div>
             </div>
           </div>
           <div class="product-meta">
             <h4>
-              <span data-i18n="en">Various Grains<br/>and Seeds</span>
-              <span data-i18n="es">Granos y<br/>Semillas Diversos</span>
+              <span data-i18n="en">Sugar</span>
+              <span data-i18n="es">Azúcar</span>
             </h4>
           </div>
         </div>
@@ -1801,6 +2319,96 @@
   </svg>
 </section>
 
+<!-- STRATEGIC POSITIONING — institutional depth (WordPress fusion) -->
+<section class="strategic" id="positioning">
+  <div class="container">
+    <div class="strategic-head reveal">
+      <span class="eyebrow centered">
+        <span data-i18n="en">Strategic Positioning</span>
+        <span data-i18n="es">Posicionamiento Estratégico</span>
+      </span>
+      <h2>
+        <span data-i18n="en">Building reliable <em>commercial bridges</em> across global markets.</span>
+        <span data-i18n="es">Construyendo <em>puentes comerciales</em> confiables entre los mercados globales.</span>
+      </h2>
+    </div>
+
+    <div class="strategic-grid">
+      <div class="strategic-text reveal">
+        <p>
+          <span data-i18n="en">Patagonia Americas provides international suppliers, producers, and industrial buyers with a trusted, relationship-driven platform for commodity trading, sourcing, logistics coordination, and long-term commercial development across the Americas.</span>
+          <span data-i18n="es">Patagonia Americas ofrece a productores, proveedores internacionales y compradores industriales una plataforma confiable, basada en relaciones, para el comercio de materias primas, la originación, la coordinación logística y el desarrollo comercial a largo plazo en todo el continente americano.</span>
+        </p>
+        <p>
+          <span data-i18n="en">Our model combines international market access with disciplined local execution — allowing counterparties to navigate complex supply chains with greater confidence, efficiency, and operational visibility.</span>
+          <span data-i18n="es">Nuestro modelo combina el acceso a mercados internacionales con una ejecución local disciplinada — permitiendo a nuestras contrapartes navegar cadenas de suministro complejas con mayor confianza, eficiencia y visibilidad operativa.</span>
+        </p>
+        <a href="about.html" class="btn btn-dark" style="margin-top: 18px;">
+          <span data-i18n="en">Read Our Full Approach</span><span data-i18n="es">Conocer Nuestro Enfoque Completo</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+      <div class="strategic-image reveal">
+        <!-- Owner-provided photograph: Control Union-certified jute sacks stacked in warehouse -->
+        <img src="assets/images/sacos.png"
+             alt="Control Union certified sacks stacked in a warehouse — actual Patagonia Americas inventory"
+             loading="lazy" decoding="async">
+      </div>
+    </div>
+
+    <div class="strategic-cards">
+      <article class="sc-card reveal">
+        <svg class="sc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 26V14l10-8 10 8v12"/>
+          <path d="M12 26v-8h8v8"/>
+          <path d="M2 26h28"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Long-Term Partnership Focus</span>
+          <span data-i18n="es">Enfoque en Relaciones Duraderas</span>
+        </h3>
+        <p>
+          <span data-i18n="en">We prioritize durable commercial relationships over transactional opportunities, aligning our approach with the long-term objectives of our partners and clients.</span>
+          <span data-i18n="es">Priorizamos relaciones comerciales duraderas por sobre oportunidades transaccionales, alineando nuestro enfoque con los objetivos de largo plazo de nuestros socios y clientes.</span>
+        </p>
+      </article>
+
+      <article class="sc-card reveal">
+        <svg class="sc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 24V8h12l4 4h8v12z"/>
+          <path d="M4 12h28"/>
+          <circle cx="11" cy="18" r="2"/>
+          <circle cx="22" cy="18" r="2"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Scalable Execution Platform</span>
+          <span data-i18n="es">Plataforma de Ejecución Escalable</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Our operational structure is designed to support scalable growth, adaptable logistics coordination, and consistent transaction management across evolving market environments.</span>
+          <span data-i18n="es">Nuestra estructura operativa está diseñada para soportar un crecimiento escalable, una coordinación logística adaptable y una gestión consistente de transacciones en entornos de mercado cambiantes.</span>
+        </p>
+      </article>
+
+      <article class="sc-card reveal">
+        <svg class="sc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="16" r="12"/>
+          <path d="M16 4v24M4 16h24"/>
+          <path d="M16 4a16 12 0 010 24M16 4a16 12 0 000 24"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Institutional Approach</span>
+          <span data-i18n="es">Enfoque Institucional</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Professionalism, transparency, compliance awareness, and disciplined execution remain central to how we conduct business and build strategic partnerships.</span>
+          <span data-i18n="es">Profesionalismo, transparencia, conciencia regulatoria y ejecución disciplinada son los principios centrales de cómo hacemos negocios y construimos alianzas estratégicas.</span>
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- TRADE MAP — Global Flow -->
 <section class="trade-map reveal" aria-labelledby="trade-map-heading">
   <div class="container">
@@ -1881,6 +2489,243 @@
   </div>
 </section>
 
+<!-- OPS BANNER — wp-grains-mosaic transition -->
+<section class="ops-banner reveal" aria-labelledby="ops-banner-heading">
+  <img src="assets/images/wp-grains-mosaic.jpg" alt="Mosaic of grains — wheat, rice, corn, millet — representing the supply portfolio" loading="lazy" decoding="async">
+  <div class="ops-banner-text container">
+    <span class="eyebrow centered">
+      <span data-i18n="en">Operational Execution</span>
+      <span data-i18n="es">Ejecución Operativa</span>
+    </span>
+    <h2 id="ops-banner-heading">
+      <span data-i18n="en">Successful commodity transactions require far <em>more than pricing alone.</em></span>
+      <span data-i18n="es">Las transacciones exitosas de materias primas requieren <em>mucho más que sólo precio.</em></span>
+    </h2>
+  </div>
+</section>
+
+<!-- FLOW DIAGRAM — Global Supply + Local Execution -->
+<section class="flow-diagram reveal" aria-labelledby="flow-heading">
+  <div class="container">
+    <div class="flow-head">
+      <span class="eyebrow centered">
+        <span data-i18n="en">Our Business Model</span>
+        <span data-i18n="es">Nuestro Modelo de Negocio</span>
+      </span>
+      <h2 id="flow-heading">
+        <span data-i18n="en">Global Supply <em>+ Local Execution.</em></span>
+        <span data-i18n="es">Suministro Global <em>+ Ejecución Local.</em></span>
+      </h2>
+    </div>
+
+    <div class="flow-svg-wrap">
+      <svg class="flow-svg" viewBox="0 0 1000 340" role="img" aria-label="Three-node business model: International Partner connects through Patagonia Americas to Industrial Clients">
+        <!-- Connectors: animated brass arcs left→center and center→right -->
+        <g>
+          <path class="flow-connector" d="M 200 130 Q 350 60 480 130"/>
+          <path class="flow-connector" d="M 520 130 Q 650 60 800 130"/>
+        </g>
+
+        <!-- Left node — International Partner -->
+        <g class="flow-node">
+          <circle class="ring" cx="200" cy="130" r="14"/>
+          <circle cx="200" cy="130" r="10"/>
+          <text class="node-sub" x="200" y="180">
+            <tspan data-i18n="en">International</tspan>
+            <tspan data-i18n="es">Socio</tspan>
+          </text>
+          <text class="node-title" x="200" y="208">
+            <tspan data-i18n="en">Partner</tspan>
+            <tspan data-i18n="es">Internacional</tspan>
+          </text>
+          <text class="node-desc" x="200" y="245">
+            <tspan data-i18n="en">Origination &amp; logistics</tspan>
+            <tspan data-i18n="es">Originación y logística</tspan>
+          </text>
+          <text class="node-desc" x="200" y="263">
+            <tspan data-i18n="en">across producing regions</tspan>
+            <tspan data-i18n="es">desde regiones productoras</tspan>
+          </text>
+        </g>
+
+        <!-- Center node — Patagonia Americas -->
+        <g class="flow-node center">
+          <circle class="ring" cx="500" cy="130" r="18"/>
+          <circle cx="500" cy="130" r="13"/>
+          <text class="node-sub" x="500" y="180">Patagonia</text>
+          <text class="node-title" x="500" y="208">Americas</text>
+          <text class="node-desc" x="500" y="245">
+            <tspan data-i18n="en">Market access &amp; local</tspan>
+            <tspan data-i18n="es">Acceso a mercados y</tspan>
+          </text>
+          <text class="node-desc" x="500" y="263">
+            <tspan data-i18n="en">commercial execution</tspan>
+            <tspan data-i18n="es">ejecución comercial local</tspan>
+          </text>
+        </g>
+
+        <!-- Right node — Industrial Clients -->
+        <g class="flow-node">
+          <circle class="ring" cx="800" cy="130" r="14"/>
+          <circle cx="800" cy="130" r="10"/>
+          <text class="node-sub" x="800" y="180">
+            <tspan data-i18n="en">Industrial</tspan>
+            <tspan data-i18n="es">Clientes</tspan>
+          </text>
+          <text class="node-title" x="800" y="208">
+            <tspan data-i18n="en">Clients</tspan>
+            <tspan data-i18n="es">Industriales</tspan>
+          </text>
+          <text class="node-desc" x="800" y="245">
+            <tspan data-i18n="en">Poultry, feed, food &amp;</tspan>
+            <tspan data-i18n="es">Avicultura, alimento, food</tspan>
+          </text>
+          <text class="node-desc" x="800" y="263">
+            <tspan data-i18n="en">biofuel processors</tspan>
+            <tspan data-i18n="es">y procesadores de biofuel</tspan>
+          </text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONAL EXECUTION CAPABILITY — 6-tile grid -->
+<section class="ops-capabilities reveal" aria-labelledby="cap-heading">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow centered">
+        <span data-i18n="en">What Execution Depends On</span>
+        <span data-i18n="es">De qué depende la ejecución</span>
+      </span>
+      <h2 id="cap-heading">
+        <span data-i18n="en">Six disciplines, <em>one transaction.</em></span>
+        <span data-i18n="es">Seis disciplinas, <em>una transacción.</em></span>
+      </h2>
+    </div>
+
+    <div class="cap-grid">
+      <div class="cap-tile reveal">
+        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="16" r="12"/>
+          <path d="M16 8v8l5 3"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Operational Coordination</span>
+          <span data-i18n="es">Coordinación Operativa</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Aligned timing, documents, and counterparties across every step of the supply chain.</span>
+          <span data-i18n="es">Tiempos, documentos y contrapartes alineados en cada paso de la cadena de suministro.</span>
+        </p>
+      </div>
+
+      <div class="cap-tile reveal">
+        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20V8h22v12z"/>
+          <circle cx="10" cy="20" r="3"/>
+          <circle cx="22" cy="20" r="3"/>
+          <path d="M26 12h4l-2 8"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Supplier Alignment</span>
+          <span data-i18n="es">Alineación con Proveedores</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Direct relationships with producers and origin partners we have engaged with over years.</span>
+          <span data-i18n="es">Relaciones directas con productores y socios de origen construidas a lo largo de los años.</span>
+        </p>
+      </div>
+
+      <div class="cap-tile reveal">
+        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 22V10h28v12z"/>
+          <path d="M4 10l4-4h20l4 4"/>
+          <path d="M14 22v4M22 22v4M4 26h28"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Logistics Management</span>
+          <span data-i18n="es">Gestión Logística</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Multimodal freight orchestration — origin trucking, port operations, ocean and inland delivery.</span>
+          <span data-i18n="es">Orquestación de flete multimodal — camión en origen, operaciones portuarias y entrega oceánica e interior.</span>
+        </p>
+      </div>
+
+      <div class="cap-tile reveal">
+        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 22a4 4 0 014-4h12a4 4 0 014 4v6H6z"/>
+          <circle cx="16" cy="10" r="4"/>
+          <path d="M22 4l4 4M22 8l4-4"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Customer Responsiveness</span>
+          <span data-i18n="es">Respuesta al Cliente</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Direct, accountable contact across the lifecycle of a transaction — not handed off to layers.</span>
+          <span data-i18n="es">Contacto directo y responsable durante todo el ciclo de la transacción — sin pasamanos.</span>
+        </p>
+      </div>
+
+      <div class="cap-tile reveal">
+        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 4h12l6 6v18a2 2 0 01-2 2H8a2 2 0 01-2-2V6a2 2 0 012-2z"/>
+          <path d="M20 4v6h6"/>
+          <path d="M10 18h12M10 22h12M10 14h6"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Documentation Discipline</span>
+          <span data-i18n="es">Disciplina Documental</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Compliance, customs, certificates of analysis, phytos — managed with the same rigor as the cargo.</span>
+          <span data-i18n="es">Compliance, aduanas, certificados de análisis, fitos — gestionados con el mismo rigor que la carga.</span>
+        </p>
+      </div>
+
+      <div class="cap-tile reveal">
+        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 26l8-10 6 6 10-14"/>
+          <path d="M20 8h8v8"/>
+        </svg>
+        <h3>
+          <span data-i18n="en">Market Adaptability</span>
+          <span data-i18n="es">Adaptabilidad al Mercado</span>
+        </h3>
+        <p>
+          <span data-i18n="en">Flexible coordination structures that navigate changing market conditions and evolving customer requirements.</span>
+          <span data-i18n="es">Estructuras de coordinación flexibles que se adaptan a condiciones cambiantes y requisitos del cliente.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILT FOR LONG-TERM GROWTH — closing band before CTA -->
+<section class="growth reveal" aria-labelledby="growth-heading">
+  <div class="container">
+    <span class="eyebrow centered">
+      <span data-i18n="en">Built for Long-Term Growth</span>
+      <span data-i18n="es">Construido para el Largo Plazo</span>
+    </span>
+    <h2 id="growth-heading">
+      <span data-i18n="en">Durability is built through trust, <em>execution, and time.</em></span>
+      <span data-i18n="es">La durabilidad se construye con confianza, <em>ejecución y tiempo.</em></span>
+    </h2>
+    <div class="growth-divider"></div>
+    <blockquote>
+      <span data-i18n="en">"Patagonia Americas was founded on the belief that durability in international trade is built through trust, execution, and long-term commercial growth across the global commodities sector."</span>
+      <span data-i18n="es">"Patagonia Americas fue fundada sobre la convicción de que la durabilidad en el comercio internacional se construye con confianza, ejecución y crecimiento comercial a largo plazo en el sector global de materias primas."</span>
+    </blockquote>
+    <p>
+      <span data-i18n="en">We are committed to serving as a reliable strategic partner for companies seeking disciplined market access, dependable execution, and scalable commercial growth.</span>
+      <span data-i18n="es">Estamos comprometidos a servir como socio estratégico confiable para compañías que buscan acceso disciplinado a mercados, ejecución dependable y crecimiento comercial escalable.</span>
+    </p>
+  </div>
+</section>
+
 <!-- CTA STRIP -->
 <section class="cta-strip">
   <div class="container">
@@ -1932,7 +2777,7 @@
         <ul>
           <li class="simple"><a href="#services"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a></li>
           <li class="simple"><a href="#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a></li>
-          <li class="simple"><a href="#about"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a></li>
+          <li class="simple"><a href="about.html"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a></li>
           <li class="simple"><a href="contact.html"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a></li>
         </ul>
       </div>
