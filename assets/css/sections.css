@@ -49,7 +49,7 @@
    ============================================================ */
 .hero {
   position: relative;
-  min-height: calc(100svh - 56px);
+  min-height: calc(100svh - 110px);
   color: var(--color-text-light);
   overflow: hidden;
   display: flex;
@@ -1956,7 +1956,7 @@
   .product-grid { grid-template-columns: 1fr; }
   .footer-grid  { grid-template-columns: 1fr; gap: 40px; }
   .stats-grid   { grid-template-columns: 1fr; gap: 48px; }
-  .hero         { min-height: calc(92svh - 56px); }
+  .hero         { min-height: calc(92svh - 110px); }
   .hero-dots    { bottom: 92px; }
   .cap-grid     { grid-template-columns: 1fr; }
 }
