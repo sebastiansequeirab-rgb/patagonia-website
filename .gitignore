@@ -9,3 +9,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .vercel
+
+# macOS screenshot uploads — keep them out of the repo even if dropped into assets/images/
+SCR-*.jpeg
+SCR-*.jpg
+SCR-*.png
+pagina vercel.jpeg

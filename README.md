@@ -2,314 +2,252 @@
 
 Static marketing site for Patagonia Americas, an international commodity trading firm based in Boca Raton, FL.
 
+**Live:** https://patagonia-website.vercel.app
+
+---
+
 ## Stack
 
-- Plain HTML + CSS + vanilla JS (no build step, no dependencies)
-- Two pages: `index.html` (landing) and `contact.html` (contact form)
-- Fonts loaded from Google Fonts: Fraunces (display serif) + Instrument Sans (body)
-- Currently uses placeholder images from Unsplash — these need to be replaced with the client's own assets
+- Plain HTML + CSS + vanilla JS, **no build step, no dependencies**.
+- Google Fonts: **Cormorant Garamond** (display serif) + **Inter** (body sans).
+- Single-page experience (`index.html`) + dedicated contact page (`contact.html`).
+- One Vercel Serverless Function: `api/contact.js` (form submission via Resend).
+- Hosted on Vercel under team `sebastiansequeirab-5196s-projects`, project `patagonia-website`.
 
 ## File structure
 
 ```
 patagonia-website/
-├── index.html            # Landing page (hero, services, products, priority band, about, footer)
-├── contact.html          # Contact page with form
+├── index.html               # Single-page site: all 16 sections live here
+├── contact.html             # Standalone contact form + brand panel
+├── about.html               # 5-line meta-refresh redirect to /#about
+├── api/
+│   └── contact.js           # POST /api/contact → Resend email delivery
 ├── assets/
-│   └── images/           # Drop your downloaded images here (see Image Inventory below)
-└── README.md
+│   ├── css/
+│   │   ├── tokens.css       # Design system: colors, fonts, spacing, motion, radii
+│   │   ├── base.css         # Reset, body, typography, .container, .eyebrow, a11y
+│   │   ├── components.css   # Nav, buttons, lang toggle, ticker shell, contact form
+│   │   └── sections.css     # All section-specific styles (hero through footer)
+│   ├── js/
+│   │   ├── nav.js           # Fixed-nav scroll state + hero parallax + scrollspy
+│   │   ├── hero-slideshow.js # 6-frame cross-fader, 8s pacing, hover/visibility pause
+│   │   ├── i18n.js          # EN/ES toggle, persisted to localStorage
+│   │   └── reveal.js        # IntersectionObserver entrance animations + stat counters
+│   ├── images/              # Product / hero / pillar / map photos (see § Images)
+│   └── REDESIGN_SPEC.md     # Original "Quiet Authority" brief (mostly historical)
+├── package.json             # Engines pin only (Node ≥ 18)
+└── .gitignore               # Ignores .vercel, .env, .DS_Store, SCR-*.jpeg uploads
 ```
 
 ---
 
-## 1. Image inventory — what to swap
+## Page anatomy
 
-Every placeholder image is marked with an `IMAGE_SWAP[key]` comment in the source.
-Search the codebase for `IMAGE_SWAP` to jump to each location.
+### `index.html` — single-page experience
 
-| Key                 | File         | Subject                                | Recommended filename                  |
-| ------------------- | ------------ | -------------------------------------- | ------------------------------------- |
-| Hero slideshow      | `index.html` | 5 cross-fading port / agriculture frames | currently 5 Unsplash hotlinks inside `<div class="hero-slides">`; each has an `onerror` fallback to `assets/images/hero.jpg`. See §7 to swap to local assets. |
-| `pillar-global`     | `index.html` | "Global Reach" card — global trade / port aerial | `assets/images/pillar-global.jpg`     |
-| `pillar-logistics`  | `index.html` | "Logistics Excellence" card — containers / port logistics | `assets/images/pillar-logistics.jpg`  |
-| `pillar-commitment` | `index.html` | "Commitment to You" card — agricultural / wheat field | `assets/images/pillar-commitment.jpg` |
-| `priority-truck`    | `index.html` | "Your Success" band, left side — freight truck on highway at sunset | `assets/images/priority-truck.jpg`    |
-| `priority-ship`     | `index.html` | "Your Success" band, right side — cargo ship at port with cranes | `assets/images/priority-ship.jpg`     |
+Sections in render order (anchor IDs in parentheses):
 
-### Image sizing recommendations
+1. **Nav** — fixed, transparent until 40 px of scroll, then glass + blur.
+2. **Hero** (`<header class="hero">`) — 6-image cross-fading slideshow + headline + lead. 8 s rotation, hover-pause.
+3. **Live ticker** — TradingView ticker-tape embed (commodity ETFs + FX pairs). Sized so it's visible above the fold.
+4. **What We Do** (`#services`) — 3 pillar cards (Global Reach, Logistics Excellence, Commitment to You).
+5. **Premium Commodities** (`#products`) — 8-card category grid (see § Products).
+6. **Stats** — 4 animated counters.
+7. **Priority band** — three-column priority section ("Your Success. Our Priority.").
+8. **Who We Are** (`#about`) — two-column with African-proverb pull-quote.
+9. **Company Philosophy** — two-column quote + sacos warehouse image (merged from old `about.html`).
+10. **Proven Market Experience** — dark band with global agribusiness narrative + tri-image grid.
+11. **Why Local Coordination Matters** — 4-card grid.
+12. **Strategic Positioning** (`#positioning`) — 3 sub-cards (Long-Term Partnerships / Scalable Execution / Institutional Approach).
+13. **Trade Map / Global Flow** — real Wikimedia world map with 7 markers + 5 trade arcs (see § Trade map).
+14. **Ops banner** — full-bleed wp-grains-mosaic image with overlay quote.
+15. **Flow Diagram** — Global Supply + Local Execution hub-spoke SVG.
+16. **Ops Capabilities** — 6-tile grid (Six Disciplines).
+17. **Growth / Closing** — Built for Long-Term Growth, CTA-heavy section.
+18. **CTA strip + Footer**.
 
-- **Hero**: 2400×1400 minimum, landscape, will be cropped to cover. Keep important content in the center.
-- **Pillar cards**: 1200×800 (3:2). Subject should read well at 240px tall.
-- **Priority band**: 1400×800 (16:9-ish). Both sides have gradient fade toward the center, so subjects should sit toward the outer edges.
+Bilingual EN/ES is implemented via paired `<span data-i18n="en">…</span><span data-i18n="es">…</span>` siblings. The visibility swap is CSS-driven from `<html data-lang>`; `assets/js/i18n.js` persists the choice in `localStorage.pa-lang`.
 
-### Product cards
+### `contact.html`
+Two-panel layout: left = brand/contact details + OSM map iframe + WhatsApp pill, right = the contact form. JS is inline (page-specific form handler + i18n for `<option>` and textarea placeholders).
 
-Currently the four product cards (Soybean Oil, Wheat & Soy Grains, Molasses, Various Grains) use inline SVG illustrations on gradient backgrounds — not stock photos. If the client has product photography, these can also be swapped. Search for `.product-card .visual` in `index.html`.
+### `about.html`
+5-line meta-refresh redirect to `/#about` — kept so any externally-shared link to `/about.html` doesn't 404.
 
 ---
 
-## 2. Contact form — wired
+## Design system
 
-The contact form (`contact.html`) submits via `fetch('/api/contact', …)` to a Vercel Serverless Function at `api/contact.js`. The function:
+All tokens live in `assets/css/tokens.css`. Selection:
+
+| Token | Value | Role |
+|---|---|---|
+| `--color-bg-primary` | `#1F2D24` | forest green (dark sections, land on the map) |
+| `--color-bg-cream-soft` | `#FAF5E8` | page paper / ocean on the map |
+| `--color-accent-gold` | `#C8A865` | brass-gold accents, arcs, origin markers |
+| `--color-accent-gold-bright` | `#D9B978` | hover state |
+| `--color-text-dark` | `#1A1F1A` | body text on cream |
+| `--color-text-light` | `#F5EDD8` | cream-bright (text on dark, destination markers) |
+| `--font-display` | `'Cormorant Garamond', Georgia, serif` | all headings + display |
+| `--font-body` | `'Inter', system-ui, sans-serif` | all body text |
+
+Legacy aliases (`--brass`, `--forest`, `--cream`, etc.) live in tokens.css too and resolve to the new tokens — they exist so any rule that wasn't migrated still works.
+
+---
+
+## Live ticker — important gotcha
+
+**TradingView free embed only resolves a subset of symbols.** Continuous-contract futures (`CBOT:ZL1!`, `CBOT:ZS1!`, `CBOT:ZW1!`, `CBOT:ZC1!`, `ICEUS:SB1!`, `ICEUS:CT1!`, `TVC:DXY`) show a red `!` and no quote. The current symbol set uses NYSE-Arca ETFs which always render:
+
+```js
+[
+  { description: "Soybeans",   proName: "AMEX:SOYB" },
+  { description: "Wheat",      proName: "AMEX:WEAT" },
+  { description: "Corn",       proName: "AMEX:CORN" },
+  { description: "Sugar",      proName: "AMEX:CANE" },
+  { description: "Agri Fund",  proName: "AMEX:DBA"  },
+  { description: "USD/BRL",    proName: "FX_IDC:USDBRL" },
+  { description: "USD/ARS",    proName: "FX_IDC:USDARS" },
+  { description: "US Dollar",  proName: "AMEX:UUP"  }
+]
+```
+
+Change the symbol set inside the `<script src="…ticker-tape.js" async>` block at the top of `index.html`. Pick symbols that exist on NYSE / AMEX / NYSEARCA / FX_IDC — futures and many regional indices won't render in the free widget.
+
+---
+
+## Products grid — 8 official categories
+
+Order, image, and one-line "Includes":
+
+| # | Title | Image | Includes |
+|---|---|---|---|
+| 1 | Soybean Complex | `product-soybean-oil.jpg` | YSB · Meal · Crude Oil · Refined Oil |
+| 2 | Wheat, Corn & Feed Grains | `product-wheat-soy.jpg` | Wheat · Corn · Barley · Sorghum |
+| 3 | Sugar & Molasses | `product-sugar.jpg` | Raw · White · Refined · HSC · Feed grade |
+| 4 | Oil-seeds & Byproducts | `product-grains.jpg` | Oilseeds · pellets · co-products |
+| 5 | Specialty Grains & Ingredients | `specialty-grains.jpg` | Identity-preserved · niche varieties |
+| 6 | Fats & Oils | `fats-oils.jpg` | UCO · tallow · soy · sunflower · palm · corn · yellow grease |
+| 7 | Metals | `metals.jpg` | Aluminum · steel · copper · alumina · coke · caustic soda · fluoride |
+| 8 | Urea & Fertilizers | `urea.jpg` | Granular urea · NPK · ammonia · agronomic inputs |
+
+Each card has a hover overlay showing **Origin / Key Markets / Includes**. Grid is `4×2` on desktop (≥ 1080 px), `2×4` on tablet, `1×8` on mobile (`.product-grid-8` class in `assets/css/sections.css`).
+
+---
+
+## Trade map (Global Flow section)
+
+The world map is the public-domain Wikimedia file `World_map_-_low_resolution.svg` (viewBox `950×620`, 338 country paths, ~84 KB). Inlined into `index.html` so CSS can style individual country fills and so markers + arcs sit in the same coordinate system.
+
+Marker positions were tuned by reading each country path's bounding box directly from the SVG, then applying small city-within-country offsets:
+
+| Role | City | Coords (viewBox) |
+|---|---|---|
+| Origin | USA Midwest | `(230, 200)` |
+| Origin | Argentina · Rosario | `(290, 435)` |
+| Origin | Brazil · Santos | `(320, 400)` |
+| Destination | Rotterdam | `(466, 173)` |
+| Destination | Qingdao | `(785, 195)` |
+| Destination | Jebel Ali · UAE | `(596, 261)` |
+| Destination | Singapore | `(738, 333)` |
+
+Origin markers = solid gold `r=7` with halo. Destination markers = cream fill `r=5` with 1.5 px gold ring. Five quadratic-Bezier arcs animate between them (Brazil→Qingdao, Argentina→Rotterdam, USA Midwest→Jebel Ali, Brazil→Jebel Ali, USA Midwest→Singapore). `prefers-reduced-motion` freezes both pulses and arc draws.
+
+The source SVG file lives at `assets/images/world-map.svg` for reference if anyone wants to swap projection or recompute marker coords.
+
+---
+
+## Images inventory
+
+All under `assets/images/`:
+
+- **Hero slideshow (6 frames)** — `hero.jpg`, `wp-port-cranes.jpg`, `priority-ship.jpg`, `priority-truck.jpg`, `pillar-commitment.jpg`, `pillar-logistics.png`.
+- **Pillar cards** — `pillar-global.png`, `pillar-logistics.png`, `pillar-commitment.jpg`.
+- **Priority band** — `priority-truck.jpg`, `priority-ship.jpg`.
+- **Product cards (8)** — `product-soybean-oil.jpg`, `product-wheat-soy.jpg`, `product-sugar.jpg`, `product-grains.jpg`, `specialty-grains.jpg`, `fats-oils.jpg`, `metals.jpg`, `urea.jpg`.
+- **Editorial / about** — `sacos.png` (Control Union certified jute sacks), `wp-grains-mosaic.jpg`, `wp-port-cranes.jpg`.
+- **World map source** — `world-map.svg`.
+- **Decoration** — `world-dots.svg`.
+
+**Important:** Don't hotlink Unsplash for any product or hero photo — the upstream slug can be silently re-pointed (this site has been bitten twice: the basketball-arena hero, then the salad-bowl Sugar card). Always download a copy into `assets/images/` and reference locally.
+
+---
+
+## Contact form
+
+`contact.html` posts JSON to `/api/contact`. `api/contact.js`:
 
 1. Validates required fields and email format.
 2. Maps the `subject` dropdown value to a readable label.
-3. Sends an HTML + plain-text email through Resend with `reply_to` set to the inquirer.
+3. Sends an HTML + plain-text email via Resend with `reply_to` set to the inquirer.
 4. Returns `200 { ok: true, delivered: true }` on success, `502` if delivery fails.
 
-If `RESEND_API_KEY` is not set, the endpoint still returns success but only logs the inquiry to Vercel function logs (`delivered: false`). That lets you ship the site immediately and add the key later.
+If `RESEND_API_KEY` is missing, the endpoint still returns success but only logs to Vercel function logs (`delivered: false`) — that means we can ship without an API key and add it later.
 
-**Form payload** (POST body):
+The Resend env var is already set in Vercel Production + Preview environments.
 
-```js
-{
-  name: string,     company: string,  email: string,
-  subject: string,  // sourcing | supply | logistics | partnership | press | other
-  message: string
-}
+---
+
+## Deploy
+
+```bash
+# Preview deploy (SSO-gated)
+vercel
+
+# Production (aliases to https://patagonia-website.vercel.app)
+vercel --prod --yes
 ```
 
-**Environment variables (set on Vercel → Project → Settings → Environment Variables):**
+Project is pre-linked to Vercel (see `.vercel/project.json`, gitignored). The first time anyone runs `vercel` they may need to log in with `vercel login`.
 
-| Variable | Required | Purpose |
-|---|---|---|
-| `RESEND_API_KEY` | yes (for live email) | Get one at https://resend.com/api-keys |
-| `CONTACT_TO_EMAIL` | optional | Defaults to `info@patagoniaamericas.com` |
-| `CONTACT_FROM_EMAIL` | optional | Defaults to `onboarding@resend.dev` (works for first-deploy testing). For production, verify your own domain in Resend and use e.g. `Patagonia Americas <noreply@patagoniaamericas.com>` |
-
-**Hardening options to consider later**: honeypot field, hCaptcha / reCAPTCHA, rate limiting (`@vercel/kv` or middleware), confirmation email back to the submitter, persisting submissions to a sheet or DB, GDPR notice for EU traffic.
+Run `npm i -g vercel@latest` to keep the CLI current.
 
 ---
 
-## 3. Brand assets
+## Local development
 
-These are baked into CSS variables at the top of each HTML file under `:root`. To change globally, update both files in sync — or extract to a shared `styles.css`.
-
-### Colors
-
-```css
---ink:      #0c1614;   /* near-black, primary text */
---forest:   #0f2922;   /* primary dark brand color */
---forest-2: #14342c;   /* dark variation */
---forest-3: #1a3d34;   /* lighter forest */
---brass:    #b8954a;   /* primary accent (gold/brass) */
---brass-2:  #d4b683;   /* lighter brass */
---brass-3:  #8a6e36;   /* darker brass */
---cream:    #f6f1e8;   /* light text on dark, light surfaces */
---paper:    #fbf8f2;   /* main background */
---line:     #e8e1d2;   /* dividers */
---muted:    #5a6360;   /* secondary text */
+```bash
+# From the repo root
+python3 -m http.server 8765
+# Then open http://127.0.0.1:8765/
 ```
 
-### Typography
-
-- **Display**: Fraunces (variable, opsz axis used 9-144). Italic gold accents on key words.
-- **Body**: Instrument Sans (weights 400, 500, 600).
-
-### Logo
-
-The logo is an inline SVG (globe with grid lines) inside each page. To replace with the client's real vector logo, search for `class="logo-mark"` — there are 3 locations total across the two files (nav + footer in `index.html`, nav in `contact.html`).
-
-### Real contact info already wired in
-
-- 2300 Glades Road, Suite 312 W, Boca Raton, FL 33431
-- (561) 410-7750
-- info@patagoniaamericas.com
+No build, no install. Edit any HTML / CSS / JS file and refresh the browser.
 
 ---
 
-## 4. Suggested prompts for Claude Code
+## Conventions
 
-Drop the folder into Claude Code and try these:
-
-> "I've added my own images to `assets/images/`. Replace all the `IMAGE_SWAP` placeholders in `index.html` with my local images using the keys from the README inventory."
-
-> "Wire up the contact form in `contact.html` to post to a backend at `/api/contact`. Add proper error handling, a loading state, and show an error message if the request fails. Look for the `FORM_SUBMIT` markers in the file."
-
-> "Extract the duplicated CSS in `<style>` blocks across `index.html` and `contact.html` into a single shared `styles.css`."
-
-> "Add an Instagram / LinkedIn icon row to the contact-brand panel on the contact page, matching the existing brass icon style."
-
-> "Make the site multilingual (English / Spanish) with a language toggle in the nav."
+- Always include both EN and ES spans for any visible text — the bilingual toggle expects them as siblings.
+- Add `class="reveal"` to any block that should fade-in on scroll (handled by `assets/js/reveal.js`).
+- Prefer existing tokens (`var(--color-accent-gold)` etc.) over hex literals when adding new CSS.
+- Stick to the single Cormorant Garamond + Inter pairing — no third font.
+- Use `vector-effect: non-scaling-stroke` on SVG strokes that should stay crisp at any size.
 
 ---
 
-## 5. Running locally
+## Working with this site
 
-No build step. Just open `index.html` in a browser, or serve the folder:
+If you (or a future Claude) need to:
 
-```sh
-# Python
-python3 -m http.server 8000
-
-# Node
-npx serve .
-```
-
-Then visit `http://localhost:8000`.
-
-The form's `fetch('/api/contact')` call will fail locally with a Python or `serve` static server because nothing handles `/api/*`. To test the function end-to-end on your machine, install Vercel CLI and run `vercel dev` instead:
-
-```sh
-npm i -g vercel
-vercel dev
-```
-
-`vercel dev` serves the static files **and** runs the function from `api/contact.js`.
+| Task | Where to look |
+|---|---|
+| Change ticker symbols | `index.html` inside the `<script src="…ticker-tape.js">` JSON block |
+| Add a section to the home | `index.html` between existing `<section>` blocks; add styles in `assets/css/sections.css` |
+| Swap a product photo | drop into `assets/images/` with a meaningful filename, update the matching `<img class="product-illust" src="…">` |
+| Tune marker positions on the map | adjust the `cx`/`cy` on the 7 `<circle class="hub">` in the trade-map block; arcs are 5 `<path class="arc">` Beziers |
+| Change colors / fonts | edit `assets/css/tokens.css` — every component reads from CSS variables, so a one-line change propagates everywhere |
 
 ---
 
-## 6. Deploying to Vercel
+## History
 
-The repository is set up so you can push to GitHub, import on Vercel, and ship without extra build steps.
+The site started as a generic agritrade marketing template. Major arcs:
 
-### One-time: push to GitHub
+- **Phase 1 (refactor)**: lifted inline `<style>` and `<script>` blocks into modular files under `assets/css/` and `assets/js/`; swapped fonts to Cormorant Garamond + Inter.
+- **Phase 2 (about merge)**: collapsed `about.html` into the home as 3 contiguous sections (Philosophy / Proven Experience / Why Local). `about.html` became a 5-line redirect.
+- **Phase 3 (products expansion)**: replaced the 6 hand-picked commodity cards with the 8 official categories (Soybean Complex, Wheat-Corn-Grains, Sugar, Oil-seeds, Specialty Grains, Fats & Oils, Metals, Urea).
+- **Phase 4 (trade map)**: replaced the abstract continent-blob SVG with a real Wikimedia world map; re-projected the 7 markers; differentiated origin (solid gold) from destination (cream with gold ring).
 
-```sh
-cd patagonia-website
-git init
-git add .
-git commit -m "Initial commit"
-gh repo create patagonia-website --private --source=. --push
-# or, without the gh CLI:
-# git remote add origin git@github.com:<your-user>/patagonia-website.git
-# git push -u origin main
-```
-
-### Import on Vercel
-
-1. Go to https://vercel.com/new and import the GitHub repo.
-2. Framework preset: **Other** (Vercel will auto-detect the static files + `/api` function).
-3. Build & Output settings: leave defaults — no build command needed.
-4. After the first deploy, go to **Project → Settings → Environment Variables** and add:
-   - `RESEND_API_KEY` (Production, Preview, Development)
-   - Optional: `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`
-5. Trigger a redeploy (push any commit, or hit **Redeploy** in the dashboard) so the function picks up the env vars.
-
-### Verifying after deploy
-
-- `https://<your-app>.vercel.app/` — landing page loads.
-- `https://<your-app>.vercel.app/contact.html` — form renders.
-- Submit a test inquiry. Watch **Vercel → Project → Logs → /api/contact** for the request. If `RESEND_API_KEY` is set, the recipient inbox receives the email. If not, you'll see `[contact] RESEND_API_KEY not set` in the logs.
-
-### Connecting a custom domain
-
-In **Project → Settings → Domains**, add `patagoniaamericas.com` (or whichever) and follow the DNS instructions Vercel shows.
-
----
-
-## 7. Live components (added in the redesign)
-
-### Hero cross-fading slideshow
-- 5 Unsplash-hotlinked images, 7-second cross-fade interval, pauses on hover, paginated dots.
-- First image loads `eager` with `fetchpriority="high"` so the LCP element paints fast.
-- Each `<img>` has an `onerror` fallback to `assets/images/hero.jpg`, so a broken Unsplash URL never leaves the hero blank.
-- Disabled under `prefers-reduced-motion` — shows slide 1 only.
-- To swap in client photography, replace the 5 `src` attributes inside `<div class="hero-slides">` in `index.html`.
-
-### TradingView live ticker
-- Embedded via the official free `embed-widget-ticker-tape.js` script. No API key required.
-- Symbols configured inline in `index.html` near the `<div class="ticker-shell">`: ZL1!, ZS1!, ZW1!, ZC1!, SB1!, USDBRL, USDARS, BDI.
-- To change symbols, edit the JSON inside the embed `<script>` block.
-- Under `prefers-reduced-motion`, the widget is hidden and the `.ticker-fallback` static list is shown instead.
-
-### Interactive world map
-- Pure inline SVG (`<svg class="world-map">`) — stylized continent outlines, 4 destination hubs (Rotterdam, Qingdao, Jebel Ali, Singapore), 3 origin hubs (US Midwest, Brazil, Argentina), and 5 animated trade arcs.
-- Arcs draw with `stroke-dashoffset` over a 5-second loop, staggered. Hubs pulse with a `transform: scale()` keyframe (not the SVG `r` attribute — Safari compatibility).
-- Heading copy is bilingual via `data-i18n` spans. Located between `.who` and `.cta-strip`.
-
-### Animated stat counters
-- Each `.stat` in the stats band carries a `.stat-count[data-target]` span. The existing IntersectionObserver was extended to also kick off `animateCount()` and add a `.counted` class that draws a 44px brass underline.
-- Pull a stat number by editing `data-target` and the suffix `<em>` separately.
-- Under `prefers-reduced-motion`, counters jump straight to their final value.
-
-### EN / ES language toggle
-- CSS-driven swap on `<html data-lang>`. Every translatable text node has two adjacent siblings: `<span data-i18n="en">…</span><span data-i18n="es">…</span>`. CSS hides the wrong one.
-- Toggle controls: nav (`.lang-toggle`) and footer (`.lang-toggle.footer-lang`). Selection is persisted in `localStorage` under key `pa-lang`.
-- Contact-page form `<option>` text and the `<textarea>` placeholder can't use child spans, so they are translated dynamically via `data-i18n-en` / `data-i18n-es` attributes and the `setLang()` function in `contact.html`.
-- Form error message and submit-button label are also language-aware (see `I18N` map in `contact.html`).
-- To add a new locale (say PT): add a `data-i18n="pt"` sibling everywhere, add a `pt` button to both `.lang-toggle`s, extend the `I18N` map, and add `html[data-lang="pt"] [data-i18n!="pt"] { display: none; }` CSS rules.
-
-### Scrollspy + active nav link
-- Implemented inside the existing rAF-throttled `onScroll` handler. It computes the active in-page section based on whether its top has passed 35% of the viewport, and toggles `.active` on the matching nav link (brass underline + cream color).
-
-### OpenStreetMap embed (contact page)
-- Static iframe (`https://www.openstreetmap.org/export/embed.html`). No key, no quota, no tracker. Bbox + marker pointing at the Boca Raton HQ.
-- Subtle `filter: grayscale + sepia` muting by default; clears on hover for visual interest.
-- "View larger map" link opens the full OSM map in a new tab.
-
-### WhatsApp CTA (contact page)
-- `.wa-cta` pill inside the phone `.detail` block, opens `https://wa.me/15614107750`.
-- Bilingual label, official WhatsApp green (`#25D366`).
-
-### Accessibility hardening
-- Global `:focus-visible` outline using `var(--brass)`.
-- Global `@media (prefers-reduced-motion: reduce)` block disables all infinite animations and reveal transitions in both files.
-- Every below-the-fold `<img>` carries `loading="lazy" decoding="async"`. Hero slide 1 explicitly opts into `loading="eager" fetchpriority="high"` for LCP.
-
-### Verifying the redesign locally
-1. `python3 -m http.server 8000` (or `vercel dev`).
-2. Open `http://localhost:8000/`.
-3. Hero should cross-fade through 6 frames (5 Unsplash + 1 owner photo `wp-port-cranes.jpg`); hover to pause; click a dot to jump.
-4. Ticker strip below the hero shows live prices from TradingView.
-5. Scroll to the stats band — numbers count up 0→target with easeOutCubic, then the gold underline draws in.
-6. Hover any product card — image scales 1.05, brass top bar wipes in, descriptor slides up from the bottom.
-7. Continue scrolling to the trade map — gold arcs draw and fade between origin and destination hubs on a loop.
-8. Click the EN / ES toggle in the nav (or footer on mobile). Reload to confirm persistence.
-9. Open `/contact.html`. Tab through form fields; brass underline + brass focus ring appears. Click "Chat on WhatsApp". The OSM map loads under the address.
-10. Submit a test inquiry — inline success state shows with no redirect.
-11. DevTools → Rendering → "Emulate CSS prefers-reduced-motion: reduce" — verify slideshow stops on slide 1, ticker falls back to static text, counters jump to final values.
-
----
-
-## 8. Dream Portal expansion (WordPress fusion)
-
-Layered on top of §7. Brings the institutional depth of the owner's WordPress (Astra Theme) into the Vercel site.
-
-### New sections in `index.html`
-After `.who` and before `.trade-map`:
-- **`.strategic` (Strategic Positioning)** — two-column block: institutional copy on the left + `assets/images/sacos.png` (Control Union certified jute sacks) on the right with an overlay caption. Below: 3 cards (Long-Term Partnership Focus / Scalable Execution Platform / Institutional Approach), each with a brass icon and brass top-bar wipe on hover. Links to `about.html` via "Read Our Full Approach".
-
-After `.trade-map` and before `.cta-strip`:
-- **`.ops-banner`** — full-width transitional banner using `assets/images/wp-grains-mosaic.jpg` with forest gradient + heading "Successful commodity transactions require far more than pricing alone."
-- **`.flow-diagram` (Global Supply + Local Execution)** — dark forest section with an inline SVG diagram: three nodes (International Partner → Patagonia Americas → Industrial Clients) joined by animated brass arcs (reuse of the trade-map keyframes `hub-pulse`, `arc-draw`, plus a new `ring-pulse`). Bilingual node labels.
-- **`.ops-capabilities`** — black band with a 3×2 grid of 6 tiles (Operational Coordination · Supplier Alignment · Logistics Management · Customer Responsiveness · Documentation Discipline · Market Adaptability), each with a brass icon and short copy.
-- **`.growth` (Built for Long-Term Growth)** — closing band immediately before `.cta-strip`, using `wp-grains-mosaic.jpg` as a low-opacity background and the verbatim WP quote about durability.
-
-### Product grid expansion (`.product-grid.product-grid-6`)
-Refactored from 2×2 to 3×2 (desktop): Soybean Oil, Wheat, Corn, Sorghum, Cane & Beet Molasses, Sugar. Each card carries the same hover overlay pattern (Origin · Key Markets · Grades/Use). New product images for Corn / Sorghum / Sugar are Unsplash hotlinks with `onerror` fallback to `assets/images/wp-grains-mosaic.jpg`.
-
-### `about.html` (new page)
-Dedicated About page with the full WordPress depth. Sections, top to bottom:
-1. Hero — `wp-port-cranes.jpg` as background, "Building reliable commercial bridges across global markets."
-2. **Our Company Philosophy** — African proverb + 2 paragraphs + a pulled quote with brass left-border, paired with `wp-grains-mosaic.jpg`.
-3. **Strategic Positioning** — 2 paragraphs from the WP + the same 3 strategic cards (LTPF / SEP / IA).
-4. **Our Business Model** — the SVG flow diagram (same component as `index.html`).
-5. **Proven Market Experience** — long prose with two sub-headings (Global Agribusiness Relationships, Operational Execution Capability), the 6-item bullet list of execution capabilities, and a 3-image grid (port cranes + grains mosaic + sacos).
-6. **Why Local Coordination Matters** — 4 cards (Commercial Relationships / Operational Adaptability / Documentation & Process Coordination / Customer & Market Intelligence), each with a brass icon.
-7. **Closing** — "Built for Long-Term Growth" + CTA to `contact.html`.
-
-The page mirrors the header / nav / footer of `contact.html`, copies the design tokens block, and ships its own short script for the IntersectionObserver-based reveal animations + the EN/ES language toggle.
-
-### Nav-link wiring
-"About Us" / "Nosotros" in **all three pages** now points to `about.html` (previously pointed to `#about` in `index.html`, which is now superseded). The scrollspy in `index.html` is unaffected — it only picks up in-page anchors (`href^="#"`), so the cross-page link is ignored cleanly.
-
-### Owner-provided imagery
-Three local assets dropped into `assets/images/`:
-- **`sacos.png`** (3.4 MB) — Control Union certified jute sacks in warehouse. Used as the protagonist of `.strategic` (right column) and inside the about-experience tri-image grid. Marked `loading="lazy"` + `decoding="async"`. A future optimization pass should convert to WebP and resize down — see `IMAGE_OPTIMIZE[sacos]` consideration.
-- **`wp-port-cranes.jpg`** — bulk carrier at dusk beneath port cranes. Inserted as slide #2 in the homepage slideshow and as the hero background of `about.html` + the closing band of `about.html`.
-- **`wp-grains-mosaic.jpg`** — grain portfolio mosaic. Banner of `.ops-banner`, the about-philosophy right column, and the about-experience tri-image grid.
-
-### EN / ES coverage
-- `index.html` data-i18n span count: **~272** (was ~152 in §7 baseline).
-- `about.html` data-i18n span count: **~146** — same `setLang()` pattern, persists in `localStorage.pa-lang`, mirrored in the footer toggle.
-- The toggle in the nav is hidden on mobile (≤880px) for all three pages; the mirrored footer toggle stays visible.
-
-### Verifying the dream-portal expansion
-1. `python3 -m http.server 8000` → open `http://localhost:8000/`.
-2. Scroll past Who We Are → Strategic Positioning appears (sacos.png on the right with "CONTROL UNION CERTIFIED" badge, 3 institutional cards below).
-3. Continue scrolling past Global Flow → Operational Execution banner (wp-grains-mosaic) → flow diagram with brass arcs drawing between 3 hubs → 6-tile capability grid.
-4. Built for Long-Term Growth appears just above the CTA strip, with the wp-grains-mosaic background at 18% opacity.
-5. Product grid is now 3×2 (Soybean Oil, Wheat, Corn, Sorghum, Cane Molasses, Sugar). Hover any card → image scales, brass top accent wipes in, descriptor (Origin / Key Markets / Grades or Use) slides up.
-6. Open `/about.html` — hero with wp-port-cranes, then the 6 sections render. Toggle EN/ES; reload — preference persists across pages.
-7. From the homepage nav, click "About Us" → lands on `about.html`. The active state in the about nav is on the About Us link.
+The original detailed redesign brief lives in `assets/REDESIGN_SPEC.md` — useful historical context but the implementation diverged from it in several places (most notably keeping the hero slideshow instead of switching to a two-column static hero).
