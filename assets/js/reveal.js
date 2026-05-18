@@ -46,9 +46,7 @@
 
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-  // Ticker reduced-motion fallback — TradingView ignores the OS preference.
-  if (reduceMotion) {
-    const shell = document.getElementById('tickerShell');
-    if (shell) shell.classList.add('is-static');
-  }
+  /* The TradingView ticker stays live regardless of prefers-reduced-motion.
+     The .ticker-fallback list remains in the markup as a graceful degradation
+     if the iframe itself fails to load — see components.css. */
 })();

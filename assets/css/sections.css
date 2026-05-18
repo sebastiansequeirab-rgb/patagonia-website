@@ -364,7 +364,23 @@
 }
 .products-inner.expanded .products-intro {
   max-width: 760px;
-  text-align: left;
+  margin: 0 auto;
+  text-align: center;
+}
+.products-inner.expanded .products-intro .eyebrow {
+  /* centered eyebrow: dashes on both sides */
+  justify-content: center;
+}
+.products-inner.expanded .products-intro .eyebrow::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--color-accent-gold);
+}
+.products-inner.expanded .products-intro p {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 620px;
 }
 .products-intro .eyebrow { margin-bottom: 28px; }
 .products-intro h2 {
