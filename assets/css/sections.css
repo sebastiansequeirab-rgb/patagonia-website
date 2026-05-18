@@ -1103,15 +1103,22 @@
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
+/* Origin hubs — solid gold, larger, with gold halo */
 .world-map .hub {
   fill: var(--color-accent-gold);
+  r: 7;
   transform-box: fill-box;
   transform-origin: center;
   animation: hub-pulse 2.6s ease-in-out infinite;
-  filter: drop-shadow(0 0 6px rgba(200,168,101,.55));
+  filter: drop-shadow(0 0 8px rgba(200, 168, 101, 0.7));
 }
+/* Destination hubs — cream fill with gold ring, smaller, no halo */
 .world-map .hub.dest {
-  fill: var(--color-accent-gold-bright);
+  fill: var(--color-text-light);
+  stroke: var(--color-accent-gold);
+  stroke-width: 1.5;
+  r: 5;
+  filter: none;
   animation-delay: .8s;
 }
 .world-map .arc {
@@ -1144,12 +1151,19 @@
   gap: 10px;
 }
 .trade-map .hub-legend i {
-  width: 7px; height: 7px;
-  border-radius: 50%;
   display: inline-block;
+  border-radius: 50%;
+  box-sizing: border-box;
 }
-.trade-map .hub-legend i.origin { background: var(--color-accent-gold); }
-.trade-map .hub-legend i.dest   { background: var(--color-accent-gold-bright); }
+.trade-map .hub-legend i.origin {
+  background: var(--color-accent-gold);
+  width: 10px; height: 10px;
+}
+.trade-map .hub-legend i.dest {
+  background: var(--color-text-light);
+  border: 1.5px solid var(--color-accent-gold);
+  width: 9px; height: 9px;
+}
 
 /* ============================================================
    INDEX — GROWTH (Closing band)
