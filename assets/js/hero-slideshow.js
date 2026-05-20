@@ -31,8 +31,8 @@
   const start = () => {
     if (reduceMotion) return;
     stop();
-    // 8s per slide — premium pacing.
-    timer = setInterval(advance, 8000);
+    // 3s per slide — quicker, more animated pacing.
+    timer = setInterval(advance, 3000);
   };
 
   dots.forEach((dot, i) => {

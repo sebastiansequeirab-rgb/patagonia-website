@@ -3,7 +3,7 @@
 //
 // Required environment variables on Vercel for live email delivery:
 //   RESEND_API_KEY      — API key from https://resend.com/api-keys
-//   CONTACT_TO_EMAIL    — recipient address (defaults to info@patagoniaamericas.com)
+//   CONTACT_TO_EMAIL    — recipient address (defaults to Exports@patagoniaamericas.com)
 //   CONTACT_FROM_EMAIL  — sender, must use a domain verified in Resend
 //                          (defaults to onboarding@resend.dev for first-deploy testing)
 //
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
   }
 
   const subjectLabel = SUBJECT_LABELS[subjectKey] || subjectKey;
-  const to = process.env.CONTACT_TO_EMAIL || 'info@patagoniaamericas.com';
+  const to = process.env.CONTACT_TO_EMAIL || 'Exports@patagoniaamericas.com';
   const from = process.env.CONTACT_FROM_EMAIL || 'Patagonia Americas <onboarding@resend.dev>';
   const apiKey = process.env.RESEND_API_KEY;
 

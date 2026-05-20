@@ -1,6 +1,6 @@
 # Patagonia Americas LLC — Website
 
-Static marketing site for Patagonia Americas, an international commodity trading firm based in Boca Raton, FL.
+Static marketing site for Patagonia Americas, an international commodity trading firm based in Fort Lauderdale, FL.
 
 **Live:** https://patagonia-website.vercel.app
 
@@ -49,8 +49,8 @@ patagonia-website/
 Sections in render order (anchor IDs in parentheses):
 
 1. **Nav** — fixed, transparent until 40 px of scroll, then glass + blur.
-2. **Hero** (`<header class="hero">`) — 6-image cross-fading slideshow + headline + lead. 8 s rotation, hover-pause.
-3. **Live ticker** — TradingView ticker-tape embed (commodity ETFs + FX pairs). Sized so it's visible above the fold.
+2. **Hero** (`<header class="hero">`) — 6-image cross-fading slideshow + headline + lead. 3 s rotation, 1.2 s cross-fade, hover-pause. Its height reserves the ticker band (see below) so content never overflows the fold.
+3. **Live ticker** — TradingView ticker-tape embed (commodity ETFs + FX pairs). Lives in a fixed-height (`--ticker-h`, 60 px) band that the hero subtracts from its own height, so it's always visible on load at any zoom level.
 4. **What We Do** (`#services`) — 3 pillar cards (Global Reach, Logistics Excellence, Commitment to You).
 5. **Premium Commodities** (`#products`) — 8-card category grid (see § Products).
 6. **Stats** — 4 animated counters.
@@ -94,6 +94,18 @@ All tokens live in `assets/css/tokens.css`. Selection:
 
 Legacy aliases (`--brass`, `--forest`, `--cream`, etc.) live in tokens.css too and resolve to the new tokens — they exist so any rule that wasn't migrated still works.
 
+### Spacing & layout rhythm
+
+Every section reads its vertical padding from **fluid spacing tokens** so the rhythm stays consistent across the 80–125 % zoom range and all viewport widths — there are no more ad-hoc per-section px values:
+
+| Token | Value | Used by |
+|---|---|---|
+| `--space-section-y` | `clamp(88px, 9.5vw, 136px)` | big sections — What We Do, Products, Who We Are, the 3 About blocks, Strategic, Flow Diagram, Ops Capabilities, Trade Map, Growth |
+| `--space-section-sm` | `clamp(56px, 6vw, 84px)` | compact sections — Stats, CTA strip, Footer top |
+| `--ticker-h` | `60px` | live-ticker band height; subtracted from the hero so the ticker stays above the fold |
+
+Horizontal gutters were already uniform (every section wraps its content in `.container` — max 1280 px, 40 px gutter), so synchronizing dimensions was purely a vertical-rhythm job.
+
 ---
 
 ## Live ticker — important gotcha
@@ -114,6 +126,8 @@ Legacy aliases (`--brass`, `--forest`, `--cream`, etc.) live in tokens.css too a
 ```
 
 Change the symbol set inside the `<script src="…ticker-tape.js" async>` block at the top of `index.html`. Pick symbols that exist on NYSE / AMEX / NYSEARCA / FX_IDC — futures and many regional indices won't render in the free widget.
+
+**Keeping it above the fold:** the ticker band has a fixed height (`--ticker-h`, 60 px) and the hero uses `min-height: calc(100svh - var(--ticker-h))`, so nav + hero + ticker always fit the viewport on load. Don't reintroduce a nav-height subtraction in that calc — the nav is `position: fixed` and doesn't consume flow space, so subtracting it leaves an empty band below the ticker.
 
 ---
 
@@ -249,5 +263,6 @@ The site started as a generic agritrade marketing template. Major arcs:
 - **Phase 2 (about merge)**: collapsed `about.html` into the home as 3 contiguous sections (Philosophy / Proven Experience / Why Local). `about.html` became a 5-line redirect.
 - **Phase 3 (products expansion)**: replaced the 6 hand-picked commodity cards with the 8 official categories (Soybean Complex, Wheat-Corn-Grains, Sugar, Oil-seeds, Specialty Grains, Fats & Oils, Metals, Urea).
 - **Phase 4 (trade map)**: replaced the abstract continent-blob SVG with a real Wikimedia world map; re-projected the 7 markers; differentiated origin (solid gold) from destination (cream with gold ring).
+- **Phase 5 (responsive polish + correctness pass)**: pinned the live ticker above the fold at any zoom (hero height now reserves `--ticker-h`, and the over-subtracted nav height was removed); normalized every section's vertical rhythm to the fluid spacing tokens (`--space-section-y` / `--space-section-sm`) so the layout stays consistent across the 80–125 % zoom range; corrected the HQ address to **300 SE 2nd Street, Suite 600, Fort Lauderdale, FL 33301** and the inbox to **Exports@patagoniaamericas.com** sitewide (footer, contact page, OSM map embed + links, and the serverless default in `api/contact.js`); added "metals" to the hero lead, Who We Are, Company Philosophy and the flow diagram's Industrial Clients node; and quickened the hero slideshow to a 3 s rotation with a 1.2 s cross-fade.
 
 The original detailed redesign brief lives in `assets/REDESIGN_SPEC.md` — useful historical context but the implementation diverged from it in several places (most notably keeping the hero slideshow instead of switching to a two-column static hero).

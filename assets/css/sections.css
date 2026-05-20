@@ -49,7 +49,7 @@
    ============================================================ */
 .hero {
   position: relative;
-  min-height: calc(100svh - 110px);
+  min-height: calc(100svh - var(--ticker-h));
   color: var(--color-text-light);
   overflow: hidden;
   display: flex;
@@ -89,7 +89,7 @@
 .hero-content {
   position: relative;
   z-index: 3;
-  padding: 180px 0 140px;
+  padding: clamp(72px, 10vh, 150px) 0 clamp(56px, 7vh, 110px);
   max-width: 780px;
   text-align: left;
 }
@@ -119,7 +119,7 @@
   animation: grow 1.3s var(--ease) .9s both;
 }
 .hero-lead {
-  font-size: 18px;
+  font-size: clamp(15px, 1.4vw, 18px);
   line-height: 1.7;
   max-width: 500px;
   color: rgba(245,237,216,.82);
@@ -141,7 +141,7 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 1.8s var(--ease);
+  transition: opacity 1.2s var(--ease);
   will-change: opacity;
 }
 .hero-slide.is-active { opacity: 0.70; }
@@ -197,7 +197,7 @@
       #1F2D24 280px
     ) bottom / 100% 280px no-repeat,
     var(--color-bg-cream);
-  padding: 140px 0 130px;
+  padding: var(--space-section-y) 0;
   position: relative;
 }
 
@@ -324,7 +324,7 @@
 .products {
   background: var(--color-bg-primary);
   color: var(--color-text-light);
-  padding: 130px 0;
+  padding: var(--space-section-y) 0;
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(200,168,101,0.18);
@@ -518,7 +518,7 @@
 .stats {
   background: var(--color-text-dark);
   color: var(--color-text-light);
-  padding: 80px 0;
+  padding: var(--space-section-sm) 0;
   border-top: 1px solid rgba(200,168,101,.15);
   border-bottom: 1px solid rgba(200,168,101,.15);
 }
@@ -661,7 +661,7 @@
       #1A1F1A 280px
     ) bottom / 100% 280px no-repeat,
     var(--color-bg-cream-soft);
-  padding: 140px 0;
+  padding: var(--space-section-y) 0;
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(200,168,101,0.18);
@@ -736,7 +736,7 @@
    ============================================================ */
 .strategic {
   background: var(--color-bg-cream-soft);
-  padding: 140px 0 130px;
+  padding: var(--space-section-y) 0;
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(200,168,101,0.18);
@@ -905,7 +905,7 @@
 .flow-diagram {
   background: var(--color-bg-primary);
   color: var(--color-text-light);
-  padding: 130px 0;
+  padding: var(--space-section-y) 0;
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(200,168,101,0.18);
@@ -1014,7 +1014,7 @@
 .ops-capabilities {
   background: var(--color-text-dark);
   color: var(--color-text-light);
-  padding: 110px 0 120px;
+  padding: var(--space-section-y) 0;
   position: relative;
   box-shadow: inset 0 1px 0 rgba(200,168,101,0.15);
 }
@@ -1066,7 +1066,7 @@
    ============================================================ */
 .trade-map {
   background: var(--color-bg-cream-soft);
-  padding: 130px 0 120px;
+  padding: var(--space-section-y) 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -1172,7 +1172,7 @@
   position: relative;
   overflow: hidden;
   color: var(--color-text-light);
-  padding: 130px 0 120px;
+  padding: var(--space-section-y) 0;
   text-align: center;
   background: var(--color-bg-primary);
   box-shadow: inset 0 1px 0 rgba(200,168,101,0.18);
@@ -1245,7 +1245,7 @@
 .cta-strip {
   background: var(--color-text-dark);
   color: var(--color-text-light);
-  padding: 70px 0;
+  padding: var(--space-section-sm) 0;
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(200,168,101,0.18);
@@ -1282,7 +1282,7 @@
 .footer {
   background: var(--color-bg-primary);
   color: var(--color-text-light);
-  padding: 80px 0 32px;
+  padding: var(--space-section-sm) 0 32px;
   position: relative;
   box-shadow: inset 0 1px 0 rgba(200,168,101,0.18);
 }
@@ -1409,7 +1409,7 @@
 }
 
 .about-section {
-  padding: 120px 0;
+  padding: var(--space-section-y) 0;
   position: relative;
 }
 .about-section.tone-paper  { background: var(--color-bg-cream-soft); }
@@ -1925,7 +1925,6 @@
   .contact-form-wrap { padding: 70px 50px; }
 }
 @media (max-width: 880px) {
-  .hero-content { padding: 140px 0 100px; }
   .pillars      { grid-template-columns: 1fr; border-top: 1px solid #E2DAC4; }
   .pillar       { border-right: none; border-bottom: 1px solid #E2DAC4; }
   .pillar:last-child { border-bottom: none; }
@@ -1973,7 +1972,7 @@
   .product-grid { grid-template-columns: 1fr; }
   .footer-grid  { grid-template-columns: 1fr; gap: 40px; }
   .stats-grid   { grid-template-columns: 1fr; gap: 48px; }
-  .hero         { min-height: calc(92svh - 110px); }
+  .hero         { min-height: calc(100svh - var(--ticker-h)); }
   .hero-dots    { bottom: 92px; }
   .cap-grid     { grid-template-columns: 1fr; }
 }
