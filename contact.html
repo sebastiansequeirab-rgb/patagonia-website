@@ -64,6 +64,7 @@
         <a href="index.html#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a>
         <a href="index.html#about"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a>
         <a href="contact.html" class="active"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a>
+        <a href="/roraima">Roraima</a>
       </div>
       <div class="nav-actions" style="display:flex; align-items:center; gap:18px;">
         <div class="lang-toggle" role="group" aria-label="Language">
@@ -201,6 +202,10 @@
     </div>
 
     <form id="contactForm" novalidate>
+      <!-- Honeypot: hidden from humans; bots that fill it are silently dropped server-side -->
+      <div class="hp-trap" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+        <label>Company website<input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off" /></label>
+      </div>
       <div class="field-row">
         <div class="field">
           <label for="name"><span data-i18n="en">Full Name</span><span data-i18n="es">Nombre Completo</span> <span class="req">*</span></label>
@@ -349,7 +354,9 @@
       email: email.value.trim(),
       phone: document.getElementById('phone').value.trim(),
       subject: document.getElementById('subject').value,
-      message: document.getElementById('message').value.trim()
+      message: document.getElementById('message').value.trim(),
+      lang: getLang(),
+      company_website: document.getElementById('company_website').value
     };
 
     try {

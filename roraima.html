@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Patagonia Americas | Global Commodities. Reliable Solutions.</title>
-<meta name="description" content="An international commodity trading and logistics partner. Sourcing, shipping, and delivering agricultural raw materials at global scale." />
+<title>Roraima — Patagonia Americas</title>
+<meta name="description" content="The Roraima Platform — an integrated investment, structuring, and execution platform by Patagonia Americas, built where capital meets the frontier across the Americas." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,10 +14,10 @@
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/sections.css">
+<link rel="stylesheet" href="assets/css/roraima.css">
 
 <style>
-  /* Critical above-the-fold CSS — duplicated from tokens.css + base.css.
-     Inlined to speed up first paint (spec §18, no render-blocking resources). */
+  /* Critical above-the-fold CSS — duplicated from tokens.css + base.css for fast first paint. */
   :root {
     --color-bg-primary: #1F2D24;
     --color-bg-cream-soft: #FAF5E8;
@@ -41,10 +41,12 @@
 </head>
 <body>
 
-<!-- NAV -->
+<a href="#premise" class="skip-link"><span data-i18n="en">Skip to content</span><span data-i18n="es">Saltar al contenido</span></a>
+
+<!-- NAV (identical pattern to the home portal) -->
 <nav class="nav" id="nav">
   <div class="container nav-inner">
-    <a href="#" class="logo" aria-label="Patagonia Americas">
+    <a href="index.html" class="logo" aria-label="Patagonia Americas Home">
       <svg class="logo-mark" viewBox="0 0 44 44" fill="none">
         <circle cx="22" cy="22" r="19" stroke="#b8954a" stroke-width="1.2"/>
         <ellipse cx="22" cy="22" rx="19" ry="8" stroke="#b8954a" stroke-width="0.7"/>
@@ -61,11 +63,11 @@
     </a>
 
     <div class="nav-links">
-      <a href="#services"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a>
-      <a href="#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a>
-      <a href="#about"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a>
+      <a href="index.html#services"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a>
+      <a href="index.html#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a>
+      <a href="index.html#about"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a>
       <a href="contact.html"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a>
-      <a href="/roraima">Roraima</a>
+      <a href="/roraima" class="active">Roraima</a>
     </div>
 
     <div class="nav-actions">
@@ -81,70 +83,42 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
-  <!-- Cross-fading commodity / port photography (6 frames, 8s each). All images served locally
-       from /assets/images so they are on-brand, fast, and never substituted by an upstream CDN. -->
-  <div class="hero-slides" id="heroSlides" aria-hidden="true">
-    <img class="hero-slide is-active fade-warm"
-         src="assets/images/hero.jpg"
-         alt="Aerial view of a commercial bulk-cargo port at golden hour"
-         loading="eager" fetchpriority="high" decoding="async">
-    <img class="hero-slide fade-warm"
-         src="assets/images/wp-port-cranes.jpg"
-         alt="Bulk carrier docked beneath illuminated port cranes at dusk"
-         loading="lazy" decoding="async">
-    <img class="hero-slide fade-warm"
-         src="assets/images/priority-ship.jpg"
-         alt="Cargo ship being loaded at port with cranes at sunset"
-         loading="lazy" decoding="async">
-    <img class="hero-slide fade-warm"
-         src="assets/images/priority-truck.jpg"
-         alt="Freight truck transporting commodities on highway at sunset"
-         loading="lazy" decoding="async">
-    <img class="hero-slide fade-warm"
-         src="assets/images/pillar-commitment.jpg"
-         alt="Aerial view of a wheat field at harvest"
-         loading="lazy" decoding="async">
-    <img class="hero-slide fade-warm"
-         src="assets/images/pillar-logistics.png"
-         alt="Shipping containers stacked at a busy port terminal"
-         loading="lazy" decoding="async">
+<!-- HERO — dark full-bleed tepui (one of the two dark moments) -->
+<header class="hero" id="hero">
+  <div class="hero-slides" aria-hidden="true">
+    <img class="hero-slide is-active fade-warm" src="assets/images/roraima-hero.jpg"
+         alt="Mount Roraima tepui rising above misty jungle at golden hour" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-overlay"></div>
 
   <div class="container">
     <div class="hero-content">
       <span class="eyebrow hero-eyebrow">
-        <span data-i18n="en">International Commodity Trading</span>
-        <span data-i18n="es">Comercio Internacional de Materias Primas</span>
+        <span data-i18n="en">The Roraima Platform</span>
+        <span data-i18n="es">La Plataforma Roraima</span>
       </span>
       <h1>
-        <span data-i18n="en">Global Commodities.<br/><em>Reliable Solutions.</em></span>
-        <span data-i18n="es">Materias Primas Globales.<br/><em>Soluciones Confiables.</em></span>
+        <span data-i18n="en">A Gateway to <em>Frontier</em><br/>Opportunity.</span>
+        <span data-i18n="es">Una Puerta a la <em>Frontera</em><br/>de la Oportunidad.</span>
       </h1>
       <div class="hero-divider"></div>
       <p class="hero-lead">
-        <span data-i18n="en">A global commodities and logistics partner. Sourcing, shipping, and delivering agricultural raw materials and metals at scale, with the discipline our clients have come to expect across continents.</span>
-        <span data-i18n="es">Un socio global en materias primas y logística. Originamos, embarcamos y entregamos materias primas agrícolas y metales a escala, con la disciplina que nuestros clientes esperan en todos los continentes.</span>
+        <span data-i18n="en">An integrated investment, structuring, and execution platform — built where capital meets the frontier across the Americas.</span>
+        <span data-i18n="es">Una plataforma integrada de inversión, estructuración y ejecución — construida donde el capital se encuentra con la frontera en las Américas.</span>
       </p>
     </div>
   </div>
 
-  <div class="hero-dots" role="tablist" aria-label="Hero slides">
-    <button class="hero-dot is-active" type="button" data-i="0" aria-label="Slide 1"></button>
-    <button class="hero-dot" type="button" data-i="1" aria-label="Slide 2"></button>
-    <button class="hero-dot" type="button" data-i="2" aria-label="Slide 3"></button>
-    <button class="hero-dot" type="button" data-i="3" aria-label="Slide 4"></button>
-    <button class="hero-dot" type="button" data-i="4" aria-label="Slide 5"></button>
-    <button class="hero-dot" type="button" data-i="5" aria-label="Slide 6"></button>
-  </div>
-
+  <a class="scroll-cue" href="#premise" aria-label="Scroll to content">
+    <span class="scroll-cue-label"><span data-i18n="en">Scroll</span><span data-i18n="es">Desliza</span></span>
+    <span class="scroll-cue-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+    </span>
+  </a>
 </header>
 
-<!-- LIVE MARKET TICKER (TradingView free embed — symbols configured below) -->
+<!-- LIVE MARKET TICKER — identical to the home portal (TradingView, in-flow, scrolls away) -->
 <div class="ticker-shell" id="tickerShell" aria-label="Live commodity prices">
-  <!-- TradingView Widget BEGIN -->
   <div class="tradingview-widget-container">
     <div class="tradingview-widget-container__widget"></div>
     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
@@ -167,743 +141,263 @@
     }
     </script>
   </div>
-  <!-- TradingView Widget END -->
-  <!-- Static fallback only shown if the iframe fails to load -->
   <ul class="ticker-fallback" aria-hidden="true">
-    <li>Soybeans</li>
-    <li>Wheat</li>
-    <li>Corn</li>
-    <li>Sugar</li>
-    <li>Agri Fund</li>
-    <li>USD/BRL</li>
-    <li>USD/ARS</li>
-    <li>US Dollar Index</li>
+    <li>Soybeans</li><li>Wheat</li><li>Corn</li><li>Sugar</li><li>Agri Fund</li><li>USD/BRL</li><li>USD/ARS</li><li>US Dollar</li>
   </ul>
 </div>
 
-<!-- WHAT WE DO -->
-<section class="what" id="services">
+<main>
+
+<!-- PREMISE -->
+<section class="r-section r-premise" id="premise">
+  <div class="container r-twocol">
+    <div>
+      <span class="eyebrow reveal">
+        <span data-i18n="en">A simple premise</span>
+        <span data-i18n="es">Una premisa simple</span>
+      </span>
+      <p class="r-lead-line reveal">
+        <span data-i18n="en">In frontier markets, opportunity is abundant — execution is rare.</span>
+        <span data-i18n="es">En los mercados de frontera, la oportunidad abunda — la ejecución es escasa.</span>
+      </p>
+    </div>
+    <div>
+      <p class="r-body reveal">
+        <span data-i18n="en">Inspired by Mount Roraima — the ancient tepui where three frontiers meet, and where the Pemón people see the cradle of the world — Roraima represents permanence, elevation, and convergence. From its plateau, three frontiers become one foundation.</span>
+        <span data-i18n="es">Inspirada en el Monte Roraima — el antiguo tepui donde se encuentran tres fronteras, y donde el pueblo Pemón ve la cuna del mundo — Roraima representa permanencia, elevación y convergencia. Desde su meseta, tres fronteras se vuelven un solo cimiento.</span>
+      </p>
+      <p class="r-body reveal">
+        <span data-i18n="en">That same philosophy defines our platform.</span>
+        <span data-i18n="es">Esa misma filosofía define nuestra plataforma.</span>
+      </p>
+      <p class="r-define reveal">
+        <span data-i18n="en">RORAIMA is an integrated investment, structuring, and execution platform focused on transforming complex opportunities into structured, executable ventures across strategic sectors and frontier markets.</span>
+        <span data-i18n="es">RORAIMA es una plataforma integrada de inversión, estructuración y ejecución enfocada en transformar oportunidades complejas en proyectos estructurados y ejecutables a través de sectores estratégicos y mercados de frontera.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY + PLATFORM -->
+<section class="r-section r-why" id="why">
+  <div class="container r-why-grid">
+    <div>
+      <h2 class="r-h2 reveal"><span data-i18n="en">Why Roraima Exists</span><span data-i18n="es">Por Qué Existe Roraima</span></h2>
+      <p class="r-body reveal">
+        <span data-i18n="en">Global capital consistently seeks exposure to high-growth and undervalued markets. Yet in complex jurisdictions, the challenge is rarely identifying opportunity — the challenge is converting opportunity into executable outcomes.</span>
+        <span data-i18n="es">El capital global busca constantemente exposición a mercados de alto crecimiento e infravalorados. Sin embargo, en jurisdicciones complejas, el reto rara vez es identificar la oportunidad — el reto es convertir la oportunidad en resultados ejecutables.</span>
+      </p>
+      <p class="r-body reveal"><span data-i18n="en">RORAIMA bridges that gap through:</span><span data-i18n="es">RORAIMA cierra esa brecha mediante:</span></p>
+      <ul class="r-bullets reveal">
+        <li><span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="3"/><circle cx="6" cy="6" r="2.5"/><circle cx="22" cy="6" r="2.5"/><circle cx="6" cy="22" r="2.5"/><circle cx="22" cy="22" r="2.5"/><path d="M11.5 11.5L7.7 7.7M16.5 11.5l3.8-3.8M11.5 16.5l-3.8 3.8M16.5 16.5l3.8 3.8"/></svg></span><span><span data-i18n="en">Direct market access</span><span data-i18n="es">Acceso directo al mercado</span></span></li>
+        <li><span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 24h22"/><path d="M6 24V16"/><path d="M11 24V12"/><path d="M16 24V8"/><path d="M21 24V4"/><path d="M6 14l5-4 5 2 5-6"/><path d="M19 6l2-2v3"/></svg></span><span><span data-i18n="en">Independent economic intelligence</span><span data-i18n="es">Inteligencia económica independiente</span></span></li>
+        <li><span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v3"/><path d="M7 6h14"/><path d="M14 6v18"/><path d="M7 24h14"/><path d="M7 10l-3 7a4 4 0 0 0 6 0l-3-7z"/><path d="M21 10l-3 7a4 4 0 0 0 6 0l-3-7z"/></svg></span><span><span data-i18n="en">Institutional-grade structuring</span><span data-i18n="es">Estructuración de grado institucional</span></span></li>
+        <li><span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l4 6h-3v6h-2V9h-3l4-6z"/><path d="M3 14l6-4v3h6v2H9v3l-6-4z"/><path d="M25 14l-6-4v3h-6v2h6v3l6-4z"/><path d="M14 25l-4-6h3v-6h2v6h3l-4 6z"/></svg></span><span><span data-i18n="en">On-the-ground execution capability</span><span data-i18n="es">Capacidad de ejecución sobre el terreno</span></span></li>
+        <li><span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8"/><rect x="17" y="3" width="8" height="8"/><rect x="3" y="17" width="8" height="8"/><rect x="17" y="17" width="8" height="8"/><path d="M11 7h6M11 21h6M7 11v6M21 11v6" stroke-dasharray="1.5 2"/></svg></span><span><span data-i18n="en">Integrated operational coordination</span><span data-i18n="es">Coordinación operativa integrada</span></span></li>
+      </ul>
+      <p class="r-body r-muted reveal" style="margin-bottom:4px;"><span data-i18n="en">We do not operate as brokers or passive advisors.</span><span data-i18n="es">No operamos como intermediarios ni asesores pasivos.</span></p>
+      <p class="r-define reveal"><span data-i18n="en">We structure, coordinate, and execute.</span><span data-i18n="es">Estructuramos, coordinamos y ejecutamos.</span></p>
+    </div>
+
+    <div class="r-why-div" aria-hidden="true"></div>
+
+    <div>
+      <h2 class="r-h2 reveal"><span data-i18n="en">The Platform</span><span data-i18n="es">La Plataforma</span></h2>
+      <div class="r-platform">
+        <div class="r-platform-item reveal">
+          <span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v20"/><path d="M7 24h14"/><path d="M4 10h20"/><path d="M4 10l-2 5a4 4 0 0 0 8 0L8 10"/><path d="M20 10l-2 5a4 4 0 0 0 8 0L24 10"/></svg></span>
+          <div><div class="r-pt"><span data-i18n="en">Access</span><span data-i18n="es">Acceso</span></div><p class="r-body"><span data-i18n="en">Direct relationships, proprietary networks, and strategic partnerships that originate opportunities beyond traditional channels.</span><span data-i18n="es">Relaciones directas, redes propias y alianzas estratégicas que originan oportunidades más allá de los canales tradicionales.</span></p></div>
+        </div>
+        <div class="r-platform-item reveal">
+          <span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8"/><rect x="17" y="3" width="8" height="8"/><rect x="3" y="17" width="8" height="8"/><rect x="17" y="17" width="8" height="8"/><path d="M11 7h6M11 21h6M7 11v6M21 11v6" stroke-dasharray="1.5 2"/></svg></span>
+          <div><div class="r-pt"><span data-i18n="en">Structure</span><span data-i18n="es">Estructura</span></div><p class="r-body"><span data-i18n="en">Institutional-grade legal, financial, and operational frameworks designed to align capital, mitigate risk, and enable scalable execution.</span><span data-i18n="es">Marcos legales, financieros y operativos de grado institucional diseñados para alinear el capital, mitigar el riesgo y habilitar una ejecución escalable.</span></p></div>
+        </div>
+        <div class="r-platform-item reveal">
+          <span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l4 6h-3v6h-2V9h-3l4-6z"/><path d="M3 14l6-4v3h6v2H9v3l-6-4z"/><path d="M25 14l-6-4v3h-6v2h6v3l6-4z"/><path d="M14 25l-4-6h3v-6h2v6h3l-4 6z"/></svg></span>
+          <div><div class="r-pt"><span data-i18n="en">Execution</span><span data-i18n="es">Ejecución</span></div><p class="r-body"><span data-i18n="en">Local operational capability combined with international standards for implementation, coordination, and delivery.</span><span data-i18n="es">Capacidad operativa local combinada con estándares internacionales de implementación, coordinación y entrega.</span></p></div>
+        </div>
+        <div class="r-platform-item reveal">
+          <span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l9 4v7c0 5-4 9-9 11-5-2-9-6-9-11V7l9-4z"/><path d="M10 14l3 3 5-6"/></svg></span>
+          <div><div class="r-pt"><span data-i18n="en">Alignment</span><span data-i18n="es">Alineación</span></div><p class="r-body"><span data-i18n="en">Long-term partnerships built around transparency, trust, disciplined execution, and measurable outcomes.</span><span data-i18n="es">Alianzas de largo plazo construidas sobre transparencia, confianza, ejecución disciplinada y resultados medibles.</span></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="r-section r-caps" id="capabilities">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow centered">
-        <span data-i18n="en">What We Do</span>
-        <span data-i18n="es">Lo Que Hacemos</span>
-      </span>
-      <h2>
-        <span data-i18n="en">Integrated Solutions.<br/><em>Proven Results.</em></span>
-        <span data-i18n="es">Soluciones Integradas.<br/><em>Resultados Comprobados.</em></span>
-      </h2>
+      <span class="eyebrow centered"><span data-i18n="en">Platform Capabilities</span><span data-i18n="es">Capacidades de la Plataforma</span></span>
     </div>
-
-    <div class="pillars">
-      <div class="pillar p-global reveal">
-        <div class="pillar-media">
-          <!-- IMAGE_SWAP[pillar-global] — Global Reach card: replace src with assets/images/pillar-global.jpg -->
-          <img
-            src="assets/images/pillar-global.png"
-            alt="Global trade ports and shipping routes"
-            loading="lazy" decoding="async"
-            onload="this.classList.add('loaded')"
-            onerror="this.style.display='none'"
-          />
-        </div>
-        <div class="pillar-body">
-          <div class="pillar-icon-wrap">
-            <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1">
-              <circle cx="24" cy="24" r="20"/>
-              <ellipse cx="24" cy="24" rx="20" ry="8"/>
-              <ellipse cx="24" cy="24" rx="9" ry="20"/>
-              <path d="M4 24h40M24 4v40" stroke-width="0.8"/>
-            </svg>
-          </div>
-          <h3><span data-i18n="en">Global Reach</span><span data-i18n="es">Alcance Global</span></h3>
-          <p>
-            <span data-i18n="en">Sourcing the world's most demanding markets through a network built on enduring relationships and operational rigor, calibrated to perform across every region we serve.</span>
-            <span data-i18n="es">Originamos en los mercados más exigentes del mundo a través de una red construida sobre relaciones duraderas y rigor operativo, calibrada para rendir en cada región que servimos.</span>
-          </p>
-        </div>
+    <div class="r-caps-grid">
+      <div class="r-cap reveal">
+        <span class="r-cap-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="3"/><circle cx="6" cy="6" r="2.5"/><circle cx="22" cy="6" r="2.5"/><circle cx="6" cy="22" r="2.5"/><circle cx="22" cy="22" r="2.5"/><path d="M11.5 11.5L7.7 7.7M16.5 11.5l3.8-3.8M11.5 16.5l-3.8 3.8M16.5 16.5l3.8 3.8"/></svg></span>
+        <h3><span data-i18n="en">Origination</span><span data-i18n="es">Originación</span></h3>
+        <p><span data-i18n="en">Access to selective off-market opportunities, strategic partnerships, and operating assets across multiple sectors.</span><span data-i18n="es">Acceso a oportunidades selectas fuera de mercado, alianzas estratégicas y activos operativos en múltiples sectores.</span></p>
       </div>
-
-      <div class="pillar p-logistics reveal">
-        <div class="pillar-media">
-          <!-- IMAGE_SWAP[pillar-logistics] — Logistics Excellence card: replace src with assets/images/pillar-logistics.jpg -->
-          <img
-            src="assets/images/pillar-logistics.png"
-            alt="Shipping containers and port logistics"
-            loading="lazy" decoding="async"
-            onload="this.classList.add('loaded')"
-            onerror="this.style.display='none'"
-          />
-        </div>
-        <div class="pillar-body">
-          <div class="pillar-icon-wrap">
-            <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 32V14h22v18M26 20h10l6 6v6H26z"/>
-              <circle cx="14" cy="36" r="3.5"/>
-              <circle cx="34" cy="36" r="3.5"/>
-              <path d="M4 14h22M30 26h8"/>
-            </svg>
-          </div>
-          <h3><span data-i18n="en">Logistics Excellence</span><span data-i18n="es">Excelencia Logística</span></h3>
-          <p>
-            <span data-i18n="en">From origin to port to destination, multimodal logistics engineered for predictability, transparency, and punctual delivery at every step of the supply chain.</span>
-            <span data-i18n="es">Desde el origen hasta el puerto y el destino, una logística multimodal diseñada para la previsibilidad, la transparencia y la entrega puntual en cada paso de la cadena de suministro.</span>
-          </p>
-        </div>
+      <div class="r-cap reveal">
+        <span class="r-cap-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 24h22"/><path d="M6 24V16"/><path d="M11 24V12"/><path d="M16 24V8"/><path d="M21 24V4"/><path d="M6 14l5-4 5 2 5-6"/><path d="M19 6l2-2v3"/></svg></span>
+        <h3><span data-i18n="en">Economic Intelligence</span><span data-i18n="es">Inteligencia Económica</span></h3>
+        <p><span data-i18n="en">Independent macroeconomic, sector, and financial analysis designed to support institutional decision-making and capital deployment.</span><span data-i18n="es">Análisis macroeconómico, sectorial y financiero independiente, diseñado para respaldar la toma de decisiones institucional y el despliegue de capital.</span></p>
       </div>
-
-      <div class="pillar p-commitment reveal">
-        <div class="pillar-media">
-          <!-- IMAGE_SWAP[pillar-commitment] — Commitment to You card: replace src with assets/images/pillar-commitment.jpg -->
-          <img
-            src="assets/images/pillar-commitment.jpg"
-            alt="Aerial view of wheat field harvest"
-            loading="lazy" decoding="async"
-            onload="this.classList.add('loaded')"
-            onerror="this.style.display='none'"
-          />
-        </div>
-        <div class="pillar-body">
-          <div class="pillar-icon-wrap">
-            <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 26l6-6 6 6 4-4 4 4"/>
-              <path d="M6 30l8-8 6 6 6-6 6 6 8-8"/>
-              <path d="M10 36l4-4 6 4 6-4 4 4 6-4 4 4"/>
-            </svg>
-          </div>
-          <h3><span data-i18n="en">Commitment to You</span><span data-i18n="es">Compromiso con Usted</span></h3>
-          <p>
-            <span data-i18n="en">Market intelligence, agricultural expertise, and an ethos that puts clients above all, calibrated to create durable value for your business across every contract we sign.</span>
-            <span data-i18n="es">Inteligencia de mercado, experiencia agrícola y una ética que pone al cliente por encima de todo, calibrada para crear valor duradero para su negocio en cada contrato que firmamos.</span>
-          </p>
-        </div>
+      <div class="r-cap reveal">
+        <span class="r-cap-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v3"/><path d="M7 6h14"/><path d="M14 6v18"/><path d="M7 24h14"/><path d="M7 10l-3 7a4 4 0 0 0 6 0l-3-7z"/><path d="M21 10l-3 7a4 4 0 0 0 6 0l-3-7z"/></svg></span>
+        <h3><span data-i18n="en">Legal &amp; Risk Structuring</span><span data-i18n="es">Estructuración Legal y de Riesgo</span></h3>
+        <p><span data-i18n="en">SPVs, joint ventures, governance frameworks, compliance, due diligence, and internationally aligned transaction structures.</span><span data-i18n="es">SPVs, joint ventures, marcos de gobernanza, cumplimiento, debida diligencia y estructuras de transacción alineadas internacionalmente.</span></p>
+      </div>
+      <div class="r-cap reveal">
+        <span class="r-cap-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="3.5"/><path d="M14 3v3M14 22v3M3 14h3M22 14h3M6 6l2 2M20 20l2 2M22 6l-2 2M6 22l2-2"/><circle cx="14" cy="14" r="9" stroke-dasharray="2 2.5"/></svg></span>
+        <h3><span data-i18n="en">Execution Infrastructure</span><span data-i18n="es">Infraestructura de Ejecución</span></h3>
+        <p><span data-i18n="en">Operational coordination, implementation management, treasury support, reporting, and oversight through a centralized platform model.</span><span data-i18n="es">Coordinación operativa, gestión de implementación, soporte de tesorería, reportería y supervisión a través de un modelo de plataforma centralizado.</span></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section class="products" id="products">
-  <div class="container">
-    <div class="products-inner expanded">
-      <div class="products-intro reveal">
-        <span class="eyebrow">
-          <span data-i18n="en">Our Products</span>
-          <span data-i18n="es">Nuestros Productos</span>
-        </span>
-        <h2>
-          <span data-i18n="en">Premium Commodities.<br/><em>Global Demand.</em></span>
-          <span data-i18n="es">Materias Primas Premium.<br/><em>Demanda Global.</em></span>
-        </h2>
-        <p>
-          <span data-i18n="en">A curated portfolio of agricultural raw materials: oilseeds, grains, sweeteners, and feed co-products. Sourced responsibly, traded transparently, delivered at the scale industries demand.</span>
-          <span data-i18n="es">Un portafolio curado de materias primas agrícolas: oleaginosas, granos, edulcorantes y subproductos para alimento. Originadas con responsabilidad, comercializadas con transparencia, entregadas a la escala que las industrias requieren.</span>
-        </p>
-      </div>
-
-      <div class="product-grid product-grid-8">
-        <!-- 1. Soybean Complex -->
-        <div class="product-card soybean reveal">
-          <div class="product-visual">
-            <img class="product-illust" src="assets/images/product-soybean-oil.jpg" alt="Soybean complex — beans, meal, and oil" loading="lazy" decoding="async" onerror="this.style.display='none'">
-            <div class="product-overlay">
-              <div class="product-desc">
-                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Argentina · Brazil · USA</span><span class="desc-value" data-i18n="es">Argentina · Brasil · EE. UU.</span></span>
-                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">China · EU · India</span><span class="desc-value" data-i18n="es">China · UE · India</span></span>
-                <span><span class="desc-label" data-i18n="en">Includes</span><span class="desc-label" data-i18n="es">Incluye</span> <span class="desc-value" data-i18n="en">YSB · Meal · Crude Oil · Refined Oil</span><span class="desc-value" data-i18n="es">YSB · Harina · Aceite Crudo · Refinado</span></span>
-              </div>
-            </div>
-          </div>
-          <div class="product-meta">
-            <h4>
-              <span data-i18n="en">Soybean Complex</span>
-              <span data-i18n="es">Complejo de Soja</span>
-            </h4>
-          </div>
-        </div>
-
-        <!-- 2. Wheat, Corn & Feed Grains -->
-        <div class="product-card grains reveal">
-          <div class="product-visual">
-            <img class="product-illust" src="assets/images/product-wheat-soy.jpg" alt="Wheat, corn and feed grains" loading="lazy" decoding="async" onerror="this.style.display='none'">
-            <div class="product-overlay">
-              <div class="product-desc">
-                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">USA · Argentina · Black Sea</span><span class="desc-value" data-i18n="es">EE. UU. · Argentina · Mar Negro</span></span>
-                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">North Africa · Middle East · Asia</span><span class="desc-value" data-i18n="es">Norte de África · Medio Oriente · Asia</span></span>
-                <span><span class="desc-label" data-i18n="en">Includes</span><span class="desc-label" data-i18n="es">Incluye</span> <span class="desc-value" data-i18n="en">Wheat · Corn · Barley · Sorghum</span><span class="desc-value" data-i18n="es">Trigo · Maíz · Cebada · Sorgo</span></span>
-              </div>
-            </div>
-          </div>
-          <div class="product-meta">
-            <h4>
-              <span data-i18n="en">Wheat, Corn &amp;<br/>Feed Grains</span>
-              <span data-i18n="es">Trigo, Maíz y<br/>Granos Forrajeros</span>
-            </h4>
-          </div>
-        </div>
-
-        <!-- 3. Sugar & Molasses -->
-        <div class="product-card sugar reveal">
-          <div class="product-visual">
-            <img class="product-illust" src="assets/images/product-sugar.jpg" alt="Raw sugar and molasses" loading="lazy" decoding="async" onerror="this.style.display='none'">
-            <div class="product-overlay">
-              <div class="product-desc">
-                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Brazil · Guatemala · India</span><span class="desc-value" data-i18n="es">Brasil · Guatemala · India</span></span>
-                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">Refineries · F&amp;B · feed industry</span><span class="desc-value" data-i18n="es">Refinerías · alimentos · industria forrajera</span></span>
-                <span><span class="desc-label" data-i18n="en">Includes</span><span class="desc-label" data-i18n="es">Incluye</span> <span class="desc-value" data-i18n="en">Raw · White · Refined · HSC · Feed grade</span><span class="desc-value" data-i18n="es">Cruda · Blanca · Refinada · HSC · Forrajera</span></span>
-              </div>
-            </div>
-          </div>
-          <div class="product-meta">
-            <h4>
-              <span data-i18n="en">Sugar &amp; Molasses</span>
-              <span data-i18n="es">Azúcar y Melaza</span>
-            </h4>
-          </div>
-        </div>
-
-        <!-- 4. Oil-seeds & Byproducts -->
-        <div class="product-card oilseeds reveal">
-          <div class="product-visual">
-            <img class="product-illust" src="assets/images/product-grains.jpg" alt="Oilseeds and agricultural byproducts" loading="lazy" decoding="async" onerror="this.style.display='none'">
-            <div class="product-overlay">
-              <div class="product-desc">
-                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Americas · Europe</span><span class="desc-value" data-i18n="es">Américas · Europa</span></span>
-                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">Crushers · processors</span><span class="desc-value" data-i18n="es">Industria de molienda · procesadores</span></span>
-                <span><span class="desc-label" data-i18n="en">Includes</span><span class="desc-label" data-i18n="es">Incluye</span> <span class="desc-value" data-i18n="en">Oilseeds · pellets · co-products</span><span class="desc-value" data-i18n="es">Oleaginosas · pellets · subproductos</span></span>
-              </div>
-            </div>
-          </div>
-          <div class="product-meta">
-            <h4>
-              <span data-i18n="en">Oil-seeds &amp;<br/>Byproducts</span>
-              <span data-i18n="es">Oleaginosas y<br/>Subproductos</span>
-            </h4>
-          </div>
-        </div>
-
-        <!-- 5. Specialty Grains & Ingredients -->
-        <div class="product-card specialty reveal">
-          <div class="product-visual">
-            <img class="product-illust" src="assets/images/specialty-grains.jpg" alt="Specialty grains — quinoa, millet, niche varieties" loading="lazy" decoding="async" onerror="this.style.display='none'">
-            <div class="product-overlay">
-              <div class="product-desc">
-                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">USA · Argentina · Brazil</span><span class="desc-value" data-i18n="es">EE. UU. · Argentina · Brasil</span></span>
-                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">Specialty food · ingredient buyers</span><span class="desc-value" data-i18n="es">Alimentos especializados · compradores de insumos</span></span>
-                <span><span class="desc-label" data-i18n="en">Includes</span><span class="desc-label" data-i18n="es">Incluye</span> <span class="desc-value" data-i18n="en">Identity-preserved · niche varieties · ingredient inputs</span><span class="desc-value" data-i18n="es">Identidad preservada · variedades nicho · insumos</span></span>
-              </div>
-            </div>
-          </div>
-          <div class="product-meta">
-            <h4>
-              <span data-i18n="en">Specialty Grains<br/>&amp; Ingredients</span>
-              <span data-i18n="es">Granos Especiales<br/>e Insumos</span>
-            </h4>
-          </div>
-        </div>
-
-        <!-- 6. Fats & Oils -->
-        <div class="product-card fats reveal">
-          <div class="product-visual">
-            <img class="product-illust" src="assets/images/fats-oils.jpg" alt="Fats and oils — refinery and oil totes" loading="lazy" decoding="async" onerror="this.style.display='none'">
-            <div class="product-overlay">
-              <div class="product-desc">
-                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Americas · Asia</span><span class="desc-value" data-i18n="es">Américas · Asia</span></span>
-                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">Biofuels · oleochem · food industry</span><span class="desc-value" data-i18n="es">Biocombustibles · oleoquímica · industria alimentaria</span></span>
-                <span><span class="desc-label" data-i18n="en">Includes</span><span class="desc-label" data-i18n="es">Incluye</span> <span class="desc-value" data-i18n="en">Yellow grease · UCO · tallow · soybean · sunflower · palm · corn oil</span><span class="desc-value" data-i18n="es">Grasa amarilla · UCO · sebo · soja · girasol · palma · aceite de maíz</span></span>
-              </div>
-            </div>
-          </div>
-          <div class="product-meta">
-            <h4>
-              <span data-i18n="en">Fats &amp; Oils</span>
-              <span data-i18n="es">Grasas y Aceites</span>
-            </h4>
-          </div>
-        </div>
-
-        <!-- 7. Metals -->
-        <div class="product-card metals reveal">
-          <div class="product-visual">
-            <img class="product-illust" src="assets/images/metals.jpg" alt="Industrial metals — aluminum, copper, and steel coils" loading="lazy" decoding="async" onerror="this.style.display='none'">
-            <div class="product-overlay">
-              <div class="product-desc">
-                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Global</span><span class="desc-value" data-i18n="es">Global</span></span>
-                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">Industrial buyers · smelters</span><span class="desc-value" data-i18n="es">Compradores industriales · fundiciones</span></span>
-                <span><span class="desc-label" data-i18n="en">Includes</span><span class="desc-label" data-i18n="es">Incluye</span> <span class="desc-value" data-i18n="en">Aluminum · steel · copper · alumina · coke · caustic soda · fluoride</span><span class="desc-value" data-i18n="es">Aluminio · acero · cobre · alúmina · coque · soda cáustica · fluoruro</span></span>
-              </div>
-            </div>
-          </div>
-          <div class="product-meta">
-            <h4>
-              <span data-i18n="en">Metals</span>
-              <span data-i18n="es">Metales</span>
-            </h4>
-          </div>
-        </div>
-
-        <!-- 8. Urea & Fertilizers -->
-        <div class="product-card urea reveal">
-          <div class="product-visual">
-            <img class="product-illust" src="assets/images/urea.jpg" alt="Granular urea and fertilizers in bulk sacks" loading="lazy" decoding="async" onerror="this.style.display='none'">
-            <div class="product-overlay">
-              <div class="product-desc">
-                <span><span class="desc-label" data-i18n="en">Origin</span><span class="desc-label" data-i18n="es">Origen</span> <span class="desc-value" data-i18n="en">Middle East · North Africa · Russia</span><span class="desc-value" data-i18n="es">Medio Oriente · Norte de África · Rusia</span></span>
-                <span><span class="desc-label" data-i18n="en">Key Markets</span><span class="desc-label" data-i18n="es">Mercados</span> <span class="desc-value" data-i18n="en">Distributors · cooperatives</span><span class="desc-value" data-i18n="es">Distribuidores · cooperativas</span></span>
-                <span><span class="desc-label" data-i18n="en">Includes</span><span class="desc-label" data-i18n="es">Incluye</span> <span class="desc-value" data-i18n="en">Granular urea · NPK · ammonia · agronomic inputs</span><span class="desc-value" data-i18n="es">Urea granular · NPK · amoníaco · insumos agronómicos</span></span>
-              </div>
-            </div>
-          </div>
-          <div class="product-meta">
-            <h4>
-              <span data-i18n="en">Urea &amp; Fertilizers</span>
-              <span data-i18n="es">Urea y Fertilizantes</span>
-            </h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
+<!-- STATS (portal component, dark band, animated by reveal.js) -->
 <section class="stats">
   <div class="container">
     <div class="stats-grid">
       <div class="stat reveal">
-        <div class="stat-num"><span class="stat-count" data-target="25" data-duration="1500">0</span><em>+</em></div>
-        <div class="stat-label">
-          <span data-i18n="en">Countries Served</span>
-          <span data-i18n="es">Países Atendidos</span>
-        </div>
+        <div class="stat-num"><span class="stat-count" data-target="6" data-duration="1500">0</span><em>+</em></div>
+        <div class="stat-label"><span data-i18n="en">Strategic Sectors</span><span data-i18n="es">Sectores Estratégicos</span></div>
         <span class="stat-underline" aria-hidden="true"></span>
       </div>
       <div class="stat reveal">
-        <div class="stat-num"><span class="stat-count" data-target="500" data-duration="1800">0</span><em>K MT</em></div>
-        <div class="stat-label">
-          <span data-i18n="en">Annual Volume</span>
-          <span data-i18n="es">Volumen Anual</span>
-        </div>
+        <div class="stat-num"><span class="stat-count" data-target="34" data-duration="1800">0</span></div>
+        <div class="stat-label"><span data-i18n="en">Active Mandates</span><span data-i18n="es">Mandatos Activos</span></div>
         <span class="stat-underline" aria-hidden="true"></span>
       </div>
       <div class="stat reveal">
-        <div class="stat-num"><span class="stat-count" data-target="15" data-duration="1400">0</span><em>+</em></div>
-        <div class="stat-label">
-          <span data-i18n="en">Years of Expertise</span>
-          <span data-i18n="es">Años de Experiencia</span>
-        </div>
+        <div class="stat-num"><span class="stat-count" data-target="12" data-duration="1400">0</span></div>
+        <div class="stat-label"><span data-i18n="en">Jurisdictions</span><span data-i18n="es">Jurisdicciones</span></div>
         <span class="stat-underline" aria-hidden="true"></span>
       </div>
       <div class="stat reveal">
         <div class="stat-num"><span class="stat-count" data-target="100" data-duration="1600">0</span><em>%</em></div>
-        <div class="stat-label">
-          <span data-i18n="en">Client Commitment</span>
-          <span data-i18n="es">Compromiso con el Cliente</span>
-        </div>
+        <div class="stat-label"><span data-i18n="en">Institutional Standards</span><span data-i18n="es">Estándares Institucionales</span></div>
         <span class="stat-underline" aria-hidden="true"></span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRIORITY -->
-<section class="priority">
-  <div class="priority-img left">
-    <!-- IMAGE_SWAP[priority-truck] — Your Success - left (truck): replace src with assets/images/priority-truck.jpg -->
-    <img
-      src="assets/images/priority-truck.jpg"
-      alt="Freight truck on highway at sunset"
-      loading="lazy"
-      onload="this.classList.add('loaded')"
-      onerror="this.style.display='none'"
-    />
-  </div>
-  <div class="priority-center reveal">
-    <svg class="priority-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.1">
-      <circle cx="22" cy="22" r="19"/>
-      <ellipse cx="22" cy="22" rx="19" ry="8"/>
-      <ellipse cx="22" cy="22" rx="10" ry="19"/>
-      <circle cx="22" cy="22" r="1.5" fill="currentColor"/>
-    </svg>
-    <h2>
-      <span data-i18n="en">Your Success.<br/><em>Our Priority.</em></span>
-      <span data-i18n="es">Su Éxito.<br/><em>Nuestra Prioridad.</em></span>
-    </h2>
-    <p>
-      <span data-i18n="en">Dependable service. Sharper market insight. A standard of excellence held across every contract, container, and conversation.</span>
-      <span data-i18n="es">Servicio confiable. Una visión de mercado más aguda. Un estándar de excelencia presente en cada contrato, contenedor y conversación.</span>
-    </p>
-  </div>
-  <div class="priority-img right">
-    <!-- IMAGE_SWAP[priority-ship] — Your Success - right (ship at port): replace src with assets/images/priority-ship.jpg -->
-    <img
-      src="assets/images/priority-ship.jpg"
-      alt="Cargo ship being loaded at port with cranes at sunset"
-      loading="lazy"
-      onload="this.classList.add('loaded')"
-      onerror="this.style.display='none'"
-    />
-  </div>
-</section>
-
-<!-- WHO -->
-<section class="who" id="about">
-  <div class="container">
-    <div class="who-grid">
-      <div class="who-col reveal">
-        <span class="eyebrow">
-          <span data-i18n="en">About Patagonia Americas</span>
-          <span data-i18n="es">Sobre Patagonia Americas</span>
-        </span>
-        <h2><span data-i18n="en">Who We Are</span><span data-i18n="es">Quiénes Somos</span></h2>
-        <p>
-          <span data-i18n="en">Patagonia Americas LLC is an international commodity trading firm specializing in agricultural raw materials and metals. An experienced team, durable global partnerships, and a relentless focus on clients deliver exceptional results across continents.</span>
-          <span data-i18n="es">Patagonia Americas LLC es una firma internacional de comercio de materias primas especializada en materias primas agrícolas y metales. Un equipo con experiencia, alianzas globales duraderas y un enfoque incansable en el cliente generan resultados excepcionales en todos los continentes.</span>
-        </p>
-        <a href="contact.html" class="btn btn-dark">
-          <span data-i18n="en">Learn More About Us</span><span data-i18n="es">Conózcanos</span>
-          <span class="arrow">→</span>
-        </a>
-      </div>
-
-      <div class="who-divider"></div>
-
-      <div class="who-col reveal">
-        <span class="eyebrow">
-          <span data-i18n="en">Our Philosophy</span>
-          <span data-i18n="es">Nuestra Filosofía</span>
-        </span>
-        <div class="quote">
-          <span class="quote-mark">"</span>
-          <span data-i18n="en">If you want to go fast, go alone.<br/>If you want to go far, <em>go together.</em></span>
-          <span data-i18n="es">Si quieres llegar rápido, ve solo.<br/>Si quieres llegar lejos, <em>ve acompañado.</em></span>
-          <span class="quote-attr">
-            <span data-i18n="en">African Proverb</span>
-            <span data-i18n="es">Proverbio Africano</span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <svg class="botanical" viewBox="0 0 240 360" fill="none" stroke="#b8954a" stroke-width="0.9" aria-hidden="true">
-    <path d="M120 350 Q120 240 120 120 Q120 70 132 30" stroke-linecap="round"/>
-    <path d="M120 290 Q70 270 45 220 Q80 255 120 280" fill="#b8954a" fill-opacity="0.16"/>
-    <path d="M120 245 Q170 225 195 175 Q160 210 120 235" fill="#b8954a" fill-opacity="0.16"/>
-    <path d="M120 195 Q70 175 45 125 Q80 160 120 185" fill="#b8954a" fill-opacity="0.16"/>
-    <path d="M120 145 Q170 125 195 75 Q160 110 120 135" fill="#b8954a" fill-opacity="0.16"/>
-    <path d="M120 95 Q80 75 70 40 Q100 70 120 90" fill="#b8954a" fill-opacity="0.16"/>
-  </svg>
-</section>
-
-<!-- ============ COMPANY PHILOSOPHY (merged from about.html) ============ -->
-<section class="about-section tone-paper">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow centered">
-        <span data-i18n="en">Our Company Philosophy</span>
-        <span data-i18n="es">Nuestra Filosofía</span>
-      </span>
-      <h2>
-        <span data-i18n="en">If you want to go fast, go alone.<br/>If you want to go far, <em>go together.</em></span>
-        <span data-i18n="es">Si quieres llegar rápido, ve solo.<br/>Si quieres llegar lejos, <em>ve acompañado.</em></span>
-      </h2>
-    </div>
-
-    <div class="phil-grid">
-      <div class="phil-text reveal">
-        <p>
-          <span data-i18n="en">Patagonia Americas is an international commodity trader in agricultural raw materials and metals. We connect producers, processors, and industrial buyers through reliable supply chains anchored in disciplined execution and long-term relationships.</span>
-          <span data-i18n="es">Patagonia Americas es un trader internacional de materias primas agrícolas y metales. Conectamos productores, procesadores y compradores industriales a través de cadenas de suministro confiables, sostenidas por una ejecución disciplinada y relaciones de largo plazo.</span>
-        </p>
-        <p>
-          <span data-i18n="en">With decades of combined experience in commercial representation, sourcing, trading, and logistics across the Americas, our team approaches each transaction as an opportunity to build trust — not just to close a deal.</span>
-          <span data-i18n="es">Con décadas de experiencia combinada en representación comercial, originación, trading y logística en todo el continente, nuestro equipo aborda cada transacción como una oportunidad para construir confianza — no sólo para cerrar un negocio.</span>
-        </p>
-        <div class="phil-quote">
-          <em>
-            <span data-i18n="en">"Our business is built on the belief that durability in international trade comes from <strong>trust, execution, and time</strong>."</span>
-            <span data-i18n="es">"Nuestro negocio se construye sobre la convicción de que la durabilidad en el comercio internacional viene de la <strong>confianza, la ejecución y el tiempo</strong>."</span>
-          </em>
-          <span class="phil-quote-attr">
-            <span data-i18n="en">Patagonia Americas LLC</span>
-            <span data-i18n="es">Patagonia Americas LLC</span>
-          </span>
-        </div>
-      </div>
-      <div class="phil-image reveal">
-        <img src="assets/images/wp-grains-mosaic.jpg" alt="Mosaic of grains we trade — wheat, rice, corn, millet" loading="lazy" decoding="async">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROVEN MARKET EXPERIENCE (merged from about.html) ============ -->
-<section class="about-section tone-ink">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow centered">
-        <span data-i18n="en">Proven Market Experience</span>
-        <span data-i18n="es">Experiencia Comprobada</span>
-      </span>
-      <h2>
-        <span data-i18n="en">International representation <em>& commercial development.</em></span>
-        <span data-i18n="es">Representación internacional <em>y desarrollo comercial.</em></span>
-      </h2>
-    </div>
-
-    <div class="exp-prose reveal">
-      <p>
-        <span data-i18n="en">The leadership team behind Patagonia Americas has participated in commercial representation, sourcing, trading, logistics coordination, and business development initiatives involving international agribusiness and commodity market participants across the Americas.</span>
-        <span data-i18n="es">El equipo directivo de Patagonia Americas ha participado en representación comercial, originación, trading, coordinación logística y desarrollo de negocios con participantes internacionales del agronegocio y los mercados de materias primas en todo el continente americano.</span>
-      </p>
-      <p>
-        <span data-i18n="en">This experience includes engagement with multinational trading groups, industrial buyers, agricultural processors, logistics operators, and regional commercial networks.</span>
-        <span data-i18n="es">Esta experiencia incluye relación con grupos comerciales multinacionales, compradores industriales, procesadores agrícolas, operadores logísticos y redes comerciales regionales.</span>
-      </p>
-
-      <h3>
-        <span data-i18n="en">Global Agribusiness Relationships</span>
-        <span data-i18n="es">Relaciones en el Agronegocio Global</span>
-      </h3>
-      <p>
-        <span data-i18n="en">Over the years, our team has developed relationships and transaction experience involving major global agribusiness companies, commodity trading houses, processors, exporters, and industrial market participants.</span>
-        <span data-i18n="es">A lo largo de los años, nuestro equipo ha desarrollado relaciones y experiencia transaccional con las principales compañías globales del agronegocio, casas comerciales de commodities, procesadores, exportadores y participantes industriales del mercado.</span>
-      </p>
-      <p>
-        <span data-i18n="en">These longstanding relationships provide valuable market insight, operational connectivity, and commercial access across multiple sectors of the commodity supply chain.</span>
-        <span data-i18n="es">Estas relaciones de larga data aportan visión de mercado valiosa, conectividad operativa y acceso comercial en múltiples sectores de la cadena de suministro de materias primas.</span>
-      </p>
-
-      <h3>
-        <span data-i18n="en">Operational Execution Capability</span>
-        <span data-i18n="es">Capacidad de Ejecución Operativa</span>
-      </h3>
-      <p>
-        <span data-i18n="en">Patagonia Americas understands that successful commodity transactions require far more than pricing alone. Execution depends on:</span>
-        <span data-i18n="es">En Patagonia Americas entendemos que las transacciones exitosas de materias primas requieren mucho más que precio. La ejecución depende de:</span>
-      </p>
-      <ul>
-        <li><span data-i18n="en">Operational coordination</span><span data-i18n="es">Coordinación operativa</span></li>
-        <li><span data-i18n="en">Supplier alignment</span><span data-i18n="es">Alineación con proveedores</span></li>
-        <li><span data-i18n="en">Logistics management</span><span data-i18n="es">Gestión logística</span></li>
-        <li><span data-i18n="en">Customer responsiveness</span><span data-i18n="es">Respuesta al cliente</span></li>
-        <li><span data-i18n="en">Documentation discipline</span><span data-i18n="es">Disciplina documental</span></li>
-        <li><span data-i18n="en">Market adaptability</span><span data-i18n="es">Adaptabilidad al mercado</span></li>
+<!-- OPERATING MODEL (interactive) -->
+<section class="r-section r-model" id="model">
+  <div class="container r-model-grid">
+    <div>
+      <h2 class="r-h2 reveal"><span data-i18n="en">Operating Model</span><span data-i18n="es">Modelo Operativo</span></h2>
+      <p class="r-body reveal"><span data-i18n="en">RORAIMA operates through a modular platform structure combining:</span><span data-i18n="es">RORAIMA opera a través de una estructura de plataforma modular que combina:</span></p>
+      <ul class="r-model-points reveal">
+        <li><span data-i18n="en">Independent SPVs tailored to each transaction or vertical</span><span data-i18n="es">SPVs independientes adaptados a cada transacción o vertical</span></li>
+        <li><span data-i18n="en">A centralized CORE (Center of Operations, Resources and Enablement)</span><span data-i18n="es">Un CORE centralizado (Centro de Operaciones, Recursos y Habilitación)</span></li>
+        <li><span data-i18n="en">Shared operational infrastructure for scalability, transparency, and execution discipline</span><span data-i18n="es">Infraestructura operativa compartida para escalabilidad, transparencia y disciplina de ejecución</span></li>
       </ul>
-      <p>
-        <span data-i18n="en">Our experience supporting complex cross-border transactions allows us to remain actively involved from origination through final execution.</span>
-        <span data-i18n="es">Nuestra experiencia respaldando transacciones complejas transfronterizas nos permite mantenernos activamente involucrados desde la originación hasta la ejecución final.</span>
-      </p>
+
+      <div class="r-node-detail reveal" id="rNodeDetail">
+        <div class="r-node-detail-block active" data-node="core">
+          <div class="r-kicker"><span data-i18n="en">Platform Core</span><span data-i18n="es">Núcleo de la Plataforma</span></div>
+          <h3>Roraima Core</h3>
+          <p class="r-sub"><span data-i18n="en">Center of Operations, Resources &amp; Enablement</span><span data-i18n="es">Centro de Operaciones, Recursos y Habilitación</span></p>
+          <p class="r-body"><span data-i18n="en">The central platform layer — shared finance, legal, compliance, technology, and reporting that gives every SPV the discipline of an institutional desk.</span><span data-i18n="es">La capa central — finanzas, legal, cumplimiento, tecnología y reportería compartidas que dan a cada SPV la disciplina de una mesa institucional.</span></p>
+        </div>
+        <div class="r-node-detail-block" data-node="spv1">
+          <div class="r-kicker"><span data-i18n="en">Vertical SPV</span><span data-i18n="es">SPV Vertical</span></div>
+          <h3><span data-i18n="en">SPV / Transaction Vertical 1</span><span data-i18n="es">SPV / Vertical de Transacción 1</span></h3>
+          <p class="r-sub"><span data-i18n="en">Tailored to deal type &amp; jurisdiction</span><span data-i18n="es">Adaptado al tipo de operación y jurisdicción</span></p>
+          <p class="r-body"><span data-i18n="en">An independent SPV ring-fences each transaction — capital, governance, and risk isolated, with shared services from Core preserving discipline.</span><span data-i18n="es">Un SPV independiente aísla cada transacción — capital, gobernanza y riesgo separados, con servicios compartidos del Core que preservan la disciplina.</span></p>
+        </div>
+        <div class="r-node-detail-block" data-node="spv2">
+          <div class="r-kicker"><span data-i18n="en">Vertical SPV</span><span data-i18n="es">SPV Vertical</span></div>
+          <h3><span data-i18n="en">SPV / Transaction Vertical 2</span><span data-i18n="es">SPV / Vertical de Transacción 2</span></h3>
+          <p class="r-sub"><span data-i18n="en">Parallel execution, shared discipline</span><span data-i18n="es">Ejecución paralela, disciplina compartida</span></p>
+          <p class="r-body"><span data-i18n="en">A second vertical in parallel — different sector and counterparties, same operational backbone. Verticals scale horizontally without diluting Core.</span><span data-i18n="es">Un segundo vertical en paralelo — distinto sector y contrapartes, la misma columna operativa. Los verticales escalan sin diluir el Core.</span></p>
+        </div>
+        <div class="r-node-detail-block" data-node="spvN">
+          <div class="r-kicker"><span data-i18n="en">Vertical SPV</span><span data-i18n="es">SPV Vertical</span></div>
+          <h3><span data-i18n="en">SPV / Transaction Vertical N</span><span data-i18n="es">SPV / Vertical de Transacción N</span></h3>
+          <p class="r-sub"><span data-i18n="en">Modular by design</span><span data-i18n="es">Modular por diseño</span></p>
+          <p class="r-body"><span data-i18n="en">New verticals plug into Core on demand — each inherits institutional standards while keeping commercial agility at the transaction level.</span><span data-i18n="es">Nuevos verticales se conectan al Core bajo demanda — cada uno hereda los estándares institucionales manteniendo agilidad comercial a nivel de transacción.</span></p>
+        </div>
+      </div>
     </div>
 
-    <div class="exp-images reveal">
-      <img src="assets/images/wp-port-cranes.jpg" alt="Port cranes loading bulk vessel" loading="lazy" decoding="async">
-      <img src="assets/images/wp-grains-mosaic.jpg" alt="Grain portfolio mosaic" loading="lazy" decoding="async">
-      <img src="assets/images/sacos.png" alt="Control Union certified sacks in warehouse" loading="lazy" decoding="async">
+    <div class="r-diagram-wrap reveal">
+      <div class="r-diagram" id="rDiagram">
+        <svg class="r-diagram-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="conn" data-spv="spv1" d="M 50 30 L 50 55 L 16.5 55 L 16.5 72" vector-effect="non-scaling-stroke"/>
+          <path class="conn" data-spv="spv2" d="M 50 30 L 50 72" vector-effect="non-scaling-stroke"/>
+          <path class="conn" data-spv="spvN" d="M 50 30 L 50 55 L 83.5 55 L 83.5 72" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <div class="r-diagram-core">
+          <div class="r-node core active" data-node="core" tabindex="0" role="button" aria-pressed="true">
+            <span class="r-node-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="4"/><path d="M14 4v4M14 20v4M4 14h4M20 14h4M7 7l3 3M18 18l3 3M21 7l-3 3M7 21l3-3"/></svg></span>
+            <span class="r-node-ttl">RORAIMA CORE</span>
+            <span class="r-node-sub"><span data-i18n="en">Center of Operations, Resources &amp; Enablement</span><span data-i18n="es">Centro de Operaciones, Recursos y Habilitación</span></span>
+          </div>
+        </div>
+        <div class="r-diagram-row">
+          <div class="r-node" data-node="spv1" tabindex="0" role="button" aria-pressed="false">
+            <span class="r-node-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="16" height="22"/><path d="M10 9h2M10 13h2M10 17h2M10 21h2M16 9h2M16 13h2M16 17h2M16 21h2"/></svg></span>
+            <span class="r-node-ttl sm"><span data-i18n="en">SPV / Transaction</span><span data-i18n="es">SPV / Transacción</span></span>
+            <span class="r-node-sub">VERTICAL 1</span>
+          </div>
+          <div class="r-node" data-node="spv2" tabindex="0" role="button" aria-pressed="false">
+            <span class="r-node-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="16" height="22"/><path d="M10 9h2M10 13h2M10 17h2M10 21h2M16 9h2M16 13h2M16 17h2M16 21h2"/></svg></span>
+            <span class="r-node-ttl sm"><span data-i18n="en">SPV / Transaction</span><span data-i18n="es">SPV / Transacción</span></span>
+            <span class="r-node-sub">VERTICAL 2</span>
+          </div>
+          <div class="r-node" data-node="spvN" tabindex="0" role="button" aria-pressed="false">
+            <span class="r-node-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="16" height="22"/><path d="M10 9h2M10 13h2M10 17h2M10 21h2M16 9h2M16 13h2M16 17h2M16 21h2"/></svg></span>
+            <span class="r-node-ttl sm"><span data-i18n="en">SPV / Transaction</span><span data-i18n="es">SPV / Transacción</span></span>
+            <span class="r-node-sub">VERTICAL N</span>
+          </div>
+        </div>
+      </div>
+      <div class="r-diagram-hint"><span data-i18n="en">Click any node ↗</span><span data-i18n="es">Haz clic en un nodo ↗</span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ WHY LOCAL COORDINATION MATTERS (merged from about.html) ============ -->
-<section class="about-section tone-paper">
+<!-- SECTORS (interactive) -->
+<section class="r-section r-sectors" id="sectors">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow centered">
-        <span data-i18n="en">Why Local Coordination Matters</span>
-        <span data-i18n="es">Por Qué Importa la Coordinación Local</span>
-      </span>
-      <h2>
-        <span data-i18n="en">Beyond price: <em>execution, responsiveness, and relationship strength.</em></span>
-        <span data-i18n="es">Más allá del precio: <em>ejecución, respuesta y solidez de relaciones.</em></span>
-      </h2>
+      <span class="eyebrow centered"><span data-i18n="en">Sectors We Engage In</span><span data-i18n="es">Sectores en los que Participamos</span></span>
+    </div>
+    <div class="r-sectors-grid" id="rSectorsGrid">
+      <div class="r-sector" data-sector="energy" tabindex="0" role="button"><span class="r-sec-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3c-3 6-7 9-7 14a7 7 0 0 0 14 0c0-5-4-8-7-14z"/><path d="M14 11c-2 3-4 4-4 7a4 4 0 0 0 8 0c0-3-2-4-4-7z"/></svg></span><span class="r-sec-t"><span data-i18n="en">Energy &amp; Natural Resources</span><span data-i18n="es">Energía y Recursos Naturales</span></span></div>
+      <div class="r-sector" data-sector="infra" tabindex="0" role="button"><span class="r-sec-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h22l-2 4H5z"/><path d="M5 18l1-7h16l1 7"/><path d="M14 11V7"/><path d="M9 7h10l-2-3H11z"/><path d="M9 18v2M14 18v2M19 18v2"/></svg></span><span class="r-sec-t"><span data-i18n="en">Infrastructure &amp; Logistics</span><span data-i18n="es">Infraestructura y Logística</span></span></div>
+      <div class="r-sector" data-sector="agri" tabindex="0" role="button"><span class="r-sec-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 25V12"/><path d="M14 18C10 18 6 15 5 9c5-1 9 3 9 9z"/><path d="M14 14c4 0 8-3 9-9-5-1-9 3-9 9z"/></svg></span><span class="r-sec-t"><span data-i18n="en">Agriculture &amp; Food Security</span><span data-i18n="es">Agricultura y Seguridad Alimentaria</span></span></div>
+      <div class="r-sector" data-sector="industry" tabindex="0" role="button"><span class="r-sec-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 24V13l6 4v-4l6 4v-4l6 4V24z"/><path d="M3 24h22"/><path d="M8 20h2M14 20h2M20 20h2"/><path d="M21 13V6h-3"/></svg></span><span class="r-sec-t"><span data-i18n="en">Industrials &amp; Manufacturing</span><span data-i18n="es">Industria y Manufactura</span></span></div>
+      <div class="r-sector" data-sector="commodities" tabindex="0" role="button"><span class="r-sec-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h20"/><path d="M7 22V16h14v6"/><path d="M9 16V11h10v5"/><path d="M11 11V7h6v4"/><path d="M14 7V4"/></svg></span><span class="r-sec-t"><span data-i18n="en">Commodities &amp; Trading</span><span data-i18n="es">Commodities y Trading</span></span></div>
+      <div class="r-sector" data-sector="special" tabindex="0" role="button"><span class="r-sec-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="10"/><circle cx="14" cy="14" r="6"/><circle cx="14" cy="14" r="2" fill="currentColor"/><path d="M14 1v3M14 24v3M1 14h3M24 14h3"/></svg></span><span class="r-sec-t"><span data-i18n="en">Strategic &amp; Special Situations</span><span data-i18n="es">Situaciones Estratégicas y Especiales</span></span></div>
     </div>
 
-    <div class="strat-prose reveal">
-      <p>
-        <span data-i18n="en">In commodity markets, competitive advantage is often determined not only by price, but by execution capability, responsiveness, and relationship strength.</span>
-        <span data-i18n="es">En los mercados de materias primas, la ventaja competitiva suele estar determinada no sólo por el precio, sino por la capacidad de ejecución, la respuesta y la solidez de las relaciones.</span>
-      </p>
-      <p>
-        <span data-i18n="en">Patagonia Americas provides local coordination capabilities designed to improve transaction efficiency and long-term commercial continuity.</span>
-        <span data-i18n="es">Patagonia Americas aporta capacidades de coordinación local diseñadas para mejorar la eficiencia transaccional y la continuidad comercial de largo plazo.</span>
-      </p>
-    </div>
-
-    <div class="why-grid">
-      <article class="why-card reveal">
-        <svg class="wc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="6"/>
-          <circle cx="22" cy="22" r="6"/>
-          <path d="M11 17v3a2 2 0 002 2h3"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Commercial Relationships</span>
-          <span data-i18n="es">Relaciones Comerciales</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Longstanding industry connections and direct engagement with regional market participants help facilitate smoother commercial development and stronger operational alignment.</span>
-          <span data-i18n="es">Conexiones consolidadas en la industria y un trato directo con participantes regionales facilitan un desarrollo comercial más fluido y una mayor alineación operativa.</span>
-        </p>
-      </article>
-
-      <article class="why-card reveal">
-        <svg class="wc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M16 4v6M16 22v6M4 16h6M22 16h6"/>
-          <path d="M8 8l4 4M20 20l4 4M8 24l4-4M20 12l4-4"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Operational Adaptability</span>
-          <span data-i18n="es">Adaptabilidad Operativa</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Flexible coordination structures allow us to navigate changing market conditions, logistical complexities, and evolving customer requirements.</span>
-          <span data-i18n="es">Estructuras de coordinación flexibles nos permiten navegar condiciones de mercado cambiantes, complejidades logísticas y requisitos de cliente en evolución.</span>
-        </p>
-      </article>
-
-      <article class="why-card reveal">
-        <svg class="wc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M8 4h12l6 6v18a2 2 0 01-2 2H8a2 2 0 01-2-2V6a2 2 0 012-2z"/>
-          <path d="M20 4v6h6"/>
-          <path d="M10 16h12M10 20h12M10 24h8"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Documentation & Process Coordination</span>
-          <span data-i18n="es">Documentación y Coordinación de Procesos</span>
-        </h3>
-        <p>
-          <span data-i18n="en">We support disciplined management of transaction workflows, documentation requirements, and cross-border coordination processes necessary for efficient execution.</span>
-          <span data-i18n="es">Brindamos una gestión disciplinada de flujos transaccionales, requisitos documentales y procesos de coordinación transfronteriza, necesarios para una ejecución eficiente.</span>
-        </p>
-      </article>
-
-      <article class="why-card reveal">
-        <svg class="wc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 26l8-10 6 6 10-14"/>
-          <path d="M20 8h8v8"/>
-          <circle cx="16" cy="22" r="2"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Customer & Market Intelligence</span>
-          <span data-i18n="es">Inteligencia de Cliente y Mercado</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Our experience across regional markets provides practical understanding of buyer requirements, operational timing, commercial preferences, and evolving industry dynamics.</span>
-          <span data-i18n="es">Nuestra experiencia en mercados regionales aporta un entendimiento práctico de los requisitos del comprador, los tiempos operativos, las preferencias comerciales y la dinámica de la industria.</span>
-        </p>
-      </article>
+    <div class="r-sector-panel" id="rSectorPanel">
+      <div class="r-sector-hint" id="rSectorHint"><span data-i18n="en">Hover any sector to view detail ↑</span><span data-i18n="es">Pasa el cursor sobre un sector para ver el detalle ↑</span></div>
+      <div class="r-sector-block" data-sector="energy"><div class="c1"><div class="r-kicker"><span data-i18n="en">Sector Focus</span><span data-i18n="es">Enfoque Sectorial</span></div><h3><span data-i18n="en">Energy &amp; Natural Resources</span><span data-i18n="es">Energía y Recursos Naturales</span></h3><p class="r-body"><span data-i18n="en">Upstream, midstream, transition assets, and strategic resource plays.</span><span data-i18n="es">Activos upstream, midstream, de transición y jugadas estratégicas de recursos.</span></p></div><div class="c2"><div class="r-kicker"><span data-i18n="en">Snapshot</span><span data-i18n="es">Resumen</span></div><div class="r-snap"><div class="row"><span class="k"><span data-i18n="en">Active mandates</span><span data-i18n="es">Mandatos activos</span></span><span class="v">07</span></div><div class="row"><span class="k"><span data-i18n="en">Sectors</span><span data-i18n="es">Sectores</span></span><span class="v"><span data-i18n="en">Oil · Gas · Mining · Renewables</span><span data-i18n="es">Petróleo · Gas · Minería · Renovables</span></span></div><div class="row"><span class="k"><span data-i18n="en">Stage</span><span data-i18n="es">Etapa</span></span><span class="v"><span data-i18n="en">Origination → Operate</span><span data-i18n="es">Originación → Operación</span></span></div></div></div><div class="c3"><div class="r-kicker"><span data-i18n="en">Representative Transactions</span><span data-i18n="es">Transacciones Representativas</span></div><ul class="r-tx"><li><span data-i18n="en">Cross-border gas infrastructure</span><span data-i18n="es">Infraestructura de gas transfronteriza</span></li><li><span data-i18n="en">Strategic resource concessions</span><span data-i18n="es">Concesiones estratégicas de recursos</span></li><li><span data-i18n="en">Energy transition co-investments</span><span data-i18n="es">Coinversiones en transición energética</span></li></ul></div></div>
+      <div class="r-sector-block" data-sector="infra"><div class="c1"><div class="r-kicker"><span data-i18n="en">Sector Focus</span><span data-i18n="es">Enfoque Sectorial</span></div><h3><span data-i18n="en">Infrastructure &amp; Logistics</span><span data-i18n="es">Infraestructura y Logística</span></h3><p class="r-body"><span data-i18n="en">Ports, rail, road, and storage assets that unlock trade corridors.</span><span data-i18n="es">Puertos, ferrocarril, carreteras y almacenamiento que abren corredores comerciales.</span></p></div><div class="c2"><div class="r-kicker"><span data-i18n="en">Snapshot</span><span data-i18n="es">Resumen</span></div><div class="r-snap"><div class="row"><span class="k"><span data-i18n="en">Active mandates</span><span data-i18n="es">Mandatos activos</span></span><span class="v">05</span></div><div class="row"><span class="k"><span data-i18n="en">Asset classes</span><span data-i18n="es">Clases de activo</span></span><span class="v"><span data-i18n="en">Ports · Rail · Storage</span><span data-i18n="es">Puertos · Ferrocarril · Almacenamiento</span></span></div><div class="row"><span class="k"><span data-i18n="en">Stage</span><span data-i18n="es">Etapa</span></span><span class="v"><span data-i18n="en">Structure → Build</span><span data-i18n="es">Estructuración → Construcción</span></span></div></div></div><div class="c3"><div class="r-kicker"><span data-i18n="en">Representative Transactions</span><span data-i18n="es">Transacciones Representativas</span></div><ul class="r-tx"><li><span data-i18n="en">River-port concessions</span><span data-i18n="es">Concesiones de puertos fluviales</span></li><li><span data-i18n="en">Inland storage networks</span><span data-i18n="es">Redes de almacenamiento interior</span></li><li><span data-i18n="en">Logistics PPP arrangements</span><span data-i18n="es">Esquemas APP de logística</span></li></ul></div></div>
+      <div class="r-sector-block" data-sector="agri"><div class="c1"><div class="r-kicker"><span data-i18n="en">Sector Focus</span><span data-i18n="es">Enfoque Sectorial</span></div><h3><span data-i18n="en">Agriculture &amp; Food Security</span><span data-i18n="es">Agricultura y Seguridad Alimentaria</span></h3><p class="r-body"><span data-i18n="en">Large-scale agriculture, food processing, and supply-chain assets.</span><span data-i18n="es">Agricultura a gran escala, procesamiento de alimentos y activos de cadena de suministro.</span></p></div><div class="c2"><div class="r-kicker"><span data-i18n="en">Snapshot</span><span data-i18n="es">Resumen</span></div><div class="r-snap"><div class="row"><span class="k"><span data-i18n="en">Active mandates</span><span data-i18n="es">Mandatos activos</span></span><span class="v">06</span></div><div class="row"><span class="k"><span data-i18n="en">Verticals</span><span data-i18n="es">Verticales</span></span><span class="v"><span data-i18n="en">Grains · Protein · Soft Comm.</span><span data-i18n="es">Granos · Proteína · Soft Comm.</span></span></div><div class="row"><span class="k"><span data-i18n="en">Stage</span><span data-i18n="es">Etapa</span></span><span class="v"><span data-i18n="en">Originate → Off-take</span><span data-i18n="es">Originación → Off-take</span></span></div></div></div><div class="c3"><div class="r-kicker"><span data-i18n="en">Representative Transactions</span><span data-i18n="es">Transacciones Representativas</span></div><ul class="r-tx"><li><span data-i18n="en">Vertically integrated grain platforms</span><span data-i18n="es">Plataformas de granos verticalmente integradas</span></li><li><span data-i18n="en">Protein processing JVs</span><span data-i18n="es">JVs de procesamiento de proteína</span></li><li><span data-i18n="en">Soft commodity trade finance</span><span data-i18n="es">Financiamiento comercial de soft commodities</span></li></ul></div></div>
+      <div class="r-sector-block" data-sector="industry"><div class="c1"><div class="r-kicker"><span data-i18n="en">Sector Focus</span><span data-i18n="es">Enfoque Sectorial</span></div><h3><span data-i18n="en">Industrials &amp; Manufacturing</span><span data-i18n="es">Industria y Manufactura</span></h3><p class="r-body"><span data-i18n="en">Strategic industrial assets and onshoring opportunities.</span><span data-i18n="es">Activos industriales estratégicos y oportunidades de relocalización.</span></p></div><div class="c2"><div class="r-kicker"><span data-i18n="en">Snapshot</span><span data-i18n="es">Resumen</span></div><div class="r-snap"><div class="row"><span class="k"><span data-i18n="en">Active mandates</span><span data-i18n="es">Mandatos activos</span></span><span class="v">04</span></div><div class="row"><span class="k"><span data-i18n="en">Focus</span><span data-i18n="es">Enfoque</span></span><span class="v"><span data-i18n="en">Strategic · Dual-use</span><span data-i18n="es">Estratégico · Doble uso</span></span></div><div class="row"><span class="k"><span data-i18n="en">Stage</span><span data-i18n="es">Etapa</span></span><span class="v"><span data-i18n="en">Structure → Operate</span><span data-i18n="es">Estructuración → Operación</span></span></div></div></div><div class="c3"><div class="r-kicker"><span data-i18n="en">Representative Transactions</span><span data-i18n="es">Transacciones Representativas</span></div><ul class="r-tx"><li><span data-i18n="en">Industrial parks</span><span data-i18n="es">Parques industriales</span></li><li><span data-i18n="en">Strategic manufacturing JVs</span><span data-i18n="es">JVs de manufactura estratégica</span></li><li><span data-i18n="en">Onshoring partnerships</span><span data-i18n="es">Alianzas de relocalización</span></li></ul></div></div>
+      <div class="r-sector-block" data-sector="commodities"><div class="c1"><div class="r-kicker"><span data-i18n="en">Sector Focus</span><span data-i18n="es">Enfoque Sectorial</span></div><h3><span data-i18n="en">Commodities &amp; Trading</span><span data-i18n="es">Commodities y Trading</span></h3><p class="r-body"><span data-i18n="en">Physical and financial trading across hard and soft commodities.</span><span data-i18n="es">Trading físico y financiero de commodities duros y blandos.</span></p></div><div class="c2"><div class="r-kicker"><span data-i18n="en">Snapshot</span><span data-i18n="es">Resumen</span></div><div class="r-snap"><div class="row"><span class="k"><span data-i18n="en">Active mandates</span><span data-i18n="es">Mandatos activos</span></span><span class="v">09</span></div><div class="row"><span class="k"><span data-i18n="en">Desks</span><span data-i18n="es">Mesas</span></span><span class="v"><span data-i18n="en">Metals · Grains · Energy</span><span data-i18n="es">Metales · Granos · Energía</span></span></div><div class="row"><span class="k"><span data-i18n="en">Stage</span><span data-i18n="es">Etapa</span></span><span class="v"><span data-i18n="en">Originate → Settle</span><span data-i18n="es">Originación → Liquidación</span></span></div></div></div><div class="c3"><div class="r-kicker"><span data-i18n="en">Representative Transactions</span><span data-i18n="es">Transacciones Representativas</span></div><ul class="r-tx"><li><span data-i18n="en">Structured commodity finance</span><span data-i18n="es">Financiamiento estructurado de commodities</span></li><li><span data-i18n="en">Physical trading desks</span><span data-i18n="es">Mesas de trading físico</span></li><li><span data-i18n="en">Off-take agreements</span><span data-i18n="es">Acuerdos de off-take</span></li></ul></div></div>
+      <div class="r-sector-block" data-sector="special"><div class="c1"><div class="r-kicker"><span data-i18n="en">Sector Focus</span><span data-i18n="es">Enfoque Sectorial</span></div><h3><span data-i18n="en">Strategic &amp; Special Situations</span><span data-i18n="es">Situaciones Estratégicas y Especiales</span></h3><p class="r-body"><span data-i18n="en">Distressed, restructurings, and asymmetric strategic plays.</span><span data-i18n="es">Activos en dificultades, reestructuraciones y jugadas estratégicas asimétricas.</span></p></div><div class="c2"><div class="r-kicker"><span data-i18n="en">Snapshot</span><span data-i18n="es">Resumen</span></div><div class="r-snap"><div class="row"><span class="k"><span data-i18n="en">Active mandates</span><span data-i18n="es">Mandatos activos</span></span><span class="v">03</span></div><div class="row"><span class="k"><span data-i18n="en">Type</span><span data-i18n="es">Tipo</span></span><span class="v"><span data-i18n="en">Distressed · Strategic · Bespoke</span><span data-i18n="es">En dificultades · Estratégico · A medida</span></span></div><div class="row"><span class="k"><span data-i18n="en">Stage</span><span data-i18n="es">Etapa</span></span><span class="v"><span data-i18n="en">Underwrite → Realize</span><span data-i18n="es">Suscripción → Realización</span></span></div></div></div><div class="c3"><div class="r-kicker"><span data-i18n="en">Representative Transactions</span><span data-i18n="es">Transacciones Representativas</span></div><ul class="r-tx"><li><span data-i18n="en">Restructurings</span><span data-i18n="es">Reestructuraciones</span></li><li><span data-i18n="en">Strategic recapitalizations</span><span data-i18n="es">Recapitalizaciones estratégicas</span></li><li><span data-i18n="en">Asymmetric special situations</span><span data-i18n="es">Situaciones especiales asimétricas</span></li></ul></div></div>
     </div>
   </div>
 </section>
 
-<!-- STRATEGIC POSITIONING — institutional depth (WordPress fusion) -->
-<section class="strategic" id="positioning">
-  <div class="container">
-    <div class="strategic-head reveal">
-      <span class="eyebrow centered">
-        <span data-i18n="en">Strategic Positioning</span>
-        <span data-i18n="es">Posicionamiento Estratégico</span>
-      </span>
-      <h2>
-        <span data-i18n="en">Building reliable <em>commercial bridges</em> across global markets.</span>
-        <span data-i18n="es">Construyendo <em>puentes comerciales</em> confiables entre los mercados globales.</span>
-      </h2>
-    </div>
-
-    <div class="strategic-grid">
-      <div class="strategic-text reveal">
-        <p>
-          <span data-i18n="en">Patagonia Americas provides international suppliers, producers, and industrial buyers with a trusted, relationship-driven platform for commodity trading, sourcing, logistics coordination, and long-term commercial development across the Americas.</span>
-          <span data-i18n="es">Patagonia Americas ofrece a productores, proveedores internacionales y compradores industriales una plataforma confiable, basada en relaciones, para el comercio de materias primas, la originación, la coordinación logística y el desarrollo comercial a largo plazo en todo el continente americano.</span>
-        </p>
-        <p>
-          <span data-i18n="en">Our model combines international market access with disciplined local execution — allowing counterparties to navigate complex supply chains with greater confidence, efficiency, and operational visibility.</span>
-          <span data-i18n="es">Nuestro modelo combina el acceso a mercados internacionales con una ejecución local disciplinada — permitiendo a nuestras contrapartes navegar cadenas de suministro complejas con mayor confianza, eficiencia y visibilidad operativa.</span>
-        </p>
-        <a href="#about" class="btn btn-dark" style="margin-top: 18px;">
-          <span data-i18n="en">Read Our Full Approach</span><span data-i18n="es">Conocer Nuestro Enfoque Completo</span>
-          <span class="arrow">→</span>
-        </a>
-      </div>
-      <div class="strategic-image reveal">
-        <!-- Owner-provided photograph: Control Union-certified jute sacks stacked in warehouse -->
-        <img src="assets/images/sacos.png"
-             alt="Control Union certified sacks stacked in a warehouse — actual Patagonia Americas inventory"
-             loading="lazy" decoding="async">
-      </div>
-    </div>
-
-    <div class="strategic-cards">
-      <article class="sc-card reveal">
-        <svg class="sc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 26V14l10-8 10 8v12"/>
-          <path d="M12 26v-8h8v8"/>
-          <path d="M2 26h28"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Long-Term Partnership Focus</span>
-          <span data-i18n="es">Enfoque en Relaciones Duraderas</span>
-        </h3>
-        <p>
-          <span data-i18n="en">We prioritize durable commercial relationships over transactional opportunities, aligning our approach with the long-term objectives of our partners and clients.</span>
-          <span data-i18n="es">Priorizamos relaciones comerciales duraderas por sobre oportunidades transaccionales, alineando nuestro enfoque con los objetivos de largo plazo de nuestros socios y clientes.</span>
-        </p>
-      </article>
-
-      <article class="sc-card reveal">
-        <svg class="sc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 24V8h12l4 4h8v12z"/>
-          <path d="M4 12h28"/>
-          <circle cx="11" cy="18" r="2"/>
-          <circle cx="22" cy="18" r="2"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Scalable Execution Platform</span>
-          <span data-i18n="es">Plataforma de Ejecución Escalable</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Our operational structure is designed to support scalable growth, adaptable logistics coordination, and consistent transaction management across evolving market environments.</span>
-          <span data-i18n="es">Nuestra estructura operativa está diseñada para soportar un crecimiento escalable, una coordinación logística adaptable y una gestión consistente de transacciones en entornos de mercado cambiantes.</span>
-        </p>
-      </article>
-
-      <article class="sc-card reveal">
-        <svg class="sc-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="16" cy="16" r="12"/>
-          <path d="M16 4v24M4 16h24"/>
-          <path d="M16 4a16 12 0 010 24M16 4a16 12 0 000 24"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Institutional Approach</span>
-          <span data-i18n="es">Enfoque Institucional</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Professionalism, transparency, compliance awareness, and disciplined execution remain central to how we conduct business and build strategic partnerships.</span>
-          <span data-i18n="es">Profesionalismo, transparencia, conciencia regulatoria y ejecución disciplinada son los principios centrales de cómo hacemos negocios y construimos alianzas estratégicas.</span>
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- TRADE MAP — Global Flow -->
-<section class="trade-map reveal" aria-labelledby="trade-map-heading">
+<!-- FRONTIER COVERAGE — real Wikimedia map (portal Trade Map component) -->
+<section class="trade-map reveal" id="coverage" aria-labelledby="r-cov-h">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow centered">
-        <span data-i18n="en">Global Flow</span>
-        <span data-i18n="es">Flujo Global</span>
-      </span>
-      <h2 id="trade-map-heading">
-        <span data-i18n="en">From <em>origin</em> to <em>destination.</em></span>
-        <span data-i18n="es">Del <em>origen</em> al <em>destino.</em></span>
-      </h2>
+      <span class="eyebrow centered"><span data-i18n="en">Frontier Coverage</span><span data-i18n="es">Cobertura de Frontera</span></span>
+      <h2 id="r-cov-h"><span data-i18n="en">Where the Americas <em>meet capital.</em></span><span data-i18n="es">Donde las Américas <em>se encuentran con el capital.</em></span></h2>
     </div>
     <div class="world-map-wrap">
-<svg class="world-map" viewBox="0 0 950 620" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Map of global trade routes Patagonia Americas operates across">
-  <g class="land">
-    <path id="kalimantan" d="M781.68,324.4l-2.31,8.68l-12.53,4.23l-3.75-4.4l-1.82,0.5l3.4,13.12l5.09,0.57l6.79,2.57v2.57l3.11-0.57l4.53-6.27v-5.13l2.55-5.13l2.83,0.57l-3.4-7.13l-0.52-4.59L781.68,324.4L781.68,324.4z" />
+      <svg class="world-map" viewBox="0 0 950 620" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Map of the Americas showing Roraima coverage regions">
+        <g class="land"><path id="kalimantan" d="M781.68,324.4l-2.31,8.68l-12.53,4.23l-3.75-4.4l-1.82,0.5l3.4,13.12l5.09,0.57l6.79,2.57v2.57l3.11-0.57l4.53-6.27v-5.13l2.55-5.13l2.83,0.57l-3.4-7.13l-0.52-4.59L781.68,324.4L781.68,324.4z" />
     <path id="papua new guinea" d="M852.76,348.29l-0.37,24.44l3.52-0.19l4.63-5.41l3.89,0.19l2.5,2.24l0.83,6.9l7.96,4.2l2.04-0.75v-2.52l-6.39-5.32l-3.15-7.28l2.5-1.21l-1.85-4.01l-3.7-0.09l-0.93-4.29l-9.81-6.62L852.76,348.29L852.76,348.29z" />
     <path id="mexico" d="M137.49,225.43l4.83,15.21l-2.25,1.26l0.25,3.02l4.25,3.27v6.05l5.25,5.04l-2.25-14.86l-3-9.83l0.75-6.8l2.5,0.25l1,2.27l-1,5.79l13,25.44v9.07l10.5,12.34l11.5,5.29l4.75-2.77l6.75,5.54l4-4.03l-1.75-4.54l5.75-1.76l1.75,1.01l1.75-1.76h2.75l5-8.82l-2.5-2.27l-9.75,2.27l-2.25,6.55l-5.75,1.01l-6.75-2.77l-3-9.57l2.27-12.07l-4.64-2.89l-2.21-11.59l-1.85-0.79l-3.38,3.43l-3.88-2.07l-1.52-7.73l-15.37-1.61l-7.94-5.97L137.49,225.43L137.49,225.43z" />
     <path id="estonia" d="M517.77,143.66l-5.6-0.2l-3.55,2.17l-0.05,1.61l2.3,2.17l7.15,1.21L517.77,143.66L517.77,143.66z" />
@@ -1240,294 +734,121 @@
     <path id="greece" d="M506.71,217.6l-0.11,1.33l4.63,2.33l2.21,0.85l-1.16,1.22l-2.58,0.26l-0.37,1.17l0.89,2.01l2.89,1.54l1.26,0.11l0.16-3.45l1.89-2.28l-5.16-6.1l0.68-2.07l1.21-0.05l1.84,1.48l1.16-0.58l0.37-2.07l5.42,0.05l0.21-3.18l-2.26,1.59l-6.63-0.16l-4.31,2.23L506.71,217.6L506.71,217.6z" />
     <path id="thrace" d="M523.02,209.7l-0.16,3.55l3.1-0.95l1.42-0.95l-0.42-1.54l-1.47-1.17L523.02,209.7L523.02,209.7z" />
     <path id="crete" d="M516.76,230.59l1.63,0.05l0.68,1.01h2.37l1.58-0.58l0.53,0.64l-1.05,1.38l-4.63,0.16l-0.84-1.11l-0.89-0.53L516.76,230.59L516.76,230.59z" />
-    <path style="fill:#ffffff;stroke-width:0.001;fill-rule:evenodd;stroke:none" d="m 585.10725,311.17467 c 0,0 1.49132,0.16343 1.49132,0.16343" id="path1" />
+    <path style="fill:#ffffff;stroke-width:0.001;fill-rule:evenodd;stroke:none" d="m 585.10725,311.17467 c 0,0 1.49132,0.16343 1.49132,0.16343" id="path1" /></g>
+        <g class="arcs">
+    <path class="arc" d="M262,382 Q289,317 316,352"/>
+    <path class="arc" d="M316,352 Q329,320 342,388"/>
+    <path class="arc" d="M342,388 Q316,365 289,442"/>
+    <path class="arc" d="M262,382 Q276,362 289,442"/>
+    <path class="arc" d="M276,300 Q296,276 316,352"/>
+    <path class="arc" d="M205,292 Q240,246 276,300"/>
   </g>
-  <g class="arcs">
-    <path class="arc" d="M320,400 Q553,40 785,195"/>
-    <path class="arc" d="M290,435 Q378,111 466,173"/>
-    <path class="arc" d="M230,200 Q413,72 596,261"/>
-    <path class="arc" d="M320,400 Q458,164 596,261"/>
-    <path class="arc" d="M230,200 Q484,40 738,333"/>
+        <g class="r-regions">
+    <g class="region" data-region="centam" tabindex="0" role="button" aria-label="Central Hub">
+      <circle class="hit" cx="205" cy="292" r="22" fill="transparent"/>
+      <circle class="hub" cx="205" cy="292"><title>Central Hub</title></circle>
+    </g>
+    <g class="region" data-region="caribe" tabindex="0" role="button" aria-label="Caribbean Rim">
+      <circle class="hit" cx="276" cy="300" r="22" fill="transparent"/>
+      <circle class="hub" cx="276" cy="300"><title>Caribbean Rim</title></circle>
+    </g>
+    <g class="region" data-region="amaz" tabindex="0" role="button" aria-label="Amazon Basin">
+      <circle class="hit" cx="316" cy="352" r="22" fill="transparent"/>
+      <circle class="hub" cx="316" cy="352"><title>Amazon Basin</title></circle>
+    </g>
+    <g class="region" data-region="andes" tabindex="0" role="button" aria-label="Andean Bloc">
+      <circle class="hit" cx="262" cy="382" r="22" fill="transparent"/>
+      <circle class="hub" cx="262" cy="382"><title>Andean Bloc</title></circle>
+    </g>
+    <g class="region" data-region="brazil" tabindex="0" role="button" aria-label="Brazilian Frontier">
+      <circle class="hit" cx="342" cy="388" r="22" fill="transparent"/>
+      <circle class="hub" cx="342" cy="388"><title>Brazilian Frontier</title></circle>
+    </g>
+    <g class="region" data-region="south" tabindex="0" role="button" aria-label="Southern Cone">
+      <circle class="hit" cx="289" cy="442" r="22" fill="transparent"/>
+      <circle class="hub" cx="289" cy="442"><title>Southern Cone</title></circle>
+    </g>
   </g>
-  <g class="origins">
-    <circle class="hub" cx="230" cy="200" r="7"><title>USA Midwest</title></circle>
-    <circle class="hub" cx="290" cy="435" r="7"><title>Argentina · Rosario</title></circle>
-    <circle class="hub" cx="320" cy="400" r="7"><title>Brazil · Santos</title></circle>
-  </g>
-  <g class="destinations">
-    <circle class="hub dest" cx="466" cy="173" r="5"><title>Rotterdam</title></circle>
-    <circle class="hub dest" cx="785" cy="195" r="5"><title>Qingdao</title></circle>
-    <circle class="hub dest" cx="596" cy="261" r="5"><title>Jebel Ali · UAE</title></circle>
-    <circle class="hub dest" cx="738" cy="333" r="5"><title>Singapore</title></circle>
-  </g>
-</svg>
-      <div class="hub-legend">
-        <span><i class="origin"></i> <span data-i18n="en">Origin</span><span data-i18n="es">Origen</span></span>
-        <span><i class="dest"></i> <span data-i18n="en">Destination</span><span data-i18n="es">Destino</span></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- OPS BANNER — wp-grains-mosaic transition -->
-<section class="ops-banner reveal" aria-labelledby="ops-banner-heading">
-  <img src="assets/images/wp-grains-mosaic.jpg" alt="Mosaic of grains — wheat, rice, corn, millet — representing the supply portfolio" loading="lazy" decoding="async">
-  <div class="ops-banner-text container">
-    <span class="eyebrow centered">
-      <span data-i18n="en">Operational Execution</span>
-      <span data-i18n="es">Ejecución Operativa</span>
-    </span>
-    <h2 id="ops-banner-heading">
-      <span data-i18n="en">Successful commodity transactions require far <em>more than pricing alone.</em></span>
-      <span data-i18n="es">Las transacciones exitosas de materias primas requieren <em>mucho más que sólo precio.</em></span>
-    </h2>
-  </div>
-</section>
-
-<!-- FLOW DIAGRAM — Global Supply + Local Execution -->
-<section class="flow-diagram reveal" aria-labelledby="flow-heading">
-  <div class="container">
-    <div class="flow-head">
-      <span class="eyebrow centered">
-        <span data-i18n="en">Our Business Model</span>
-        <span data-i18n="es">Nuestro Modelo de Negocio</span>
-      </span>
-      <h2 id="flow-heading">
-        <span data-i18n="en">Global Supply <em>+ Local Execution.</em></span>
-        <span data-i18n="es">Suministro Global <em>+ Ejecución Local.</em></span>
-      </h2>
-    </div>
-
-    <div class="flow-svg-wrap">
-      <svg class="flow-svg" viewBox="0 0 1000 340" role="img" aria-label="Three-node business model: International Partner connects through Patagonia Americas to Industrial Clients">
-        <!-- Connectors: animated brass arcs left→center and center→right -->
-        <g>
-          <path class="flow-connector" d="M 200 130 Q 350 60 480 130"/>
-          <path class="flow-connector" d="M 520 130 Q 650 60 800 130"/>
-        </g>
-
-        <!-- Left node — International Partner -->
-        <g class="flow-node">
-          <circle class="ring" cx="200" cy="130" r="14"/>
-          <circle cx="200" cy="130" r="10"/>
-          <text class="node-sub" x="200" y="180">
-            <tspan data-i18n="en">International</tspan>
-            <tspan data-i18n="es">Socio</tspan>
-          </text>
-          <text class="node-title" x="200" y="208">
-            <tspan data-i18n="en">Partner</tspan>
-            <tspan data-i18n="es">Internacional</tspan>
-          </text>
-          <text class="node-desc" x="200" y="245">
-            <tspan data-i18n="en">Origination &amp; logistics</tspan>
-            <tspan data-i18n="es">Originación y logística</tspan>
-          </text>
-          <text class="node-desc" x="200" y="263">
-            <tspan data-i18n="en">across producing regions</tspan>
-            <tspan data-i18n="es">desde regiones productoras</tspan>
-          </text>
-        </g>
-
-        <!-- Center node — Patagonia Americas -->
-        <g class="flow-node center">
-          <circle class="ring" cx="500" cy="130" r="18"/>
-          <circle cx="500" cy="130" r="13"/>
-          <text class="node-sub" x="500" y="180">Patagonia</text>
-          <text class="node-title" x="500" y="208">Americas</text>
-          <text class="node-desc" x="500" y="245">
-            <tspan data-i18n="en">Market access &amp; local</tspan>
-            <tspan data-i18n="es">Acceso a mercados y</tspan>
-          </text>
-          <text class="node-desc" x="500" y="263">
-            <tspan data-i18n="en">commercial execution</tspan>
-            <tspan data-i18n="es">ejecución comercial local</tspan>
-          </text>
-        </g>
-
-        <!-- Right node — Industrial Clients -->
-        <g class="flow-node">
-          <circle class="ring" cx="800" cy="130" r="14"/>
-          <circle cx="800" cy="130" r="10"/>
-          <text class="node-sub" x="800" y="180">
-            <tspan data-i18n="en">Industrial</tspan>
-            <tspan data-i18n="es">Clientes</tspan>
-          </text>
-          <text class="node-title" x="800" y="208">
-            <tspan data-i18n="en">Clients</tspan>
-            <tspan data-i18n="es">Industriales</tspan>
-          </text>
-          <text class="node-desc" x="800" y="245">
-            <tspan data-i18n="en">Poultry, feed, food,</tspan>
-            <tspan data-i18n="es">Avicultura, alimento,</tspan>
-          </text>
-          <text class="node-desc" x="800" y="263">
-            <tspan data-i18n="en">metals &amp; biofuel processors</tspan>
-            <tspan data-i18n="es">metales y procesadores de biofuel</tspan>
-          </text>
-        </g>
       </svg>
+      <div class="r-region-detail" id="rRegionDetail">
+        <div class="r-region-hint" id="rRegionHint"><span data-i18n="en">Hover any region to view its mandates ↗</span><span data-i18n="es">Pasa el cursor sobre una región para ver sus mandatos ↗</span></div>
+        <div class="r-region-block" data-region="andes"><h3><span data-i18n="en">Andean Bloc</span><span data-i18n="es">Bloque Andino</span></h3><div class="m"><span class="n">8</span><span class="l"><span data-i18n="en">Active Mandates</span><span data-i18n="es">Mandatos Activos</span></span></div><p class="s"><span data-i18n="en">Mining · Energy · Infrastructure</span><span data-i18n="es">Minería · Energía · Infraestructura</span></p></div>
+        <div class="r-region-block" data-region="amaz"><h3><span data-i18n="en">Amazon Basin</span><span data-i18n="es">Cuenca Amazónica</span></h3><div class="m"><span class="n">5</span><span class="l"><span data-i18n="en">Active Mandates</span><span data-i18n="es">Mandatos Activos</span></span></div><p class="s"><span data-i18n="en">Agri · Strategic Resources</span><span data-i18n="es">Agro · Recursos Estratégicos</span></p></div>
+        <div class="r-region-block" data-region="caribe"><h3><span data-i18n="en">Caribbean Rim</span><span data-i18n="es">Arco Caribeño</span></h3><div class="m"><span class="n">4</span><span class="l"><span data-i18n="en">Active Mandates</span><span data-i18n="es">Mandatos Activos</span></span></div><p class="s"><span data-i18n="en">Logistics · Energy · Trade</span><span data-i18n="es">Logística · Energía · Comercio</span></p></div>
+        <div class="r-region-block" data-region="south"><h3><span data-i18n="en">Southern Cone</span><span data-i18n="es">Cono Sur</span></h3><div class="m"><span class="n">9</span><span class="l"><span data-i18n="en">Active Mandates</span><span data-i18n="es">Mandatos Activos</span></span></div><p class="s"><span data-i18n="en">Agriculture · Commodities · Industrials</span><span data-i18n="es">Agricultura · Commodities · Industria</span></p></div>
+        <div class="r-region-block" data-region="brazil"><h3><span data-i18n="en">Brazilian Frontier</span><span data-i18n="es">Frontera Brasileña</span></h3><div class="m"><span class="n">6</span><span class="l"><span data-i18n="en">Active Mandates</span><span data-i18n="es">Mandatos Activos</span></span></div><p class="s"><span data-i18n="en">Agribusiness · Strategic</span><span data-i18n="es">Agronegocio · Estratégico</span></p></div>
+        <div class="r-region-block" data-region="centam"><h3><span data-i18n="en">Central Hub</span><span data-i18n="es">Hub Central</span></h3><div class="m"><span class="n">2</span><span class="l"><span data-i18n="en">Active Mandates</span><span data-i18n="es">Mandatos Activos</span></span></div><p class="s"><span data-i18n="en">Trade Finance · Logistics</span><span data-i18n="es">Financiamiento Comercial · Logística</span></p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- OPERATIONAL EXECUTION CAPABILITY — 6-tile grid -->
-<section class="ops-capabilities reveal" aria-labelledby="cap-heading">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow centered">
-        <span data-i18n="en">What Execution Depends On</span>
-        <span data-i18n="es">De qué depende la ejecución</span>
-      </span>
-      <h2 id="cap-heading">
-        <span data-i18n="en">Six disciplines, <em>one transaction.</em></span>
-        <span data-i18n="es">Seis disciplinas, <em>una transacción.</em></span>
+<!-- PHILOSOPHY — dark full-bleed tepui (the second dark moment) -->
+<section class="r-philo" id="philosophy" aria-label="The Roraima Philosophy">
+  <div class="r-philo-bg" aria-hidden="true">
+    <img src="assets/images/roraima-philosophy.jpg" alt="">
+  </div>
+  <div class="container r-philo-grid">
+    <div class="r-philo-col">
+      <span class="eyebrow"><span data-i18n="en">The Roraima Philosophy</span><span data-i18n="es">La Filosofía Roraima</span></span>
+      <h2>
+        <span data-i18n="en">Stability above <em>uncertain terrain.</em></span>
+        <span data-i18n="es">Estabilidad sobre <em>terreno incierto.</em></span>
       </h2>
+      <p class="r-philo-p"><span data-i18n="en">Like the mountain from which it takes its name, RORAIMA represents permanence in uncertain terrain — and perspective above complexity.</span><span data-i18n="es">Como la montaña de la que toma su nombre, RORAIMA representa permanencia en terreno incierto — y perspectiva por encima de la complejidad.</span></p>
+      <p class="r-philo-p r-muted-light"><span data-i18n="en">Transformative opportunities emerge precisely where access is limited, execution is difficult, and strategic alignment creates asymmetric value. RORAIMA exists to convert that complexity into outcomes.</span><span data-i18n="es">Las oportunidades transformadoras surgen precisamente donde el acceso es limitado, la ejecución es difícil y la alineación estratégica crea valor asimétrico. RORAIMA existe para convertir esa complejidad en resultados.</span></p>
+      <div class="r-principles">
+        <div class="r-principle"><span class="tick" aria-hidden="true"></span><span class="l"><span data-i18n="en">Access Limited</span><span data-i18n="es">Acceso Limitado</span></span></div>
+        <div class="r-principle"><span class="tick" aria-hidden="true"></span><span class="l"><span data-i18n="en">Execution Difficult</span><span data-i18n="es">Ejecución Difícil</span></span></div>
+        <div class="r-principle"><span class="tick" aria-hidden="true"></span><span class="l"><span data-i18n="en">Alignment Asymmetric</span><span data-i18n="es">Alineación Asimétrica</span></span></div>
+      </div>
     </div>
-
-    <div class="cap-grid">
-      <div class="cap-tile reveal">
-        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="16" cy="16" r="12"/>
-          <path d="M16 8v8l5 3"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Operational Coordination</span>
-          <span data-i18n="es">Coordinación Operativa</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Aligned timing, documents, and counterparties across every step of the supply chain.</span>
-          <span data-i18n="es">Tiempos, documentos y contrapartes alineados en cada paso de la cadena de suministro.</span>
-        </p>
-      </div>
-
-      <div class="cap-tile reveal">
-        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 20V8h22v12z"/>
-          <circle cx="10" cy="20" r="3"/>
-          <circle cx="22" cy="20" r="3"/>
-          <path d="M26 12h4l-2 8"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Supplier Alignment</span>
-          <span data-i18n="es">Alineación con Proveedores</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Direct relationships with producers and origin partners we have engaged with over years.</span>
-          <span data-i18n="es">Relaciones directas con productores y socios de origen construidas a lo largo de los años.</span>
-        </p>
-      </div>
-
-      <div class="cap-tile reveal">
-        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 22V10h28v12z"/>
-          <path d="M4 10l4-4h20l4 4"/>
-          <path d="M14 22v4M22 22v4M4 26h28"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Logistics Management</span>
-          <span data-i18n="es">Gestión Logística</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Multimodal freight orchestration — origin trucking, port operations, ocean and inland delivery.</span>
-          <span data-i18n="es">Orquestación de flete multimodal — camión en origen, operaciones portuarias y entrega oceánica e interior.</span>
-        </p>
-      </div>
-
-      <div class="cap-tile reveal">
-        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 22a4 4 0 014-4h12a4 4 0 014 4v6H6z"/>
-          <circle cx="16" cy="10" r="4"/>
-          <path d="M22 4l4 4M22 8l4-4"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Customer Responsiveness</span>
-          <span data-i18n="es">Respuesta al Cliente</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Direct, accountable contact across the lifecycle of a transaction — not handed off to layers.</span>
-          <span data-i18n="es">Contacto directo y responsable durante todo el ciclo de la transacción — sin pasamanos.</span>
-        </p>
-      </div>
-
-      <div class="cap-tile reveal">
-        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M8 4h12l6 6v18a2 2 0 01-2 2H8a2 2 0 01-2-2V6a2 2 0 012-2z"/>
-          <path d="M20 4v6h6"/>
-          <path d="M10 18h12M10 22h12M10 14h6"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Documentation Discipline</span>
-          <span data-i18n="es">Disciplina Documental</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Compliance, customs, certificates of analysis, phytos — managed with the same rigor as the cargo.</span>
-          <span data-i18n="es">Compliance, aduanas, certificados de análisis, fitos — gestionados con el mismo rigor que la carga.</span>
-        </p>
-      </div>
-
-      <div class="cap-tile reveal">
-        <svg class="cap-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 26l8-10 6 6 10-14"/>
-          <path d="M20 8h8v8"/>
-        </svg>
-        <h3>
-          <span data-i18n="en">Market Adaptability</span>
-          <span data-i18n="es">Adaptabilidad al Mercado</span>
-        </h3>
-        <p>
-          <span data-i18n="en">Flexible coordination structures that navigate changing market conditions and evolving customer requirements.</span>
-          <span data-i18n="es">Estructuras de coordinación flexibles que se adaptan a condiciones cambiantes y requisitos del cliente.</span>
-        </p>
+    <div class="r-philo-panel">
+      <div class="r-kicker"><span data-i18n="en">Mount Roraima</span><span data-i18n="es">Monte Roraima</span></div>
+      <div class="r-philo-rows">
+        <div class="row"><span class="k"><span data-i18n="en">Elevation</span><span data-i18n="es">Elevación</span></span><span class="v">2,810 m</span></div>
+        <div class="row"><span class="k"><span data-i18n="en">Age</span><span data-i18n="es">Edad</span></span><span class="v"><span data-i18n="en">~2 billion years</span><span data-i18n="es">~2 mil millones de años</span></span></div>
+        <div class="row"><span class="k"><span data-i18n="en">Plateau Area</span><span data-i18n="es">Área de Meseta</span></span><span class="v">31 km²</span></div>
+        <div class="row"><span class="k"><span data-i18n="en">Tri-Border</span><span data-i18n="es">Triple Frontera</span></span><span class="v">VE · BR · GY</span></div>
+        <div class="row"><span class="k"><span data-i18n="en">Status</span><span data-i18n="es">Estado</span></span><span class="v"><span data-i18n="en">Origin of the platform</span><span data-i18n="es">Origen de la plataforma</span></span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BUILT FOR LONG-TERM GROWTH — closing band before CTA -->
-<section class="growth reveal" aria-labelledby="growth-heading">
-  <div class="container">
-    <span class="eyebrow centered">
-      <span data-i18n="en">Built for Long-Term Growth</span>
-      <span data-i18n="es">Construido para el Largo Plazo</span>
-    </span>
-    <h2 id="growth-heading">
-      <span data-i18n="en">Durability is built through trust, <em>execution, and time.</em></span>
-      <span data-i18n="es">La durabilidad se construye con confianza, <em>ejecución y tiempo.</em></span>
-    </h2>
-    <div class="growth-divider"></div>
-    <blockquote>
-      <span data-i18n="en">"Patagonia Americas was founded on the belief that durability in international trade is built through trust, execution, and long-term commercial growth across the global commodities sector."</span>
-      <span data-i18n="es">"Patagonia Americas fue fundada sobre la convicción de que la durabilidad en el comercio internacional se construye con confianza, ejecución y crecimiento comercial a largo plazo en el sector global de materias primas."</span>
-    </blockquote>
-    <p>
-      <span data-i18n="en">We are committed to serving as a reliable strategic partner for companies seeking disciplined market access, dependable execution, and scalable commercial growth.</span>
-      <span data-i18n="es">Estamos comprometidos a servir como socio estratégico confiable para compañías que buscan acceso disciplinado a mercados, ejecución dependable y crecimiento comercial escalable.</span>
-    </p>
+<!-- PILLARS -->
+<section class="r-section r-pillars">
+  <div class="container r-pillars-grid">
+    <div class="r-pillar reveal"><span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="12" width="16" height="12" rx="1"/><path d="M10 12V8a4 4 0 0 1 8 0v4"/><circle cx="14" cy="18" r="1.2" fill="currentColor"/></svg></span><span class="l"><span data-i18n="en">Controlled Entry.</span><span data-i18n="es">Entrada Controlada.</span></span></div>
+    <div class="r-pillar reveal"><span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l9 4v7c0 5-4 9-9 11-5-2-9-6-9-11V7l9-4z"/><path d="M10 14l3 3 5-6"/></svg></span><span class="l"><span data-i18n="en">Structured Execution.</span><span data-i18n="es">Ejecución Estructurada.</span></span></div>
+    <div class="r-pillar reveal"><span class="r-ic"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="10"/><path d="M4 14h20"/><path d="M14 4c4 4 4 16 0 20"/><path d="M14 4c-4 4-4 16 0 20"/></svg></span><span class="l"><span data-i18n="en">Real Impact.</span><span data-i18n="es">Impacto Real.</span></span></div>
   </div>
 </section>
 
-<!-- CTA STRIP -->
+<!-- CTA (portal component) -->
 <section class="cta-strip">
   <div class="container">
     <div class="cta-strip-inner">
       <h2>
-        <span data-i18n="en">Ready to move your commodities <em>across the globe?</em></span>
-        <span data-i18n="es">¿Listo para mover sus materias primas <em>por el mundo?</em></span>
+        <span data-i18n="en">Ready to convert opportunity <em>into execution?</em></span>
+        <span data-i18n="es">¿Listo para convertir la oportunidad <em>en ejecución?</em></span>
       </h2>
       <a href="contact.html" class="btn btn-brass">
-        <span data-i18n="en">Start a Conversation</span><span data-i18n="es">Iniciar una Conversación</span>
+        <span data-i18n="en">Schedule a Briefing</span><span data-i18n="es">Agendar una Reunión</span>
         <span class="arrow">→</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer" id="contact">
+</main>
+
+<!-- FOOTER (portal component) -->
+<footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-logo-block">
-        <a href="#" class="logo">
+        <a href="index.html" class="logo">
           <svg class="logo-mark" viewBox="0 0 44 44" fill="none">
             <circle cx="22" cy="22" r="19" stroke="#b8954a" stroke-width="1.2"/>
             <ellipse cx="22" cy="22" rx="19" ry="8" stroke="#b8954a" stroke-width="0.7"/>
@@ -1535,16 +856,12 @@
             <path d="M14 12 Q18 10 22 12 Q19 14 14 12 Z" fill="#b8954a" opacity="0.85"/>
             <circle cx="22" cy="22" r="1.2" fill="#b8954a"/>
           </svg>
-          <span class="logo-text">
-            <span class="lead">Patagonia</span>
-            <span class="sub">Americas</span>
-          </span>
+          <span class="logo-text"><span class="lead">Patagonia</span><span class="sub">Americas</span></span>
         </a>
         <p>
-          <span data-i18n="en">International commodity trading and logistics. Sourcing, shipping, and delivering agricultural raw materials across continents.</span>
-          <span data-i18n="es">Comercio internacional de materias primas y logística. Originamos, embarcamos y entregamos materias primas agrícolas en todos los continentes.</span>
+          <span data-i18n="en">Roraima — connecting vision, strategy, and execution across frontier opportunities in the Americas.</span>
+          <span data-i18n="es">Roraima — conectando visión, estrategia y ejecución a través de oportunidades de frontera en las Américas.</span>
         </p>
-        <!-- Mirrored language toggle for mobile (nav toggle hides under 880px) -->
         <div class="lang-toggle footer-lang" role="group" aria-label="Language" style="display:inline-flex; margin-top: 20px;">
           <button type="button" data-set-lang="en" class="is-active">EN</button>
           <span class="lang-divider" aria-hidden="true">/</span>
@@ -1555,9 +872,10 @@
       <div class="footer-col">
         <h5><span data-i18n="en">Quick Links</span><span data-i18n="es">Enlaces</span></h5>
         <ul>
-          <li class="simple"><a href="#services"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a></li>
-          <li class="simple"><a href="#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a></li>
-          <li class="simple"><a href="#about"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a></li>
+          <li class="simple"><a href="index.html#services"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a></li>
+          <li class="simple"><a href="index.html#products"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a></li>
+          <li class="simple"><a href="index.html#about"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a></li>
+          <li class="simple"><a href="/roraima">Roraima</a></li>
           <li class="simple"><a href="contact.html"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a></li>
         </ul>
       </div>
@@ -1593,8 +911,8 @@
 
     <div class="footer-bottom">
       <div>
-        <span data-i18n="en">© 2025 Patagonia Americas LLC. All Rights Reserved.</span>
-        <span data-i18n="es">© 2025 Patagonia Americas LLC. Todos los Derechos Reservados.</span>
+        <span data-i18n="en">© 2026 Patagonia Americas LLC. All Rights Reserved.</span>
+        <span data-i18n="es">© 2026 Patagonia Americas LLC. Todos los Derechos Reservados.</span>
       </div>
       <div class="footer-bottom-links">
         <a href="#"><span data-i18n="en">Privacy Policy</span><span data-i18n="es">Privacidad</span></a>
@@ -1607,7 +925,7 @@
 <script src="assets/js/nav.js" defer></script>
 <script src="assets/js/i18n.js" defer></script>
 <script src="assets/js/reveal.js" defer></script>
-<script src="assets/js/hero-slideshow.js" defer></script>
+<script src="assets/js/roraima.js" defer></script>
 
 </body>
 </html>

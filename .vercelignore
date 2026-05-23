@@ -1,0 +1,15 @@
+# Build / local artifacts (Vercel installs deps from package.json itself)
+.git
+.vercel
+node_modules
+.env
+.DS_Store
+**/.DS_Store
+
+# Stray / personal files dropped into assets/images that the site does NOT use —
+# keep them out of the public deploy.
+assets/images/guion_sebastian_expo.pdf
+assets/images/roraima.png
+assets/images/roraima2.png
+assets/images/pagina vercel.jpeg
+assets/images/SCR-*.jpeg

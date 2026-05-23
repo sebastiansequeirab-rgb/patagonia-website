@@ -15,3 +15,9 @@ SCR-*.jpeg
 SCR-*.jpg
 SCR-*.png
 pagina vercel.jpeg
+
+# Personal / unused source files dropped into assets/images (not part of the site;
+# the page uses the optimized roraima-hero.jpg / roraima-philosophy.jpg instead)
+assets/images/guion_sebastian_expo.pdf
+assets/images/roraima.png
+assets/images/roraima2.png
