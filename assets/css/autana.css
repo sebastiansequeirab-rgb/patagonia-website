@@ -90,6 +90,8 @@
 /* ---------- SECTORS ---------- */
 .r-sectors-grid { display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid #E2DAC4; border-bottom: 1px solid #E2DAC4; }
 .r-sector { padding: 38px 16px; text-align: center; cursor: pointer; border-left: 1px solid #E2DAC4; transition: background .4s var(--ease); position: relative; }
+/* Sectors render as a presentational grid here (no detail panel), so don't imply they're clickable. */
+.r-sectors-static .r-sector { cursor: default; }
 .r-sector:first-child { border-left: none; }
 .r-sector.active { background: #F3EAD2; }
 .r-sector.active::after { content: ""; position: absolute; left: 18%; right: 18%; bottom: -1px; height: 2px; background: var(--color-accent-gold); }
