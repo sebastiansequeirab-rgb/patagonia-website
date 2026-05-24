@@ -20,9 +20,9 @@ Static marketing site for Patagonia Americas, an international commodity trading
 patagonia-website/
 ├── index.html               # Single-page site: all 16 sections live here
 ├── contact.html             # Standalone contact form + brand panel
-├── roraima.html             # Standalone dark "Roraima Platform" page (served at /roraima)
+├── autana.html              # Standalone "Autana Platform" page, Venezuela focus (served at /autana)
 ├── about.html               # 5-line meta-refresh redirect to /#about
-├── vercel.json              # Rewrite /roraima → /roraima.html (clean URL)
+├── vercel.json              # Rewrite /autana → /autana.html (clean URL)
 ├── api/
 │   └── contact.js           # POST /api/contact → Resend email delivery
 ├── assets/
@@ -31,13 +31,13 @@ patagonia-website/
 │   │   ├── base.css         # Reset, body, typography, .container, .eyebrow, a11y
 │   │   ├── components.css   # Nav, buttons, lang toggle, ticker shell, contact form
 │   │   ├── sections.css     # All section-specific styles (hero through footer)
-│   │   └── roraima.css      # Roraima page only: dark theme + all its section styles
+│   │   └── autana.css       # Autana page only: all its section styles + Venezuela map crop
 │   ├── js/
 │   │   ├── nav.js           # Fixed-nav scroll state + hero parallax + scrollspy
 │   │   ├── hero-slideshow.js # 6-frame cross-fader, 8s pacing, hover/visibility pause
 │   │   ├── i18n.js          # EN/ES toggle, persisted to localStorage (shared by all pages)
 │   │   ├── reveal.js        # IntersectionObserver entrance animations + stat counters
-│   │   └── roraima.js       # Roraima page only: parallax, scroll-spy, interactive diagram/sectors/map, ticker
+│   │   └── autana.js        # Autana page only: the three interactive widgets (diagram / sectors / map)
 │   ├── images/              # Product / hero / pillar / map photos (see § Images)
 │   └── REDESIGN_SPEC.md     # Original "Quiet Authority" brief (mostly historical)
 ├── package.json             # Engines pin only (Node ≥ 18)
@@ -76,37 +76,45 @@ Bilingual EN/ES is implemented via paired `<span data-i18n="en">…</span><span 
 ### `contact.html`
 Two-panel layout: left = brand/contact details + OSM map iframe + WhatsApp pill, right = the contact form. JS is inline (page-specific form handler + i18n for `<option>` and textarea placeholders).
 
-### `roraima.html` — the Roraima Platform page
+### `autana.html` — the Autana Platform page
 
-A standalone page (served at the clean URL `/roraima` via the rewrite in `vercel.json`) presenting
-*Roraima* — an investment / structuring / execution platform that is part of Patagonia Americas but
-framed as its own platform, branded after Mt. Roraima (the tepui where VE·BR·GY meet). Reached from a
-"Roraima" nav link placed **after Contact** on every page.
+A standalone page (served at the clean URL `/autana` via the rewrite in `vercel.json`) presenting
+*Autana* — an investment / structuring / execution platform that is part of Patagonia Americas but
+framed as its own platform, **focused on Venezuela** and branded after **Cerro Autana**, the sacred
+mountain of the **Piaroa** people in the Venezuelan Amazon. Tagline: *Access. Structure. Execute.*
+Reached from an "Autana" nav link placed **after Contact** on every page.
 
 **Native to the portal (hybrid light/editorial).** It links the **full portal stylesheet stack**
-(`tokens → base → components → sections → roraima.css`) and **reuses the portal's own components** so it
+(`tokens → base → components → sections → autana.css`) and **reuses the portal's own components** so it
 reads as part of the site: the fixed `.nav`, the `.hero` (single dark tepui photo, reserves
 `--ticker-h`), the **real TradingView `.ticker-shell`** (in-flow below the hero, scrolls away — identical
-to the home), `.stats` (animated by `reveal.js`), the `.trade-map`/`.world-map` (real forest-on-cream
-Wikimedia map), `.cta-strip`, and the standard `.footer`. The two golden-hour tepui photos are kept as
-**dark full-bleed moments** (hero + Philosophy); everything between is light cream/editorial. Scripts:
-shared `nav.js` + `i18n.js` + `reveal.js`, plus a slim `roraima.js` for only the three interactive
-widgets (Operating Model, Sectors, Frontier map).
+to the home), `.stats` (animated by `reveal.js`), the `.trade-map`/`.world-map`, `.cta-strip`, and the
+standard `.footer`. The two dark full-bleed photo moments are the hero + Philosophy; everything between
+is light cream/editorial. Scripts: shared `nav.js` + `i18n.js` + `reveal.js`, plus a slim `autana.js`
+for only the three interactive widgets (Operating Model, Sectors, Operating Footprint map).
 
-Sections in order: hero → ticker → Premise → Why + The Platform → Capabilities → Stats → **interactive
-Operating Model** (RORAIMA CORE + SPV nodes) → **Sectors** (6 tiles, hover/click to expand) →
-**Frontier Coverage** (real map, 6 Americas markers + gold arcs + hover detail) → full-bleed
-**Philosophy** → Pillars → CTA → footer. Fully bilingual EN/ES, including the JS-driven panels
-(pre-rendered in both languages, shown by class toggle so the CSS language swap keeps working).
+Sections in order: hero → ticker → Premise (Cerro Autana / Piaroa) → Why + The Platform → Capabilities
+→ Stats → **interactive Operating Model** (AUTANA CORE + SPV nodes) → **Sectors** (6 tiles,
+hover/click to expand) → **Operating Footprint** (the portal world-map **cropped to Venezuela** — its
+`viewBox` is zoomed to Venezuela's path bounding box, with 6 regional markers + gold arcs + hover
+detail) → full-bleed **Philosophy** (Cerro Autana facts panel) → Pillars → CTA → footer. Fully
+bilingual EN/ES, including the JS-driven panels (pre-rendered in both languages, shown by class toggle
+so the CSS language swap keeps working).
 
-`roraima.css`/`roraima.js` are deliberately small — they only style/script the Roraima-specific
-widgets; all common chrome comes from the portal CSS. The two tepui photos live at
-`assets/images/roraima-hero.jpg` and `assets/images/roraima-philosophy.jpg` (compressed PNG→JPG).
+`autana.css`/`autana.js` are deliberately small — they only style/script the Autana-specific widgets;
+all common chrome comes from the portal CSS. The Venezuela map re-sizing + highlight lives in
+`autana.css` scoped under `#coverage` (page-only, so the home Trade Map is never affected). The two
+tepui photos live at `assets/images/autana-hero.jpg` and `assets/images/autana-philosophy.jpg`.
 
-> History: first shipped as an all-dark cinematic page (from a Claude Design React/Babel handoff
-> bundle), then re-aligned to the portal's light editorial system per the owner's request — keeping
-> only the dark tepui hero + Philosophy, switching the ticker from a simulated bar to the real
-> TradingView tape, and cutting the sub-rail / hero coords / duplicate metrics / marquee.
+> **Placeholders to finalize:** the hero + Philosophy photos are currently the inherited tepui images
+> (not literally Cerro Autana) — swap in real Cerro Autana photos when available. The Stats numbers,
+> the per-region mandate counts, and the Cerro Autana facts (≈1,300 m, etc.) are placeholders flagged
+> with `NOTE:` comments in `autana.html` for the owner to confirm.
+>
+> History: started life as a mistakenly-named "Roraima" page (all-dark cinematic, from a Claude Design
+> handoff), re-aligned to the portal's light editorial system, then **rebranded to Autana** with a
+> Venezuela focus — the coverage map was rebuilt from the Americas to a Venezuela crop, and the
+> Mt. Roraima inspiration/facts replaced with Cerro Autana / Piaroa.
 
 ### `about.html`
 5-line meta-refresh redirect to `/#about` — kept so any externally-shared link to `/about.html` doesn't 404.
@@ -219,7 +227,7 @@ All under `assets/images/`:
 - **Editorial / about** — `sacos.png` (Control Union certified jute sacks), `wp-grains-mosaic.jpg`, `wp-port-cranes.jpg`.
 - **World map source** — `world-map.svg`.
 - **Decoration** — `world-dots.svg`.
-- **Roraima page** — `roraima-hero.jpg` (hero tepui), `roraima-philosophy.jpg` (philosophy full-bleed). Compressed PNG→JPG (~1536 w, ~330–380 KB) from the Claude Design handoff bundle.
+- **Autana page** — `autana-hero.jpg` (hero tepui), `autana-philosophy.jpg` (philosophy full-bleed). Currently the inherited tepui photos (placeholders — swap in real Cerro Autana imagery when available).
 
 **Important:** Don't hotlink Unsplash for any product or hero photo — the upstream slug can be silently re-pointed (this site has been bitten twice: the basketball-arena hero, then the salad-bowl Sugar card). Always download a copy into `assets/images/` and reference locally.
 

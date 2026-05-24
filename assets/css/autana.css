@@ -1,11 +1,14 @@
 /* ============================================================
-   Patagonia Americas — RORAIMA platform page
+   Patagonia Americas — AUTANA platform page
    Light/editorial, native to the main portal. Loaded after
-   tokens/base/components/sections.css. This file styles ONLY the
-   Roraima-specific widgets (premise, why, capabilities, operating
+   tokens/base/components/sections.css. This file styles the
+   Autana-specific widgets (premise, why, capabilities, operating
    model, sectors, frontier detail, philosophy, pillars). Nav, hero,
-   ticker, stats, world-map, cta-strip and footer are the portal's
-   own components and are NOT restyled here.
+   ticker, stats, cta-strip and footer are the portal's own
+   components and are NOT restyled here. The .world-map IS adapted
+   here (page-only): its viewBox is cropped to Venezuela, so the
+   markers/arcs are re-sized and Venezuela is highlighted, all scoped
+   under #coverage so the index.html trade map is never affected.
    ============================================================ */
 
 /* shared section rhythm = portal fluid tokens */
@@ -126,6 +129,16 @@
 .r-region-block .m .n { font-family: var(--font-display); font-size: 38px; color: #A6864F; line-height: 1; }
 .r-region-block .m .l { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-text-dark-muted); }
 .r-region-block .s { font-size: 13px; color: #384241; margin: 0; }
+
+/* Venezuela crop — the world-map viewBox is zoomed to Venezuela (~9.5x), so the
+   shared markers/arcs would render oversized. Re-size them and highlight Venezuela
+   vs. its neighbours. Scoped to #coverage (page-only) — index.html is untouched. */
+#coverage .world-map .land path { fill: #2C3A31; opacity: 0.5; }
+#coverage .world-map .land #venezuela { fill: var(--color-bg-primary); opacity: 1; stroke: var(--color-accent-gold); stroke-width: 1; }
+#coverage .world-map .hub { r: 1.2; filter: drop-shadow(0 0 3px rgba(200, 168, 101, 0.7)); }
+#coverage .world-map .region:hover .hub,
+#coverage .world-map .region.active .hub { stroke: var(--color-text-light); stroke-width: 1.4; vector-effect: non-scaling-stroke; }
+#coverage .world-map .arc { vector-effect: non-scaling-stroke; }
 
 /* ---------- PHILOSOPHY — dark full-bleed (second dark moment) ---------- */
 .r-philo { position: relative; overflow: hidden; color: var(--color-text-light); padding: clamp(96px, 11vw, 150px) 0; }

@@ -1,5 +1,5 @@
 /* ============================================================
-   Patagonia Americas — RORAIMA page interactivity
+   Patagonia Americas — AUTANA page interactivity
    Slim: only the three interactive widgets unique to this page.
    The portal's shared scripts handle the rest:
    - nav.js   → fixed-nav scroll state + hero fade

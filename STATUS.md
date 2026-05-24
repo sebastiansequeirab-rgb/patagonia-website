@@ -1,6 +1,6 @@
 # Project status — Patagonia Americas website
 
-_Last updated: 2026-05-23_
+_Last updated: 2026-05-24_
 
 **Live:** https://www.patagoniaamericas.com · also https://patagonia-website.vercel.app
 **Deploy:** `vercel --prod --yes` (aliases to the custom domain). Static site, no build step.
@@ -12,17 +12,19 @@ lives in `README.md`.
 
 ## ✅ Done & live
 
-### Roraima platform page — `/roraima`
-- New standalone page at the clean URL **`/roraima`** (rewrite in `vercel.json`), linked from the
-  nav (**after Contact**) on `index.html`, `contact.html`, and itself.
+### Autana platform page — `/autana`
+- Standalone page at the clean URL **`/autana`** (rewrite in `vercel.json`), linked from the
+  nav (**after Contact**) on `index.html`, `contact.html`, and itself. **Venezuela-focused**, branded
+  after **Cerro Autana** (Piaroa, Venezuelan Amazon). Tagline: *Access. Structure. Execute.*
 - **Native to the portal (hybrid light/editorial):** reuses the portal's own components — `.nav`,
   `.hero`, the real **TradingView `.ticker-shell`** (in-flow below the hero, scrolls away like the
-  home), `.stats`, the real `.world-map` (forest-on-cream Wikimedia map, 6 Americas markers), 
-  `.cta-strip`, `.footer`. The two Mt. Roraima photos are the only **dark full-bleed moments** (hero
-  + Philosophy).
-- Interactive: Operating Model diagram, Sectors hover-to-expand, Frontier map region hover. Fully
-  bilingual EN/ES. Files: `roraima.html`, `assets/css/roraima.css`, `assets/js/roraima.js`,
-  `assets/images/roraima-hero.jpg`, `assets/images/roraima-philosophy.jpg`.
+  home), `.stats`, the `.world-map` (now **cropped to Venezuela**, 6 regional markers),
+  `.cta-strip`, `.footer`. Two dark full-bleed photo moments (hero + Philosophy).
+- Interactive: Operating Model diagram, Sectors hover-to-expand, Operating-Footprint map region hover.
+  Fully bilingual EN/ES. Files: `autana.html`, `assets/css/autana.css`, `assets/js/autana.js`,
+  `assets/images/autana-hero.jpg`, `assets/images/autana-philosophy.jpg`.
+- **Was previously misnamed "Roraima"** — rebranded to Autana with a Venezuela focus (map rebuilt from
+  the Americas to a Venezuela crop; Mt. Roraima inspiration/facts replaced with Cerro Autana / Piaroa).
 
 ### Contact form → Resend, on the verified domain
 - `patagoniaamericas.com` is verified in Resend; the form now sends from
@@ -43,6 +45,8 @@ lives in `README.md`.
 ## 🔜 Optional follow-ups (not blocking)
 - **Sender address:** currently `noreply@`. If preferred, switch to `exports@patagoniaamericas.com`
   (one-line default in `api/contact.js`, or set `CONTACT_FROM_EMAIL` in Vercel).
-- **Frontier map framing:** the map shows the full world (like the home Trade Map) with markers in the
-  Americas. Could be cropped to the Americas if a tighter focus is wanted.
+- **Autana imagery:** hero + Philosophy currently reuse the inherited tepui photos as placeholders —
+  swap in real Cerro Autana photos (`assets/images/autana-hero.jpg` / `autana-philosophy.jpg`).
+- **Autana placeholder data:** confirm the Stats numbers, the per-region mandate counts, and the
+  Cerro Autana facts (≈1,300 m, etc.) — all flagged with `NOTE:` comments in `autana.html`.
 - Privacy Policy / Terms pages are placeholder `#` links in the footer.
