@@ -45,6 +45,10 @@
   // Backdrop click closes.
   if (back) back.addEventListener('click', () => close({ returnFocus: true }));
 
+  // Explicit close button inside the panel.
+  const closeBtn = document.getElementById('navPanelClose');
+  if (closeBtn) closeBtn.addEventListener('click', () => close({ returnFocus: true }));
+
   // Escape closes.
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && root.classList.contains('nav-open')) {

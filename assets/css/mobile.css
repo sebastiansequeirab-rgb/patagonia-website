@@ -59,10 +59,9 @@
                 opacity   .2s ease;
     transform-origin: center;
   }
-  /* X morph when the panel is open. */
-  html.nav-open .nav-burger-bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-  html.nav-open .nav-burger-bar:nth-child(2) { opacity: 0; }
-  html.nav-open .nav-burger-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  /* When the panel is open the burger steps aside — the explicit
+     close button inside the panel takes over (less visual noise). */
+  html.nav-open .nav-burger { display: none; }
 
   /* Backdrop — soft dark wash with a hint of blur. */
   .nav-panel-backdrop {
@@ -107,7 +106,39 @@
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    padding: 96px 36px 36px;
+    padding: 26px 32px 36px;
+  }
+
+  /* Editorial close affordance — sits at the top right of the panel.
+     Label + X icon so it's unmistakable. */
+  .nav-panel-close {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    margin: -10px -12px 22px auto;
+    background: transparent;
+    border: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent-gold-bright, #d9b978);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: color .2s ease;
+  }
+  .nav-panel-close:hover,
+  .nav-panel-close:focus-visible {
+    color: var(--color-bg-cream-soft, #FAF5E8);
+    outline: none;
+  }
+  .nav-panel-close-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
   }
 
   /* Links — display typography, magazine-TOC feel.
