@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/sections.css">
-<link rel="stylesheet" href="assets/css/mobile.css" media="(max-width: 768px)">
+<link rel="stylesheet" href="assets/css/mobile.css">
 
 <style>
   /* Critical above-the-fold CSS — duplicated from tokens.css + base.css.
@@ -86,30 +86,32 @@
       </button>
     </div>
   </div>
-
-  <div class="nav-panel-backdrop" id="navBackdrop" aria-hidden="true"></div>
-  <div class="nav-panel" id="navPanel" aria-hidden="true">
-    <div class="nav-panel-inner">
-      <a href="index.html#services" class="nav-panel-link"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a>
-      <a href="index.html#products" class="nav-panel-link"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a>
-      <a href="index.html#about" class="nav-panel-link"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a>
-      <a href="contact.html" class="nav-panel-link"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a>
-      <a href="/autana" class="nav-panel-link">Autana</a>
-
-      <div class="nav-panel-foot">
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button type="button" data-set-lang="en" class="is-active">EN</button>
-          <span class="lang-divider" aria-hidden="true">/</span>
-          <button type="button" data-set-lang="es">ES</button>
-        </div>
-        <a href="index.html" class="btn btn-outline">
-          <span data-i18n="en">Back to Site</span><span data-i18n="es">Volver al Sitio</span>
-        </a>
-      </div>
-    </div>
-  </div>
 </nav>
 </header>
+
+<!-- Mobile nav panel — outside <nav>/<header> so the scrolled backdrop-filter
+     containing block doesn't trap its position:fixed. -->
+<div class="nav-panel-backdrop" id="navBackdrop" aria-hidden="true"></div>
+<div class="nav-panel" id="navPanel" aria-hidden="true">
+  <div class="nav-panel-inner">
+    <a href="index.html#services" class="nav-panel-link"><span data-i18n="en">Services</span><span data-i18n="es">Servicios</span></a>
+    <a href="index.html#products" class="nav-panel-link"><span data-i18n="en">Products</span><span data-i18n="es">Productos</span></a>
+    <a href="index.html#about" class="nav-panel-link"><span data-i18n="en">About Us</span><span data-i18n="es">Nosotros</span></a>
+    <a href="contact.html" class="nav-panel-link"><span data-i18n="en">Contact</span><span data-i18n="es">Contacto</span></a>
+    <a href="/autana" class="nav-panel-link">Autana</a>
+
+    <div class="nav-panel-foot">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-set-lang="en" class="is-active">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button type="button" data-set-lang="es">ES</button>
+      </div>
+      <a href="index.html" class="btn btn-outline">
+        <span data-i18n="en">Back to Site</span><span data-i18n="es">Volver al Sitio</span>
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- MAIN -->
 <main class="contact-page">
