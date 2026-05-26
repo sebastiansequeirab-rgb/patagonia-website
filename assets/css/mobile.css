@@ -1,0 +1,183 @@
+/* ============================================================
+   Patagonia Americas — Mobile (≤768px)
+   ------------------------------------------------------------
+   Single source of truth for mobile-specific styling.
+   Loaded LAST in the cascade; wrapped in a single media query
+   so >768px is byte-identical to the desktop build.
+
+   Editorial mobile lens: preserve display typography (lower
+   clamp minima, never collapse to body-text), keep dark
+   full-bleed moments, generous negative space over density.
+   ============================================================ */
+
+/* Hide mobile-only DOM at every viewport by default.
+   The media query below re-enables what's needed on ≤768px. */
+.nav-burger,
+.nav-panel,
+.nav-panel-backdrop { display: none; }
+
+@media (max-width: 768px) {
+
+  /* ------------------------------------------------------------
+     Nav — hamburger reveal + editorial slide-in panel
+     ------------------------------------------------------------ */
+
+  /* Reveal the hamburger; remove the inline CTA + lang toggle
+     (they re-appear inside the panel). */
+  .nav-burger { display: inline-flex; }
+  .nav-actions { display: none; }
+
+  /* Hamburger button — 3 hairlines, currentColor matches nav text.
+     Sits in the right slot of .nav-inner (space-between flex). */
+  .nav-burger {
+    position: relative;
+    z-index: 120;                       /* above panel + backdrop */
+    width: 44px;
+    height: 44px;
+    margin-right: -6px;                 /* optical alignment with logo edge */
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    color: var(--color-accent-gold, #b8954a);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-burger:focus-visible {
+    outline: 2px solid var(--color-accent-gold-bright, #d9b978);
+    outline-offset: 4px;
+  }
+  .nav-burger-bar {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform .28s var(--ease, cubic-bezier(.4,0,.2,1)),
+                opacity   .2s ease;
+    transform-origin: center;
+  }
+  /* X morph when the panel is open. */
+  html.nav-open .nav-burger-bar:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  html.nav-open .nav-burger-bar:nth-child(2) { opacity: 0; }
+  html.nav-open .nav-burger-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* Backdrop — soft dark wash with a hint of blur. */
+  .nav-panel-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(15, 22, 18, .55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .32s var(--ease, cubic-bezier(.4,0,.2,1));
+  }
+  html.nav-open .nav-panel-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Panel — slides in from the right.
+     Background uses the site's primary dark so it feels native. */
+  .nav-panel {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 110;
+    width: min(86vw, 380px);
+    background: var(--color-bg-primary, #1F2D24);
+    color: var(--color-bg-cream-soft, #FAF5E8);
+    box-shadow: -24px 0 60px rgba(0, 0, 0, .35);
+    transform: translateX(100%);
+    transition: transform .36s var(--ease, cubic-bezier(.4,0,.2,1));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  html.nav-open .nav-panel { transform: translateX(0); }
+
+  .nav-panel-inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 96px 36px 36px;
+  }
+
+  /* Links — display typography, magazine-TOC feel.
+     Letter-spacing borrowed from headings. */
+  .nav-panel-link {
+    display: block;
+    padding: 18px 0;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: .01em;
+    color: var(--color-bg-cream-soft, #FAF5E8);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 220, 192, .14);
+    transition: color .2s ease, padding-left .25s ease;
+  }
+  .nav-panel-link:first-of-type { border-top: 1px solid rgba(232, 220, 192, .14); }
+  .nav-panel-link:hover,
+  .nav-panel-link:focus-visible {
+    color: var(--color-accent-gold-bright, #d9b978);
+    padding-left: 6px;
+    outline: none;
+  }
+
+  /* Foot — sits at the bottom; pushed down with margin-top:auto. */
+  .nav-panel-foot {
+    margin-top: auto;
+    padding-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    align-items: flex-start;
+  }
+  .nav-panel-foot .lang-toggle {
+    display: inline-flex;                /* override components.css:545 hide */
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(232, 220, 192, .55);
+  }
+  .nav-panel-foot .lang-toggle button {
+    background: transparent;
+    border: 0;
+    padding: 4px 2px;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    transition: color .2s ease;
+  }
+  .nav-panel-foot .lang-toggle button.is-active { color: var(--color-accent-gold-bright, #d9b978); }
+  .nav-panel-foot .btn {
+    align-self: stretch;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Lock body scroll while the panel is open. */
+  html.nav-open,
+  html.nav-open body { overflow: hidden; }
+
+  /* Reduced motion — no slide, no fade transitions. */
+  @media (prefers-reduced-motion: reduce) {
+    .nav-panel,
+    .nav-panel-backdrop,
+    .nav-burger-bar { transition: none; }
+  }
+
+}
+
