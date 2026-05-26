@@ -91,15 +91,22 @@ reads as part of the site: the fixed `.nav`, the `.hero` (single dark tepui phot
 to the home), `.stats` (animated by `reveal.js`), the `.trade-map`/`.world-map`, `.cta-strip`, and the
 standard `.footer`. The two dark full-bleed photo moments are the hero + Philosophy; everything between
 is light cream/editorial. Scripts: shared `nav.js` + `i18n.js` + `reveal.js`, plus a slim `autana.js`
-for only the three interactive widgets (Operating Model, Sectors, Operating Footprint map).
+for the two remaining interactive widgets (Operating Model diagram, Operating Footprint map).
 
 Sections in order: hero → ticker → Premise (Cerro Autana / Piaroa) → Why + The Platform → Capabilities
-→ Stats → **interactive Operating Model** (AUTANA CORE + SPV nodes) → **Sectors** (6 tiles,
-hover/click to expand) → **Operating Footprint** (the portal world-map **cropped to Venezuela** — its
-`viewBox` is zoomed to Venezuela's path bounding box, with 6 regional markers + gold arcs + hover
-detail) → full-bleed **Philosophy** (Cerro Autana facts panel) → Pillars → CTA → footer. Fully
-bilingual EN/ES, including the JS-driven panels (pre-rendered in both languages, shown by class toggle
-so the CSS language swap keeps working).
+→ **interactive Operating Model** (AUTANA CORE + SPV nodes) → **Sectors** (clean 6-tile presentational
+grid) → **Operating Footprint** (the portal world-map **cropped to Venezuela** — its `viewBox` is
+zoomed to Venezuela's path bounding box, with 6 regional markers + gold arcs + hover detail showing
+region + sector focus, **no fabricated mandate counts**) → full-bleed **Philosophy** (Cerro Autana
+facts panel) → Pillars → CTA → footer. Fully bilingual EN/ES.
+
+> **Fidelity pass (2026-05-26):** the page text is now near-verbatim to the owner-provided source
+> copy. Three blocks of invented business data were stripped because they were not in the source:
+> the **Stats band** (animated metrics), the per-sector **Snapshots + "Representative Transactions"**
+> (sectors are now just the clean 6-item list of names), and the per-region **mandate counts** on the
+> Venezuela map. Kept (owner's call): the **Cerro Autana facts panel** in Philosophy and the **SPV
+> node descriptions** in the Operating Model diagram — both are descriptive embellishments rather than
+> business metrics. See `git log` `7591337` for the full diff.
 
 `autana.css`/`autana.js` are deliberately small — they only style/script the Autana-specific widgets;
 all common chrome comes from the portal CSS. The Venezuela map re-sizing + highlight lives in
@@ -107,9 +114,9 @@ all common chrome comes from the portal CSS. The Venezuela map re-sizing + highl
 tepui photos live at `assets/images/autana-hero.jpg` and `assets/images/autana-philosophy.jpg`.
 
 > **Placeholders to finalize:** the hero + Philosophy photos are currently the inherited tepui images
-> (not literally Cerro Autana) — swap in real Cerro Autana photos when available. The Stats numbers,
-> the per-region mandate counts, and the Cerro Autana facts (≈1,300 m, etc.) are placeholders flagged
-> with `NOTE:` comments in `autana.html` for the owner to confirm.
+> (not literally Cerro Autana) — swap in real Cerro Autana photos when available. The Cerro Autana
+> facts panel uses an approximate elevation (≈1,300 m); confirm with the owner if exact values matter.
+> Both are flagged with `NOTE:` comments in `autana.html`.
 >
 > History: started life as a mistakenly-named "Roraima" page (all-dark cinematic, from a Claude Design
 > handoff), re-aligned to the portal's light editorial system, then **rebranded to Autana** with a
