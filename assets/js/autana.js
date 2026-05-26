@@ -9,6 +9,7 @@
 (function () {
   'use strict';
   const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+  const isTouch = matchMedia('(hover: none)').matches;
 
   /* ---------- Operating Model (CORE + SPV nodes) ---------- */
   const diagram = document.getElementById('rDiagram');
@@ -28,7 +29,10 @@
     nodes.forEach((n) => {
       const id = n.dataset.node;
       n.addEventListener('mouseenter', () => setNode(id));
-      n.addEventListener('click', () => setNode(id));
+      n.addEventListener('click', () => {
+        if (isTouch && n.classList.contains('active')) setNode('core');
+        else setNode(id);
+      });
       n.addEventListener('focus', () => setNode(id));
       n.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setNode(id); }
@@ -51,13 +55,21 @@
     tiles.forEach((t) => {
       const id = t.dataset.sector;
       t.addEventListener('mouseenter', () => setSector(id));
-      t.addEventListener('click', () => setSector(id));
+      t.addEventListener('click', () => {
+        if (isTouch && t.classList.contains('active')) setSector(null);
+        else setSector(id);
+      });
       t.addEventListener('focus', () => setSector(id));
       t.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSector(id); }
       });
     });
     grid.addEventListener('mouseleave', () => setSector(null));
+    if (isTouch) {
+      document.addEventListener('click', (e) => {
+        if (!grid.contains(e.target)) setSector(null);
+      });
+    }
     setSector(null);
   }
 
@@ -75,10 +87,18 @@
     regions.forEach((r) => {
       const id = r.dataset.region;
       r.addEventListener('mouseenter', () => setRegion(id));
-      r.addEventListener('click', () => setRegion(id));
+      r.addEventListener('click', () => {
+        if (isTouch && r.classList.contains('active')) setRegion(null);
+        else setRegion(id);
+      });
       r.addEventListener('focus', () => setRegion(id));
     });
     map.addEventListener('mouseleave', () => setRegion(null));
+    if (isTouch) {
+      document.addEventListener('click', (e) => {
+        if (!map.contains(e.target)) setRegion(null);
+      });
+    }
     setRegion(null);
   }
 })();

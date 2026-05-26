@@ -179,5 +179,101 @@
     .nav-burger-bar { transition: none; }
   }
 
+  /* ------------------------------------------------------------
+     A. Global reset — no horizontal overflow, media is contained
+     ------------------------------------------------------------ */
+  html, body { overflow-x: hidden; max-width: 100%; }
+  img, svg, iframe, video { max-width: 100%; height: auto; }
+  iframe { width: 100%; }
+
+  /* ------------------------------------------------------------
+     B. Container + section paddings → uniform 20px gutter
+     ------------------------------------------------------------ */
+  .container { padding: 0 20px; max-width: 100%; }
+
+  .contact-brand    { padding: 40px 20px 32px; min-height: auto; }
+  .contact-form-wrap{ padding: 36px 20px; }
+  .sc-intro         { padding: 36px 20px 40px; }
+  .priority-center  { padding: 48px 20px; }
+  .sc-card-wrap     { padding: 28px 20px; }
+  .r-diagram-wrap   { padding: 20px; min-height: 0; }
+  .r-sector-panel   { padding: 24px 20px; }
+  .r-philo-panel    { padding: 20px; max-width: 100%; margin-left: 0; }
+  .r-node-detail    { padding: 20px; }
+  .r-region-detail  { padding: 20px; min-height: 100px; }
+
+  /* ------------------------------------------------------------
+     C. Neutralize decorative bleed (the real overflow culprits)
+     ------------------------------------------------------------ */
+  .contact-brand::after,
+  .contact-brand::before { display: none; }
+  .botanical             { display: none; }
+  .products::after       { display: none; }
+  .priority-img::after   { background: transparent !important; }
+  .r-philo::after        { background: linear-gradient(180deg, rgba(20,28,24,.86), rgba(20,28,24,.55)); }
+  .form-success p        { max-width: 100%; }
+
+  /* ------------------------------------------------------------
+     D. Typography — editorial display retained, lower floors
+     ------------------------------------------------------------ */
+  .hero h1          { font-size: clamp(30px, 8vw, 44px); margin-bottom: 22px; }
+  .hero-eyebrow     { margin-bottom: 20px; }
+  .hero-divider     { margin-bottom: 22px; }
+  .hero-lead        { font-size: 15px; margin-bottom: 28px; }
+  .stat-num         { font-size: clamp(28px, 7vw, 36px); }
+  .contact-brand h1 { font-size: clamp(30px, 8vw, 44px); }
+  .about-hero h1    { font-size: clamp(28px, 7vw, 40px); }
+  .r-philo h2       { font-size: clamp(26px, 7vw, 38px); }
+  .r-node-ttl       { font-size: 18px; }
+
+  /* ------------------------------------------------------------
+     E. Grids → 1 column (defensive !important against existing MQs)
+     ------------------------------------------------------------ */
+  .stats-grid,
+  .r-diagram-row,
+  .r-sectors-grid,
+  .r-pillars-grid,
+  .r-principles,
+  .r-philo-grid,
+  .r-caps-grid,
+  .r-why-grid,
+  .r-twocol,
+  .r-model-grid { grid-template-columns: 1fr !important; }
+
+  .r-sector {
+    border-left: none !important;
+    border-top: 1px solid #E2DAC4;
+    padding: 18px 20px;
+  }
+  .r-sector:first-child { border-top: none; }
+  .r-sector:nth-child(n+4) { border-top: 1px solid #E2DAC4; } /* override autana.css:194 */
+
+  /* ------------------------------------------------------------
+     F. Autana SPV diagram — collapse, hide connectors, full-width nodes
+     ------------------------------------------------------------ */
+  .r-diagram-svg    { display: none; }
+  .r-diagram-core   { margin-bottom: 12px; }
+  .r-node           { min-height: 80px; padding: 14px 16px; }
+  .r-node.core      { width: 100% !important; max-width: none !important; }
+
+  /* ------------------------------------------------------------
+     G. Maps — constrain SVG, bigger hub tap targets
+     ------------------------------------------------------------ */
+  .world-map { width: 100%; height: auto; max-height: 280px; }
+  .trade-map .world-map-wrap { grid-template-columns: 1fr; gap: 20px; max-width: 100%; }
+  #coverage .world-map .hub  { r: 1.8; }
+
+  /* ------------------------------------------------------------
+     H. Hero misc — kill parallax effect + center dots safely
+     ------------------------------------------------------------ */
+  .hero-content { transform: none !important; opacity: 1 !important; }
+  .hero-dots    { left: 0; transform: none; padding-left: 20px; bottom: 60px; }
+  .logo-text .sub { display: none; }
+
+  /* ------------------------------------------------------------
+     I. Reveal animations off — no half-revealed sections on phone
+     ------------------------------------------------------------ */
+  .reveal { opacity: 1 !important; transform: none !important; }
+
 }
 
