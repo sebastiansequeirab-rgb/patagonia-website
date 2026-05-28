@@ -21,10 +21,14 @@
   display: block;
   width: clamp(240px, 36vw, 440px);
   height: auto;
-  /* push the mark down from the fixed nav — the hero already has
-     padding-top, we add headroom on top of that for editorial breathing. */
-  margin: clamp(40px, 6vh, 80px) 0 30px;
+  margin: clamp(8px, 1.4vh, 24px) 0 14px;
   filter: drop-shadow(0 4px 24px rgba(156, 122, 56, 0.28));
+}
+/* Autana hero only — compress hero-content top padding so the
+   wordmark + h1 + lead fit inside (100svh - ticker) even at 110% zoom.
+   The home hero (no wordmark) keeps the original padding. */
+.hero-content:has(.autana-wordmark) {
+  padding-top: clamp(36px, 4.5vh, 90px);
 }
 @media (max-width: 768px) {
   .autana-wordmark {
