@@ -113,6 +113,18 @@ all common chrome comes from the portal CSS. The Venezuela map re-sizing + highl
 `autana.css` scoped under `#coverage` (page-only, so the home Trade Map is never affected). The two
 tepui photos live at `assets/images/autana-hero.jpg` and `assets/images/autana-philosophy.jpg`.
 
+> **AUTANA wordmark (2026-05-27):** the hero now opens with a chevron-style "AUTANA" wordmark above
+> the "The Autana Platform" eyebrow. It's an **inline SVG** with a 3-stop gold → deep bronze → cream
+> gradient (metallic look), styled in `autana.css` under `.autana-wordmark`. The current paths are a
+> hand-built approximation of the boss's reference; if exact-logo fidelity matters, get the original
+> SVG/AI from the boss and replace the inline SVG in `autana.html` (it's a drop-in swap).
+
+> **Mobile pass (2026-05-27):** the page is part of the site-wide mobile pass (`assets/css/mobile.css`,
+> ≤768px). On phone: SPV diagram collapses to 1 column with connectors hidden, sectors switch to a
+> top-bordered list, the Venezuela map is capped at 280px height, and `autana.js` adds tap-to-reveal
+> (toggle on the active tile, tap-outside closes sectors/regions) — desktop hover behavior is
+> untouched.
+
 > **Placeholders to finalize:** the hero + Philosophy photos are currently the inherited tepui images
 > (not literally Cerro Autana) — swap in real Cerro Autana photos when available. The Cerro Autana
 > facts panel uses an approximate elevation (≈1,300 m); confirm with the owner if exact values matter.
