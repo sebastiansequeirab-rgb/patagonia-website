@@ -21,14 +21,15 @@
   display: block;
   width: clamp(240px, 36vw, 440px);
   height: auto;
-  margin: clamp(8px, 1.4vh, 24px) 0 14px;
+  margin: clamp(56px, 6vh, 80px) 0 14px;
   filter: drop-shadow(0 4px 24px rgba(156, 122, 56, 0.28));
 }
-/* Autana hero only — compress hero-content top padding so the
-   wordmark + h1 + lead fit inside (100svh - ticker) even at 110% zoom.
-   The home hero (no wordmark) keeps the original padding. */
+/* Autana hero only — keep the stack (padding + wordmark + h1 + lead)
+   inside (100svh - ticker) so the TradingView strip stays above the
+   fold even at 110% browser zoom. Home hero (no wordmark) is untouched. */
 .hero-content:has(.autana-wordmark) {
   padding-top: clamp(36px, 4.5vh, 90px);
+  padding-bottom: clamp(30px, 4vh, 80px);
 }
 @media (max-width: 768px) {
   .autana-wordmark {
