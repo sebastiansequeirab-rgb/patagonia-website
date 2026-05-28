@@ -11,6 +11,19 @@
    under #coverage so the index.html trade map is never affected.
    ============================================================ */
 
+/* AUTANA hero wordmark — geometric chevron caps, gold→cream gradient.
+   Sits above the .hero-eyebrow as the brand's primary visual mark. */
+.autana-wordmark {
+  display: block;
+  width: clamp(220px, 38vw, 420px);
+  height: auto;
+  margin: 0 0 28px;
+  filter: drop-shadow(0 0 28px rgba(217, 185, 120, 0.22));
+}
+@media (max-width: 768px) {
+  .autana-wordmark { width: min(82vw, 320px); margin-bottom: 22px; }
+}
+
 /* shared section rhythm = portal fluid tokens */
 .r-section { padding: var(--space-section-y) 0; }
 .r-section + .r-section { border-top: 1px solid #E2DAC4; }
