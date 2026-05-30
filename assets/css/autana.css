@@ -11,12 +11,13 @@
    under #coverage so the index.html trade map is never affected.
    ============================================================ */
 
-/* AUTANA hero wordmark — geometric chevron caps, metallic gold gradient.
-   Sits above the .hero-eyebrow as the brand's primary visual mark.
-   Letters are 1.5:1 (tall) to match the boss's reference, strokes 15
-   with miter+miterlimit=2 so the chevron apex stays sharp without
-   shooting past the viewBox. Gradient runs gold → deep bronze → cream
-   to read as metallic, not flat-painted. */
+/* AUTANA hero wordmark — chevron caps, metallic gold gradient. Sits above
+   the .hero-eyebrow as the brand's primary visual mark. The glyph path is
+   VECTORIZED (potrace) straight from the boss's reference image, so the
+   letterforms, proportions and tracking are exact — not a hand approximation.
+   Single filled path inside autana.html; gradient (objectBoundingBox) runs
+   champagne shine → warm gold → bronze. viewBox is calibrated so it renders
+   at the prior visual size (~66px cap @ 440px wide) and stays fold-safe. */
 .autana-wordmark {
   display: block;
   width: clamp(240px, 36vw, 440px);
