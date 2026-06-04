@@ -1,6 +1,6 @@
 # Project status — Patagonia Americas website
 
-_Last updated: 2026-05-27_
+_Last updated: 2026-06-04_
 
 **Live:** https://www.patagoniaamericas.com · also https://patagonia-website.vercel.app
 **Deploy:** `vercel --prod --yes` (aliases to the custom domain). Static site, no build step.
@@ -44,17 +44,19 @@ Files: `assets/css/mobile.css`, `assets/js/nav-mobile.js`, edits to `index.html`
 `autana.html` (add the `<link>`, the burger HTML, the panel HTML outside `<nav>`, the `<script>`),
 and aditive edits to `assets/js/autana.js` + `assets/js/nav.js`.
 
-### AUTANA wordmark in the hero — `/autana`
-Boss-requested chevron wordmark above "The Autana Platform" eyebrow. Built as **inline SVG** with
-a 3-stop gold → deep bronze (#9C7A38) → cream gradient (metallic look). Letters are 1.5:1
-height-to-width — chevron A's with no crossbar, near-rectangular U, plain T, geometric N. Sized
-with `clamp(240px, 36vw, 440px)` on desktop and `min(78vw, 300px)` on mobile, with
-`clamp(40px, 6vh, 80px)` of margin-top on top of the existing hero padding so it doesn't press up
-against the nav. Styles live in `autana.css`.
+### AUTANA wordmark in the hero — `/autana` (rebuilt 2026-06-04, commit `2cf1b44`)
+Boss-requested chevron wordmark above "The Autana Platform" eyebrow. **Inline SVG**, single filled
+`<path>`, with a champagne-shine → warm-gold → bronze gradient (`#FAF6EB → #D6B582 → #8C6628`,
+`objectBoundingBox` so it maps over the glyph bbox). Sized with `clamp(240px, 36vw, 440px)` on
+desktop and `min(78vw, 300px)` on mobile. Styles live in `autana.css`.
 
-> **The current wordmark is a hand-built SVG approximation** of the brand mark in the boss's
-> reference image. If exact-logo fidelity matters, get the original SVG/AI from the boss and swap
-> the inline SVG in `autana.html` (≈ line 134-150). It's a 30-second drop-in.
+> **The wordmark is VECTORIZED straight from the boss's reference image** (not a hand drawing).
+> Three rounds of hand-tracing were rejected as "no es el mismo formato"; the path is now produced by
+> `potrace` from the reference (crop → threshold → trace), so the letterforms, proportions and
+> tracking are exact — **~92% IoU** against the reference on an overlay check. `viewBox="-51 -54 4503
+> 885"` is calibrated so it renders at the prior size (~66 px cap @ 440 px wide) and stays fold-safe.
+> It's still a trace of a low-res (84 px-cap) source — if crisper edges are ever needed at large
+> scale, get the original vector file (SVG/AI) from the boss and drop it into `autana.html`.
 
 ### Autana platform page — `/autana`
 - Standalone page at the clean URL **`/autana`** (rewrite in `vercel.json`), linked from the nav
@@ -90,8 +92,9 @@ Side-by-side audit of the page against the **owner-provided source copy**. Resul
 
 ## 🔜 Optional follow-ups (not blocking)
 
-- **Real AUTANA logo file from the boss.** The current wordmark is a hand-built SVG approximation.
-  When the boss sends the actual logo (SVG/AI/high-res PNG), swap the inline SVG in `autana.html`.
+- **Original AUTANA logo vector from the boss.** The wordmark now matches his reference exactly (it's
+  a `potrace` vector of that image), but the source was low-res (~84 px cap). If razor-sharp edges at
+  large scale ever matter, get the real SVG/AI and drop it into `autana.html` — it's a one-line swap.
 - **Autana imagery.** Hero + Philosophy currently reuse the inherited tepui photos as placeholders
   — swap in real Cerro Autana photos (`assets/images/autana-hero.jpg` /
   `assets/images/autana-philosophy.jpg`). Flagged with `NOTE:` in `autana.html`.

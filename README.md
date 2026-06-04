@@ -2,7 +2,7 @@
 
 Static marketing site for Patagonia Americas, an international commodity trading firm based in Fort Lauderdale, FL.
 
-**Live:** https://patagonia-website.vercel.app
+**Live:** https://www.patagoniaamericas.com · also https://patagonia-website.vercel.app
 
 ---
 
@@ -113,11 +113,13 @@ all common chrome comes from the portal CSS. The Venezuela map re-sizing + highl
 `autana.css` scoped under `#coverage` (page-only, so the home Trade Map is never affected). The two
 tepui photos live at `assets/images/autana-hero.jpg` and `assets/images/autana-philosophy.jpg`.
 
-> **AUTANA wordmark (2026-05-27):** the hero now opens with a chevron-style "AUTANA" wordmark above
-> the "The Autana Platform" eyebrow. It's an **inline SVG** with a 3-stop gold → deep bronze → cream
-> gradient (metallic look), styled in `autana.css` under `.autana-wordmark`. The current paths are a
-> hand-built approximation of the boss's reference; if exact-logo fidelity matters, get the original
-> SVG/AI from the boss and replace the inline SVG in `autana.html` (it's a drop-in swap).
+> **AUTANA wordmark (rebuilt 2026-06-04):** the hero opens with a chevron-style "AUTANA" wordmark
+> above the "The Autana Platform" eyebrow — an **inline SVG** (single filled `<path>`) with a
+> champagne → warm-gold → bronze gradient, styled in `autana.css` under `.autana-wordmark`. The path
+> is **vectorized with `potrace` straight from the boss's reference image** (hand-tracing never matched
+> his "formato"), so the letterforms/proportions/tracking are exact (~92% IoU vs the reference). It's
+> a trace of a low-res source, so for crisper edges at large scale, get the original SVG/AI from the
+> boss and drop it into `autana.html` (it's a one-line swap).
 
 > **Mobile pass (2026-05-27):** the page is part of the site-wide mobile pass (`assets/css/mobile.css`,
 > ≤768px). On phone: SPV diagram collapses to 1 column with connectors hidden, sectors switch to a
@@ -286,9 +288,8 @@ Run `npm i -g vercel@latest` to keep the CLI current.
 ## Local development
 
 ```bash
-# From the repo root
-python3 -m http.server 8765
-# Then open http://127.0.0.1:8765/
+# From the repo root — serves on http://127.0.0.1:8000/
+npm run dev          # = python3 -m http.server 8000
 ```
 
 No build, no install. Edit any HTML / CSS / JS file and refresh the browser.

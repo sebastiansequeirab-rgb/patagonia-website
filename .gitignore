@@ -1,14 +1,23 @@
+# dependencies & build artifacts
 node_modules/
-.vercel/
+
+# secrets & local env
 .env
 .env.local
 .env.*.local
-.DS_Store
+
+# platform / tooling local state
+.vercel/
+.claude/settings.local.json
+
+# logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.vercel
+
+# OS cruft
+.DS_Store
 
 # macOS screenshot uploads — keep them out of the repo even if dropped into assets/images/
 SCR-*.jpeg
@@ -17,7 +26,7 @@ SCR-*.png
 pagina vercel.jpeg
 
 # Personal / unused source files dropped into assets/images (not part of the site;
-# the page uses the optimized roraima-hero.jpg / roraima-philosophy.jpg instead)
+# the Autana page uses the optimized autana-hero.jpg / autana-philosophy.jpg instead)
 assets/images/guion_sebastian_expo.pdf
 assets/images/roraima.png
 assets/images/roraima2.png
